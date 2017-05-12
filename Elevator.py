@@ -24,23 +24,3 @@ class Elevator:
     # Returns whether there's sufficient surface capacity left for one person to stand
     def _has_standing_capacity(self):
         return 0  # TODO use opencv to get this
-
-
-class Floor:
-    def __init__(self, floor_num):
-        self.floor_num = floor_num
-        self.is_up_pressed = False
-        self.is_down_pressed = False
-        self.has_people = False
-
-    def get_waiting_time_up(self):
-        return 0
-
-    def get_waiting_time_down(self):
-        return 0
-
-
-class Building:
-    def __init__(self, floorCount, elevatorCount):
-        self.floorCount = floorCount
-        self.elevatorCount = elevatorCount
