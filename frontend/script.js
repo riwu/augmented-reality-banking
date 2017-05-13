@@ -63,25 +63,6 @@ function readData() {
 	destinationsHighlighted = response.lift_destinations;
 }
 
-function writeData() {
-	var r = new XMLHttpRequest();
-	r.open('POST', '../python.json', false);
-	r.send(null);
-	var response = JSON.parse(r.responseText);
-
-	floors = [];
-	for (var i = 0; i < Object.keys(response.floor).length; i++) {
-		floors[i] = {
-			upPressed: false,
-			downPressed: false,
-			peopleCount: 0,
-		};
-	}
-
-	liftDestination = response.lift_level;
-	destinationsHighlighted = response.lift_destinations;
-}
-
 function updateData() {
 	readData();
 	$('#main').empty()
