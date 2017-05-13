@@ -5,7 +5,7 @@ class Floor:
         self.is_down_pressed = False
         self.has_people = False
 
-    def get_waiting_time_up(self):
+    def compute_waiting_time_up(self, lift):
         return 0
 
     def get_waiting_time_down(self):
