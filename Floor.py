@@ -4,12 +4,8 @@ class Floor:
         self.floor_num = floor_num
         self.is_up_pressed = False
         self.is_down_pressed = False
+        self.people_count = 0
 
+    # in actual use, will be detected through opencv
     def get_people_count(self):
-        return 1
-
-    def compute_waiting_time_up(self, lift):
-        return 0
-
-    def get_waiting_time_down(self):
-        return 0
+        return self.people_count

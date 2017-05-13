@@ -48,7 +48,7 @@ class Building:
                                   (not is_going_up and current_floor.is_down_pressed)
             if check_going_out and current_floor_num in lift.destinations:
                 if has_people_going_in:
-                    time += Building.wait_time_in_out[current_floor.floor_num][lift.get_people_count()]
+                    time += Building.wait_time_in_out[current_floor.get_people_count()][lift.get_people_count()]
                 else:
                     time += Building.wait_time_out[lift.get_people_count()]
             elif has_people_going_in:

@@ -10,9 +10,11 @@ class Lift:
         # How many sec it takes to go up/down 1 floor
         self.speed = 1
         self.is_moving = False
+        self.people_count = 0
 
+    # in actual use, will be detected through opencv
     def get_people_count(self):
-        return 1 # TODO count num of ppl currently in lift
+        return self.people_count
 
     # Returns whether there's vacancy for at least one person
     def has_vacancy(self):
@@ -20,7 +22,7 @@ class Lift:
 
     # Get the current weight of the elevator. Done through weight sensor in elevator
     def _get_current_weight(self):
-        return 0
+        return self.get_people_count() * Lift.lightest_passenger_weight
 
     # Returns whether there's sufficient weight capacity left for one person
     def _has_weight_capacity(self):
