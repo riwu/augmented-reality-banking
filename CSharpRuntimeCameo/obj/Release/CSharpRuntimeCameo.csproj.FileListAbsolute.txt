@@ -1,0 +1,12 @@
+C:\Program Files\BOSCH\VideoSDK6\Sample Applications\Simple\CSharpRuntimeCameo\bin\Release\CSharpRuntimeCameo.exe.config
+C:\Program Files\BOSCH\VideoSDK6\Sample Applications\Simple\CSharpRuntimeCameo\bin\Release\CSharpRuntimeCameo.exe
+C:\Program Files\BOSCH\VideoSDK6\Sample Applications\Simple\CSharpRuntimeCameo\bin\Release\CSharpRuntimeCameo.pdb
+C:\Program Files\BOSCH\VideoSDK6\Sample Applications\Simple\CSharpRuntimeCameo\bin\Release\Bosch.VideoSDK.AxCameoLib.dll
+C:\Program Files\BOSCH\VideoSDK6\Sample Applications\Simple\CSharpRuntimeCameo\bin\Release\Bosch.VideoSDK.CameoLib.dll
+C:\Program Files\BOSCH\VideoSDK6\Sample Applications\Simple\CSharpRuntimeCameo\bin\Release\Bosch.VideoSDK.GCALib.dll
+C:\Program Files\BOSCH\VideoSDK6\Sample Applications\Simple\CSharpRuntimeCameo\obj\Release\CSharpRuntimeCameo.csprojResolveAssemblyReference.cache
+C:\Program Files\BOSCH\VideoSDK6\Sample Applications\Simple\CSharpRuntimeCameo\obj\Release\CSharpRuntimeCameo.MainWindow.resources
+C:\Program Files\BOSCH\VideoSDK6\Sample Applications\Simple\CSharpRuntimeCameo\obj\Release\CSharpRuntimeCameo.Properties.Resources.resources
+C:\Program Files\BOSCH\VideoSDK6\Sample Applications\Simple\CSharpRuntimeCameo\obj\Release\CSharpRuntimeCameo.csproj.GenerateResource.Cache
+C:\Program Files\BOSCH\VideoSDK6\Sample Applications\Simple\CSharpRuntimeCameo\obj\Release\CSharpRuntimeCameo.exe
+C:\Program Files\BOSCH\VideoSDK6\Sample Applications\Simple\CSharpRuntimeCameo\obj\Release\CSharpRuntimeCameo.pdb
