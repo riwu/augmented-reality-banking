@@ -4,8 +4,8 @@ from Lift import Lift
 
 class Building:
     max_people_count = 50
-    wait_time_in = [3 * i for i in range(1, max_people_count)]
-    wait_time_out = [3 * i for i in range(1, max_people_count)]
+    wait_time_in = [3 * i for i in range(0, max_people_count + 1)]
+    wait_time_out = [3 * i for i in range(0, max_people_count + 1)]
     wait_time_in_out = [wait_time_in * max_people_count]
 
     def __init__(self, floor_count, lift_count):
@@ -36,8 +36,8 @@ class Building:
     def _compute_travel_time(self, floor_num, lift, for_up, start, end, check_going_out):
         time = 0
         is_going_up = start < end
-        for current_floor_num in range(start, end + (1 if is_going_up else -1),
-                                       1 if is_going_up else -1):
+        increment = (1 if is_going_up else -1)
+        for current_floor_num in range(start + increment, end + increment, increment):
             if current_floor_num == floor_num and (is_going_up == for_up or not lift.is_moving):
                 return (time, True)
 
@@ -52,7 +52,7 @@ class Building:
                 else:
                     time += Building.wait_time_out[lift.get_people_count()]
             elif has_people_going_in:
-                time += Building.wait_time_in[current_floor.get_num_people()]
+                time += Building.wait_time_in[current_floor.get_people_count()]
 
         return (time, False)
 
@@ -65,9 +65,22 @@ class Building:
 
         return self.floor_exit_counts[floor_num][lift.get_people_count()]
 
-
 building = Building(100, 2)
 waiting_time = building.compute_waiting_time(0, building.lifts[0], for_up=True)
 print(waiting_time)
 waiting_time = building.compute_waiting_time(10, building.lifts[0], for_up=True)
 print(waiting_time)
+
+building.lifts[0].is_moving = True
+building.lifts[0].destinations = [2]
+waiting_time = building.compute_waiting_time(10, building.lifts[0], for_up=True)
+print(waiting_time)
+
+building.lifts[0].destinations = [2, 20]
+waiting_time = building.compute_waiting_time(10, building.lifts[0], for_up=True)
+print(waiting_time)
+
+building.lifts[0].destinations = [2, 4, 80]
+waiting_time = building.compute_waiting_time(10, building.lifts[0], for_up=False)
+print(waiting_time)
+
