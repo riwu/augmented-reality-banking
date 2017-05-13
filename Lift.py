@@ -1,4 +1,4 @@
-class Elevator:
+class Lift:
     # to be recomputed via automatic data collection
     lightest_passenger_weight = 40
 
@@ -8,6 +8,8 @@ class Elevator:
         self.current_floor = current_floor
         self.is_going_up = False
         self.destinations = []
+        # How many sec it takes to go up/down 1 floor
+        self.speed = 1
 
     # Returns whether there's vacancy for at least one person
     def has_vacancy(self):
@@ -19,7 +21,7 @@ class Elevator:
 
     # Returns whether there's sufficient weight capacity left for one person
     def _has_weight_capacity(self):
-        return self._get_current_weight + Elevator.lightest_passenger_weight <= self._max_weight
+        return self._get_current_weight + Lift.lightest_passenger_weight <= self._max_weight
 
     # Returns whether there's sufficient surface capacity left for one person to stand
     def _has_standing_capacity(self):
