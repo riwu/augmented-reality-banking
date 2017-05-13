@@ -1,5 +1,6 @@
 from Floor import Floor
 from Lift import Lift
+import json
 
 
 class Building:
@@ -11,8 +12,24 @@ class Building:
     def __init__(self, floor_count, lift_count):
         self.floors = [Floor(floor_num=i) for i in range(floor_count)]
         self.lifts = [Lift(max_weight=1000, current_floor=0) for _ in range(lift_count)]
-
         self.floor_exit_counts = [[1 for _ in range(Building.max_people_count)] * floor_count]
+
+    def run(self):
+        while True:
+            with open('js.json') as f:
+                data = json.load(f)
+            for floor in self.floors:
+                pass
+            self.write_to_file()
+
+    def write_to_file(self):
+        with open('python.json', 'w') as f:
+            json_dump = {'floor': {
+            floor.floor_num: {'people_count': floor.people_count, 'is_up_pressed': floor.is_up_pressed,
+                              'is_down_pressed': floor.is_down_pressed} for floor in self.floors},
+                         'lift_people_count': self.lifts[0].people_count}
+            f.write(json.dumps(json_dump))
+        f.close()
 
     def compute_waiting_time(self, floor_num, lift, for_up):
         total_time = 0
@@ -28,7 +45,7 @@ class Building:
 
         if not has_reached_floor:
             time, _ = self._compute_travel_time(floor_num, lift, for_up, start=final_destination,
-                                              end=floor_num, check_going_out=False)
+                                                end=floor_num, check_going_out=False)
             total_time += time
 
         return total_time
@@ -65,7 +82,8 @@ class Building:
 
         return self.floor_exit_counts[floor_num][lift.get_people_count()]
 
-building = Building(100, 2)
+
+building = Building(50, 2)
 waiting_time = building.compute_waiting_time(0, building.lifts[0], for_up=True)
 print(waiting_time)
 waiting_time = building.compute_waiting_time(10, building.lifts[0], for_up=True)
@@ -80,7 +98,10 @@ building.lifts[0].destinations = [2, 20]
 waiting_time = building.compute_waiting_time(10, building.lifts[0], for_up=True)
 print(waiting_time)
 
-building.lifts[0].destinations = [2, 4, 80]
+building.lifts[0].destinations = [2, 4, 40]
 waiting_time = building.compute_waiting_time(10, building.lifts[0], for_up=False)
 print(waiting_time)
 
+building = Building(5, 2)
+building.lifts[0].people_count = 10
+building.write_to_file()
