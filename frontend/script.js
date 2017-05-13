@@ -60,12 +60,31 @@ function readData() {
 	}
 
 	liftDestination = response.lift_level;
-
 	destinationsHighlighted = response.lift_destinations;
 }
 
-$(document).ready(function() {
+function writeData() {
+	var r = new XMLHttpRequest();
+	r.open('POST', '../python.json', false);
+	r.send(null);
+	var response = JSON.parse(r.responseText);
+
+	floors = [];
+	for (var i = 0; i < Object.keys(response.floor).length; i++) {
+		floors[i] = {
+			upPressed: false,
+			downPressed: false,
+			peopleCount: 0,
+		};
+	}
+
+	liftDestination = response.lift_level;
+	destinationsHighlighted = response.lift_destinations;
+}
+
+function updateData() {
 	readData();
+	$('#main').empty()
 	for (var i = floors.length - 1; i >= 0; i--) {
 		$('#main').append('<div class="floor" data-floor=' + i + '>'
 			+ '<div class="floor-number">Floor ' + i + '</div>'
@@ -87,4 +106,9 @@ $(document).ready(function() {
 	});
 
 	updateLift();
+}
+
+$(document).ready(function() {
+    setInterval(updateData, 1000)
 });
+
