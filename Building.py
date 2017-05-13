@@ -24,7 +24,9 @@ class Building:
                 floor.is_down_pressed = floor_data['is_down_pressed']
                 floor.people_count = floor_data['people_count']
 
+
             self.write_to_file()
+            break
 
 
     def write_to_file(self):
@@ -32,7 +34,8 @@ class Building:
             json_dump = {'floor': {
                 floor.floor_num: {'people_count': floor.people_count, 'is_up_pressed': floor.is_up_pressed,
                                   'is_down_pressed': floor.is_down_pressed} for floor in self.floors},
-                'lift_people_count': self.lifts[0].people_count, 'lift_level': self.lifts[0].current_floor}
+                'lift_people_count': self.lifts[0].people_count, 'lift_level': self.lifts[0].current_floor,
+                'lift_destinations': self.lifts[0].destinations}
             f.write(json.dumps(json_dump))
         f.close()
 
@@ -109,6 +112,7 @@ print(waiting_time)
 
 building = Building(5, 2)
 building.lifts[0].people_count = 10
+building.lifts[0].destinations = [2, 3]
 building.write_to_file()
 
 building.run()
