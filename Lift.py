@@ -8,7 +8,7 @@ class Lift:
         self.current_floor = current_floor
         self.destinations = []
         # How many sec it takes to go up/down 1 floor
-        self.speed = 1
+        self.speed = 2
         self.is_moving = False
         self.people_count = 0
 

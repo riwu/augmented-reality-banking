@@ -1,5 +1,6 @@
 from Floor import Floor
 from Lift import Lift
+from time import sleep
 import json
 
 
@@ -24,9 +25,29 @@ class Building:
                 floor.is_down_pressed = floor_data['is_down_pressed']
                 floor.people_count = floor_data['people_count']
 
+            lift = self.lifts[0]
+            if len(lift.destinations) == 0:
+                for floor in self.floors:
+                    if floor.is_up_pressed or floor.is_down_pressed:
+                        is_going_up = lift.current_floor < floor.floor_num
+                        if lift.current_floor == floor.floor_num:
+                            floor.is_up_pressed = False
+                            floor.is_down_pressed = False
+                            while lift.has_vacancy():
+                                lift.people_count += 1
+                                floor.people_count -= 1
+                        else:
+                            lift.current_floor += 1 if is_going_up else -1
+                        sleep(lift.speed)
+            else:
+                is_going_up = lift.current_floor < lift.destinations[0]
+                lift.current_floor += 1 if is_going_up else -1
+                sleep(lift.speed)
+                if lift.current_floor in lift.destinations:
+                    lift.destinations.remove(lift.current_floor)
+                    sleep(200)
 
             self.write_to_file()
-            break
 
 
     def write_to_file(self):
