@@ -16,18 +16,23 @@ class Building:
 
     def run(self):
         while True:
-            with open('js.json') as f:
+            with open('python.json') as f:
                 data = json.load(f)
             for floor in self.floors:
-                pass
+                floor_data = data['floor'][str(floor.floor_num)]
+                floor.is_up_pressed = floor_data['is_up_pressed']
+                floor.is_down_pressed = floor_data['is_down_pressed']
+                floor.people_count = floor_data['people_count']
+
             self.write_to_file()
+
 
     def write_to_file(self):
         with open('python.json', 'w') as f:
             json_dump = {'floor': {
-            floor.floor_num: {'people_count': floor.people_count, 'is_up_pressed': floor.is_up_pressed,
-                              'is_down_pressed': floor.is_down_pressed} for floor in self.floors},
-                         'lift_people_count': self.lifts[0].people_count}
+                floor.floor_num: {'people_count': floor.people_count, 'is_up_pressed': floor.is_up_pressed,
+                                  'is_down_pressed': floor.is_down_pressed} for floor in self.floors},
+                'lift_people_count': self.lifts[0].people_count, 'lift_level': self.lifts[0].current_floor}
             f.write(json.dumps(json_dump))
         f.close()
 
@@ -105,3 +110,5 @@ print(waiting_time)
 building = Building(5, 2)
 building.lifts[0].people_count = 10
 building.write_to_file()
+
+building.run()
