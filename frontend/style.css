@@ -1,0 +1,32 @@
+.floor {
+	padding: 1em;
+	border: 1px solid #000;
+}
+
+.floor > * {
+	display: inline-block;
+	margin: 0 1em;
+}
+
+.floor-number {
+	border: 1px solid #000;
+	padding: 0.2em 0.5em;
+}
+
+.lift {
+	background-color: #ccc;
+	border: 1px solid #000;
+	height: 5em;
+	padding: 0.2em;
+	text-align: center;
+	vertical-align: middle;
+	width: 5em;
+}
+
+.active > .lift {
+	background-color: #99c;
+}
+
+.people-count {
+	max-width: 3em;
+}
