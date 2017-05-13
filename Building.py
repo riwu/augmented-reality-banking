@@ -10,27 +10,38 @@ class Building:
 
     def __init__(self, floor_count, lift_count):
         self.floors = [Floor(floor_num=i) for i in range(floor_count)]
-        self.lifts = [Lift(max_weight=1000, current_floor=1) for i in range(lift_count)]
+        self.lifts = [Lift(max_weight=1000, current_floor=0) for _ in range(lift_count)]
 
-        self.floor_exit_counts = [[1 for i in range(Building.max_people_count)] * floor_count]
+        self.floor_exit_counts = [[1 for _ in range(Building.max_people_count)] * floor_count]
 
     def compute_waiting_time(self, floor_num, lift, for_up):
-        is_going_up = lift.current_floor < lift.destinations[0]
-        final_destination = lift.destinations[-1] if is_going_up else lift.destinations[0]
-        time, has_reached_floor = self._compute_travel_time(floor_num, lift, for_up, start=lift.current_floor,
-                                                            end=final_destination, check_going_out=True)
+        total_time = 0
+        has_reached_floor = False
+        if len(lift.destinations) > 0:
+            is_going_up = lift.current_floor < lift.destinations[0]
+            final_destination = lift.destinations[-1] if is_going_up else lift.destinations[0]
+            time, has_reached_floor = self._compute_travel_time(floor_num, lift, for_up, start=lift.current_floor,
+                                                                end=final_destination, check_going_out=True)
+            total_time += time
+        else:
+            final_destination = lift.current_floor
+
         if not has_reached_floor:
-            time += self._compute_travel_time(floor_num, lift, for_up, start=final_destination,
-                                              end=floor_num, check_going_out=False)[0]
-        return time
+            time, _ = self._compute_travel_time(floor_num, lift, for_up, start=final_destination,
+                                              end=floor_num, check_going_out=False)
+            total_time += time
+
+        return total_time
 
     def _compute_travel_time(self, floor_num, lift, for_up, start, end, check_going_out):
         time = 0
         is_going_up = start < end
         for current_floor_num in range(start, end + (1 if is_going_up else -1),
                                        1 if is_going_up else -1):
-            if current_floor_num == floor_num and is_going_up == for_up:
+            if current_floor_num == floor_num and (is_going_up == for_up or not lift.is_moving):
                 return (time, True)
+
+            time += lift.speed
 
             current_floor = self.floors[current_floor_num]
             has_people_going_in = (is_going_up and current_floor.is_up_pressed) or \
@@ -55,4 +66,8 @@ class Building:
         return self.floor_exit_counts[floor_num][lift.get_people_count()]
 
 
-building = Building(10, 2)
+building = Building(100, 2)
+waiting_time = building.compute_waiting_time(0, building.lifts[0], for_up=True)
+print(waiting_time)
+waiting_time = building.compute_waiting_time(10, building.lifts[0], for_up=True)
+print(waiting_time)

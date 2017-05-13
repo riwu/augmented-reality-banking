@@ -9,6 +9,7 @@ class Lift:
         self.destinations = []
         # How many sec it takes to go up/down 1 floor
         self.speed = 1
+        self.is_moving = False
 
     def get_people_count(self):
         return 1 # TODO count num of ppl currently in lift
