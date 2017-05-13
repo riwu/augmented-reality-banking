@@ -31,3 +31,7 @@
 .people-count {
 	max-width: 3em;
 }
+
+.lift.highlighted {
+	border: 3px solid #f00;
+}

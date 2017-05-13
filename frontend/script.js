@@ -1,6 +1,8 @@
-var floors = 5;
-var liftPosition = 1;
-var liftDestination = 5;
+var floors;
+var liftPosition = 4;
+var liftDestination;
+var numberOfPeopleInLift = 0;
+var destinationsHighlighted = [];
 
 function moveLift() {
 	if (liftDestination > liftPosition) {
@@ -22,7 +24,11 @@ function goDown() {
 
 function updateLift() {
 	$('.floor').removeClass('active');
-	$('[data-floor=' + liftPosition + ']').addClass('active');
+	$('.floor > .lift').text('');
+
+	var active = $('[data-floor=' + liftPosition + ']');
+	active.addClass('active');
+	active.children('.lift').text(numberOfPeopleInLift);
 	moveLift();
 }
 
@@ -31,16 +37,45 @@ function changeLiftDestination(nextFloor) {
 	updateLift();
 }
 
+function highlightLifts() {
+	$('.lift').removeClass('highlighted');
+	for (var i = 0; i < destinationsHighlighted.length; i++) {
+		$('[data-floor=' + destinationsHighlighted[i] + '] > .lift').addClass('highlighted');
+	}
+}
+
+function readData() {
+	var r = new XMLHttpRequest();
+	r.open('GET', '../python.json', false);
+	r.send(null);
+	var response = JSON.parse(r.responseText);
+	
+	floors = [];
+	for (var i = 0; i < Object.keys(response.floor).length; i++) {
+		floors[i] = {
+			upPressed: false,
+			downPressed: false,
+			peopleCount: 0,
+		};
+	}
+
+	liftDestination = response.lift_level;
+
+	destinationsHighlighted = response.lift_destinations;
+}
+
 $(document).ready(function() {
-	for (var i = floors; i >= 1; i--) {
+	readData();
+	for (var i = floors.length - 1; i >= 0; i--) {
 		$('#main').append('<div class="floor" data-floor=' + i + '>'
 			+ '<div class="floor-number">Floor ' + i + '</div>'
-			+ '<div class="lift">10</div>'
+			+ '<div class="lift"></div>'
 			+ '<button class="btn button-up">UP</button>'
 			+ '<button class="btn button-down">DOWN</button>'
 			+ 'Number of people: <input class="people-count form-control" value="0">'
 			+ '</div>');
 	}
+	highlightLifts();
 
 	$('button').bind('click', function(e) {
 		var t = $(e.target);
