@@ -44,7 +44,7 @@ class Building:
                         print("pressed up")
 
             lift = self.lifts[0]
-            print(lift.destinations, lift.current_floor)
+            #print(lift.destinations, lift.current_floor)
             if len(lift.destinations) == 0:
                 updated = False
                 for floor in self.floors:
@@ -85,22 +85,20 @@ class Building:
                         lift.people_count += 1
                         current_floor.people_count -= 1
 
-                    if is_going_up:
-                        current_floor.is_up_pressed = False
-                    else:
-                        current_floor.is_down_pressed = False
-                        print('floor down false', current_floor.floor_num)
-
                     # randomly assign destination for new passenger
                     rand_increment = 0
                     while lift.current_floor + rand_increment >= 0 and lift.current_floor + rand_increment < len(
                             self.floors):
                         rand_increment += 1
-                    lift.destinations.append(0) # lift.current_floor + random.randint(1, rand_increment) * increment
+                    lift.destinations.append(4 if current_floor.is_up_pressed else 0) # lift.current_floor + random.randint(1, rand_increment) * increment
                     lift.destinations.sort()
 
+                    if current_floor.is_up_pressed:
+                        current_floor.is_up_pressed = False
+                    else:
+                        current_floor.is_down_pressed = False
+
             self.write_to_file()
-            sleep(1)
 
     def write_to_file(self):
         print('writing to file')
