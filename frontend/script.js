@@ -69,6 +69,8 @@ function readData() {
       peopleCount: response.floor[i].people_count,
       waitTimeUp: response.floor[i].wait_time_up,
       waitTimeDown: response.floor[i].wait_time_down,
+      capacityUp: response.floor[i].capacity_up,
+      capacityDown: response.floor[i].capacity_down,
     };
   }
 
@@ -109,6 +111,8 @@ function updateWaitingTime() {
   for (var i = 0; i < floors.length; i++) {
     $('[data-floor = ' + i + '] > .wait-time-up').text(floors[i].waitTimeUp);
     $('[data-floor = ' + i + '] > .wait-time-down').text(floors[i].waitTimeDown);
+    $('[data-floor = ' + i + '] > .capacity-up').text(floors[i].capacityUp);
+    $('[data-floor = ' + i + '] > .capacity-down').text(floors[i].capacityDown);
   }
 }
 
@@ -136,6 +140,8 @@ $(document).ready(function() {
       + 'Number of people: <input class="people-count form-control" value="0">'
       + 'Waiting time to up: <div class="wait-time-up">0</div>'
       + 'Waiting time to down: <div class="wait-time-down">0</div>'
+      + 'Capacity to up: <div class="capacity-up">0</div>'
+      + 'Capacity to down: <div class="capacity-down">0</div>'
       + '</div>');
   }
   highlightLifts();
