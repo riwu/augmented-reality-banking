@@ -16,16 +16,16 @@ function moveLift() {
 
 function goUp() {
   if (liftDestination > liftPosition) {
-      liftPosition++;
-      updateLift();
+    liftPosition++;
+    updateLift();
   }
 }
 
 function goDown() {
-   if (liftDestination < liftPosition) {
-        liftPosition--;
-        updateLift();
-   }
+  if (liftDestination < liftPosition) {
+    liftPosition--;
+    updateLift();
+  }
 }
 
 function updateLift() {
@@ -73,6 +73,7 @@ function readData() {
   }
 
   updateButtons();
+  updatePeopleCountInFloor();
 
   liftDestination = response.lift_level;
   numberOfPeopleInLift = response.lift_people_count;
@@ -80,6 +81,12 @@ function readData() {
   destinationsHighlighted = response.lift_destinations;
   highlightLifts();
   updateLift();
+}
+
+function updatePeopleCountInFloor() {
+  for (var i = 0; i < Object.keys(response.floor).length; i++) {
+    $('data-floor=' + i + '] > input').val(floors[i].peopleCount);
+  }
 }
 
 function serialize() {
@@ -107,8 +114,8 @@ function updateWaitingTime() {
 
 function updateButtons() {
   for (var i = 0; i < floors.length; i++) {
-      $('[data-floor=' + i + '] > .button-up').removeClass('btn-danger');
-      $('[data-floor=' + i + '] > .button-down').removeClass('btn-success');
+    $('[data-floor=' + i + '] > .button-up').removeClass('btn-danger');
+    $('[data-floor=' + i + '] > .button-down').removeClass('btn-success');
     if (floors[i].upPressed) {
       $('[data-floor=' + i + '] > .button-up').addClass('btn-danger');
     }
