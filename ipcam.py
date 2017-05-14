@@ -30,34 +30,31 @@ class Cam():
         bytes = b''
         max_difference = self.compare_pixels([0, 0, 0], [255, 255, 255])
 
-        while not self.thread_cancelled:
-            try:
-                bytes += self.stream.raw.read(1024)
-                a = bytes.find(b'\xff\xd8')
-                b = bytes.find(b'\xff\xd9')
-                if a != -1 and b != -1:
-                    jpg = bytes[a:b + 2]
-                    bytes = bytes[b + 2:]
-                    img = cv2.imdecode(np.fromstring(jpg, dtype=np.uint8), cv2.IMREAD_COLOR)
-                    if cv2.waitKey(1) == 27:
-                        exit(0)
+        while True:
+            bytes += self.stream.raw.read(1024)
+            a = bytes.find(b'\xff\xd8')
+            b = bytes.find(b'\xff\xd9')
+            if a != -1 and b != -1:
+                jpg = bytes[a:b + 2]
+                bytes = bytes[b + 2:]
+                img = cv2.imdecode(np.fromstring(jpg, dtype=np.uint8), cv2.IMREAD_COLOR)
+                if cv2.waitKey(1) == 27:
+                    exit(0)
 
-                    cv2.imwrite('cam.jpg', img)
-                    (first_img, second_img) = [cv2.imread(f) for f in ('cam.jpg', 'cam.jpg')]  # TODO: need reference.jpg i.e. white floor
-                    if first_img.shape != second_img.shape:
-                       raise Exception("Images have different dimensions")
-
-                    size = first_img.shape[0] * first_img.shape[1]
-                    count = 0
-                    for i in range(0, first_img.shape[0]):
-                        for j in range(0, first_img.shape[1]):
-                            if self.compare_pixels(first_img[i][j], second_img[i][j]) > max_difference / 10:
-                                count += 1
-
-                    print("Surface area decreased from {0} to {1}".format(size, size - count))
-            except ThreadError:
-                self.thread_cancelled = True
-
+                cv2.imwrite('cam.jpg', img)
+                (first_img, second_img) = [cv2.imread(f) for f in ('cam.jpg', 'cam.jpg')]  # TODO: need reference.jpg i.e. white floor
+                if first_img.shape != second_img.shape:
+                   raise Exception("Images have different dimensions")
+                
+                size = first_img.shape[0] * first_img.shape[1]
+                count = 0
+                for i in range(0, first_img.shape[0], 10):
+                    for j in range(0, first_img.shape[1], 10):
+                        if self.compare_pixels(first_img[i][j], second_img[i][j]) > max_difference / 10:
+                            count += 1
+                
+                print("Surface area decreased from {0} to {1}".format(size, size - count))
+            
     def is_running(self):
         return self.thread.isAlive()
 
