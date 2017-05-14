@@ -21,12 +21,12 @@ class Cam():
         print("camera stream started")
 
     def run(self):
-        bytes = ''
+        bytes = b''
         while not self.thread_cancelled:
             try:
                 bytes += self.stream.raw.read(1024)
-                a = bytes.find('\xff\xd8')
-                b = bytes.find('\xff\xd9')
+                a = bytes.find(b'\xff\xd8')
+                b = bytes.find(b'\xff\xd9')
                 if a != -1 and b != -1:
                     jpg = bytes[a:b + 2]
                     bytes = bytes[b + 2:]
@@ -50,6 +50,6 @@ class Cam():
         return True
 
 if __name__ == "__main__":
-    url = 'http://10.0.14.116:8080/video'
+    url = 'http://172.16.2.208:12345/video'
     cam = Cam(url)
     cam.start()
