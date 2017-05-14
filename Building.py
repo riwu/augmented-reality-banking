@@ -3,7 +3,8 @@ from Lift import Lift
 from time import sleep
 import json
 import random
-
+import re
+import ast
 
 class Building:
     max_people_count = 50
@@ -19,18 +20,29 @@ class Building:
     def run(self):
         while True:
             f = open('javascript.json')
+            data = None
             try:
-                data = json.load(f)
-                open('javascript.json').close()  # to clear content
-                for floor_num, value in data['floor'].items():
+                str = f.read()
+                result = re.split('PARSE:(.*)", sou', str)
+                if len(result) > 1:
+                    data = result[1]
+                    open('javascript.json').close()  # to clear content
+                else:
+                    print('no result')
+            except Exception as e:
+                print('error', e)
+            finally:
+                f.close()
+
+            if data:
+                data = json.loads(data)
+                for floor_num, value in data['floors'].items():
                     floor = self.floors[int(floor_num)]
                     floor.people_count = value['people_count']
                     floor.is_up_pressed = value['is_up_pressed']
                     floor.is_down_pressed = value['is_down_pressed']
-            except:
-                pass
-            finally:
-                f.close()
+                    if floor.is_down_pressed:
+                        print("pressed up")
 
             lift = self.lifts[0]
             if len(lift.destinations) == 0:
@@ -86,28 +98,28 @@ class Building:
                                   'is_down_pressed': floor.is_down_pressed,
                                   'wait_time_up': self.compute_waiting_time(floor.floor_num, self.lifts[0], True),
                                   'wait_time_down': self.compute_waiting_time(floor.floor_num, self.lifts[0], False),
-                                  'capacity_up': self.compute_capacity(floor.floor_num, self.lifts[0], True),
-                                  'capacity_down': self.compute_capacity(floor.floor_num, self.lifts[0], False)}
+                                  'capacity_up': self.compute_capacity(floor, self.lifts[0], True),
+                                  'capacity_down': self.compute_capacity(floor, self.lifts[0], False)}
                 for floor in self.floors},
                 'lift_people_count': self.lifts[0].people_count, 'lift_level': self.lifts[0].current_floor,
                 'lift_destinations': self.lifts[0].destinations}
             f.write(json.dumps(json_dump))
             f.close()
 
-    def compute_capacity(self, floor_num, lift, for_up):
+    def compute_capacity(self, floor, lift, for_up):
         capacity = lift.get_capacity()
         has_reached_floor = False
         if len(lift.destinations) > 0:
             is_going_up = lift.current_floor < lift.destinations[0]
             final_destination = lift.destinations[-1] if is_going_up else lift.destinations[0]
-            net_gain, has_reached_floor = self._compute_capacity(floor_num, lift, for_up, start=lift.current_floor,
+            net_gain, has_reached_floor = self._compute_capacity(floor, lift, for_up, start=lift.current_floor,
                                                                  end=final_destination)
             capacity += net_gain
         else:
             final_destination = lift.current_floor
 
         if not has_reached_floor:
-            time, _ = self._compute_capacity(floor_num, lift, for_up, start=final_destination, end=floor_num)
+            time, _ = self._compute_capacity(floor, lift, for_up, start=final_destination, end=floor.floor_num)
             capacity = lift.get_max_capacity() + net_gain
         return capacity
 
