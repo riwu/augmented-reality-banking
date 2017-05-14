@@ -85,12 +85,48 @@ class Building:
                 floor.floor_num: {'people_count': floor.people_count, 'is_up_pressed': floor.is_up_pressed,
                                   'is_down_pressed': floor.is_down_pressed,
                                   'wait_time_up': self.compute_waiting_time(floor.floor_num, self.lifts[0], True),
-                                  'wait_time_down': self.compute_waiting_time(floor.floor_num, self.lifts[0], False)}
+                                  'wait_time_down': self.compute_waiting_time(floor.floor_num, self.lifts[0], False),
+                                  'capacity_up': self.compute_capacity(floor.floor_num, self.lifts[0], True),
+                                  'capacity_down': self.compute_capacity(floor.floor_num, self.lifts[0], False)}
                 for floor in self.floors},
                 'lift_people_count': self.lifts[0].people_count, 'lift_level': self.lifts[0].current_floor,
                 'lift_destinations': self.lifts[0].destinations}
             f.write(json.dumps(json_dump))
             f.close()
+
+    def compute_capacity(self, floor_num, lift, for_up):
+        capacity = lift.get_capacity()
+        has_reached_floor = False
+        if len(lift.destinations) > 0:
+            is_going_up = lift.current_floor < lift.destinations[0]
+            final_destination = lift.destinations[-1] if is_going_up else lift.destinations[0]
+            net_gain, has_reached_floor = self._compute_capacity(floor_num, lift, for_up, start=lift.current_floor,
+                                                                 end=final_destination)
+            capacity += net_gain
+        else:
+            final_destination = lift.current_floor
+
+        if not has_reached_floor:
+            time, _ = self._compute_capacity(floor_num, lift, for_up, start=final_destination, end=floor_num)
+            capacity = lift.get_max_capacity() + net_gain
+        return capacity
+
+    def _compute_capacity(self, floor, lift, for_up, start, end):
+        net_gain = 0
+        is_going_up = start < end
+        increment = (1 if is_going_up else -1)
+        for current_floor_num in range(start + increment, end + increment, increment):
+            if current_floor_num == floor.floor_num and (is_going_up == for_up or not lift.is_moving):
+                return (net_gain, True)
+
+            current_floor = self.floors[current_floor_num]
+            has_people_going_in = (is_going_up and current_floor.is_up_pressed) or \
+                                  (not is_going_up and current_floor.is_down_pressed)
+            if current_floor_num in lift.destinations:
+                net_gain -= 1
+            if has_people_going_in:
+                net_gain += current_floor.people_count if (not floor.is_up_pressed or not floor.is_down_pressed)  else 1
+        return (net_gain, False)
 
     def compute_waiting_time(self, floor_num, lift, for_up):
         total_time = 0
