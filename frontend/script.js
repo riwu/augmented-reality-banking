@@ -74,6 +74,7 @@ function readData() {
 
   destinationsHighlighted = response.lift_destinations;
   highlightLifts();
+  updateLift();
 }
 
 function serialize() {
