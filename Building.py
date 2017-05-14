@@ -21,7 +21,7 @@ class Building:
             f = open('js.json')
             try:
                 data = json.load(f)
-                open('js.json').close() # to clear content
+                open('js.json').close()  # to clear content
                 for floor_num, value in data['floor'].items():
                     floor = self.floors[int(floor_num)]
                     floor.people_count = value['people_count']
@@ -54,10 +54,10 @@ class Building:
                         sleep(Building.wait_time_in_out[current_floor.get_people_count()][lift.get_people_count()])
                     else:
                         sleep(Building.wait_time_out[lift.get_people_count()])
-                elif has_people_going_in:
+                elif has_people_going_in and lift.has_vacancy():
                     sleep(Building.wait_time_in[current_floor.get_people_count()])
 
-                if has_people_going_in:
+                if has_people_going_in and lift.has_vacancy():
                     if is_going_up:
                         floor.is_up_pressed = False
                     else:
@@ -66,7 +66,8 @@ class Building:
                         lift.people_count += 1
                         current_floor.people_count -= 1
                     rand_increment = 0
-                    while lift.current_floor + rand_increment >= 0 and lift.current_floor + rand_increment < len(self.floors):
+                    while lift.current_floor + rand_increment >= 0 and lift.current_floor + rand_increment < len(
+                            self.floors):
                         rand_increment += increment
                     lift.destinations.append(lift.current_floor + random.randint(1, rand_increment))
 
@@ -162,5 +163,3 @@ building.lifts[0].destinations = [2, 3]
 building.write_to_file()
 
 building.run()
-
-
