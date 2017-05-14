@@ -2,6 +2,7 @@ from Floor import Floor
 from Lift import Lift
 from time import sleep
 import json
+import random
 
 
 class Building:
@@ -19,46 +20,59 @@ class Building:
         while True:
             with open('python.json') as f:
                 data = json.load(f)
-            for floor in self.floors:
-                floor_data = data['floor'][str(floor.floor_num)]
-                floor.is_up_pressed = floor_data['is_up_pressed']
-                floor.is_down_pressed = floor_data['is_down_pressed']
-                floor.people_count = floor_data['people_count']
+            for floor_num, value in data['floor'].items():
+                floor = self.floors[int(floor_num)]
+                floor.people_count = value['people_count']
+                floor.is_up_pressed = value['is_up_pressed']
+                floor.is_down_pressed = value['is_down_pressed']
 
             lift = self.lifts[0]
             if len(lift.destinations) == 0:
                 for floor in self.floors:
                     if floor.is_up_pressed or floor.is_down_pressed:
-                        is_going_up = lift.current_floor < floor.floor_num
-                        if lift.current_floor == floor.floor_num:
-                            floor.is_up_pressed = False
-                            floor.is_down_pressed = False
-                            while lift.has_vacancy():
-                                lift.people_count += 1
-                                floor.people_count -= 1
-                        else:
-                            lift.current_floor += 1 if is_going_up else -1
-                        sleep(lift.speed)
+                        lift.destinations.append(floor.floor_num)
             else:
+                current_floor = self.floors[lift.current_floor]
                 is_going_up = lift.current_floor < lift.destinations[0]
+                has_people_going_in = (is_going_up and current_floor.is_up_pressed) or \
+                                      (not is_going_up and current_floor.is_down_pressed)
+                if current_floor in lift.destinations:
+                    lift.destinations.remove(lift.current_floor)
+                    if lift.people_count >= 1:
+                        lift.people_count -= random.randint(1, lift.people_count)
+                    if has_people_going_in:
+                        sleep(Building.wait_time_in_out[current_floor.get_people_count()][lift.get_people_count()])
+                    else:
+                        sleep(Building.wait_time_out[lift.get_people_count()])
+                elif has_people_going_in:
+                    sleep(Building.wait_time_in[current_floor.get_people_count()])
+
+                if has_people_going_in:
+                    if is_going_up:
+                        floor.is_up_pressed = False
+                    else:
+                        floor.is_down_pressed = False
+                    while lift.has_vacancy():
+                        lift.people_count += 1
+                        current_floor.people_count -= 1
+
                 lift.current_floor += 1 if is_going_up else -1
                 sleep(lift.speed)
-                if lift.current_floor in lift.destinations:
-                    lift.destinations.remove(lift.current_floor)
-                    sleep(200)
 
             self.write_to_file()
-
 
     def write_to_file(self):
         with open('python.json', 'w') as f:
             json_dump = {'floor': {
                 floor.floor_num: {'people_count': floor.people_count, 'is_up_pressed': floor.is_up_pressed,
-                                  'is_down_pressed': floor.is_down_pressed} for floor in self.floors},
+                                  'is_down_pressed': floor.is_down_pressed,
+                                  'wait_time_up': self.compute_waiting_time(floor.floor_num, self.lifts[0], True),
+                                  'wait_time_down': self.compute_waiting_time(floor.floor_num, self.lifts[0], False)}
+                for floor in self.floors},
                 'lift_people_count': self.lifts[0].people_count, 'lift_level': self.lifts[0].current_floor,
                 'lift_destinations': self.lifts[0].destinations}
             f.write(json.dumps(json_dump))
-        f.close()
+            f.close()
 
     def compute_waiting_time(self, floor_num, lift, for_up):
         total_time = 0
