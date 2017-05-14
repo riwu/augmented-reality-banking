@@ -57,14 +57,20 @@ class Building:
                 elif has_people_going_in and lift.has_vacancy():
                     sleep(Building.wait_time_in[current_floor.get_people_count()])
 
-                if has_people_going_in and lift.has_vacancy():
+                if has_people_going_in and lift.has_vacancy():  # skip floor if no vacancy
+                    # assign a random number of ppl to go in if both up and down pressed
+                    people_remaining = 0 if (not floor.is_up_pressed or not floor.is_down_pressed) else \
+                        random.randint(1, current_floor.people_count - 1)
+                    while lift.has_vacancy() and (current_floor.people_count > people_remaining):
+                        lift.people_count += 1
+                        current_floor.people_count -= 1
+
                     if is_going_up:
                         floor.is_up_pressed = False
                     else:
                         floor.is_down_pressed = False
-                    while lift.has_vacancy():
-                        lift.people_count += 1
-                        current_floor.people_count -= 1
+
+                    # randomly assign destination for new passenger
                     rand_increment = 0
                     while lift.current_floor + rand_increment >= 0 and lift.current_floor + rand_increment < len(
                             self.floors):
