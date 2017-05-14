@@ -48,14 +48,17 @@ function readData() {
   var r = new XMLHttpRequest();
   r.open('GET', '../python.json', false);
   r.send(null);
-  var response = JSON.parse(r.responseText);
+  var result = r.responseText.split("\n")
+  var response = JSON.parse(result[result.length - 1]);
 
   floors = [];
   for (var i = 0; i < Object.keys(response.floor).length; i++) {
     floors[i] = {
-      upPressed: false,
-      downPressed: false,
-      peopleCount: 0,
+      upPressed: response.floor[i].is_up_pressed,
+      downPressed: response.floor[i].is_down_pressed,
+      peopleCount: response.floor[i].people_count,
+      waitTimeUp: response.floor[i].wait_time_up,
+      waitTimeDown: response.floor[i].wait_time_down,
     };
   }
 
@@ -79,10 +82,19 @@ function serialize() {
       people_count: floors[i].peopleCount,
       is_up_pressed: floors[i].upPressed,
       is_down_pressed: floors[i].downPressed,
+      wait_time_up: floors[i].waitTimeUp,
+      wait_time_down: floors[i].waitTimeDown,
     }
   }
 
   console.log("PARSE:" + JSON.stringify(obj));
+}
+
+function updateWaitingTime() {
+  for (var i = 0; i < floors.length; i++) {
+    $('[data-floor = ' + i + '] > .wait-time-up').text(floors[i].waitTimeUp);
+    $('[data-floor = ' + i + '] > .wait-time-down').text(floors[i].waitTimeDown);
+  }
 }
 
 $(document).ready(function() {
@@ -94,9 +106,12 @@ $(document).ready(function() {
       + '<button class="btn button-up">UP</button>'
       + '<button class="btn button-down">DOWN</button>'
       + 'Number of people: <input class="people-count form-control" value="0">'
+      + 'Waiting time to up: <div class="wait-time-up">0</div>'
+      + 'Waiting time to down: <div class="wait-time-down">0</div>'
       + '</div>');
   }
   highlightLifts();
+  updateWaitingTime();
 
   $('button').bind('click', function(e) {
     var t = $(e.target);
@@ -114,4 +129,9 @@ $(document).ready(function() {
   });
 
   updateLift();
+
+  setInterval(function() {
+    readData();
+    updateWaitingTime();
+  }, 500);
 });
