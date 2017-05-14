@@ -18,10 +18,10 @@ class Building:
 
     def run(self):
         while True:
-            f = open('js.json')
+            f = open('javascript.json')
             try:
                 data = json.load(f)
-                open('js.json').close()  # to clear content
+                open('javascript.json').close()  # to clear content
                 for floor_num, value in data['floor'].items():
                     floor = self.floors[int(floor_num)]
                     floor.people_count = value['people_count']
