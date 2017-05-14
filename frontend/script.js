@@ -50,7 +50,7 @@ function readData() {
   r.open('GET', '../python.json', false);
   r.send(null);
   var result = r.responseText.split("\n")
-  if (result.length == prevCount) {
+  if ((result.length === 1 && result[0] === '') || result.length == prevCount) {
     return;
   }
   prevCount = result.length
