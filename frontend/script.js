@@ -8,20 +8,24 @@ var prevCount = 0;
 function moveLift() {
   console.log('dest:' + liftDestination.toString() + ' pos:' + liftPosition.toString())
   if (liftDestination > liftPosition) {
-    setTimeout(goUp, 500);
+    goUp();
   } else if (liftDestination < liftPosition) {
-    setTimeout(goDown, 500);
+    goDown();
   }
 }
 
 function goUp() {
-  liftPosition++;
-  updateLift();
+  if (liftDestination > liftPosition) {
+      liftPosition++;
+      updateLift();
+  }
 }
 
 function goDown() {
-  liftPosition--;
-  updateLift();
+   if (liftDestination < liftPosition) {
+        liftPosition--;
+        updateLift();
+   }
 }
 
 function updateLift() {
@@ -54,8 +58,8 @@ function readData() {
   if ((result.length === 1 && result[0] === '') || result.length == prevCount) {
     return;
   }
-  prevCount = result.length
-  var response = JSON.parse(result[result.length - 1]);
+  prevCount = result.length;
+  var response = JSON.parse(result[result.length - 2]);
 
   floors = [];
   for (var i = 0; i < Object.keys(response.floor).length; i++) {
@@ -104,10 +108,10 @@ function updateWaitingTime() {
 function updateButtons() {
   for (var i = 0; i < floors.length; i++) {
     if (floors[i].upPressed) {
-      $('[data-floor=]' + i + '] > .button-up').addClass('btn-danger');
+      $('[data-floor=' + i + '] > .button-up').addClass('btn-danger');
     }
     if (floors[i].downPressed) {
-      $('[data-floor=]' + i + '] > .button-down').addClass('btn-success');
+      $('[data-floor=' + i + '] > .button-down').addClass('btn-success');
     }
   }
 }

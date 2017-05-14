@@ -4,7 +4,6 @@ from time import sleep
 import json
 import random
 import re
-import ast
 
 class Building:
     max_people_count = 50
@@ -19,16 +18,16 @@ class Building:
 
     def run(self):
         while True:
-            f = open('javascript.json')
             data = None
             try:
+                f = open('javascript.json')
                 str = f.read()
                 result = re.split('PARSE:(.*)", sou', str)
                 if len(result) > 1:
                     data = result[1]
-                    open('javascript.json', 'w').close()  # to clear content
-                else:
-                    print('no result')
+                    print('clearing')
+                    with open('javascript.json', 'w'):
+                        pass  # to clear content
             except Exception as e:
                 print('error', e)
             finally:
@@ -45,20 +44,27 @@ class Building:
                         print("pressed up")
 
             lift = self.lifts[0]
-            #print(lift.destinations, lift.current_floor)
+            print(lift.destinations, lift.current_floor)
             if len(lift.destinations) == 0:
+                updated = False
                 for floor in self.floors:
                     if floor.is_up_pressed or floor.is_down_pressed:
                         lift.destinations.append(floor.floor_num)
+                        updated = True
+                if not updated:
+                    continue
             else:
-                is_going_up = lift.current_floor < lift.destinations[0]
-                increment = 1 if is_going_up else -1
-                lift.current_floor += increment
-                sleep(lift.speed)
+                if lift.current_floor != lift.destinations[0]:
+                    is_going_up = lift.current_floor < lift.destinations[0]
+                    increment = 1 if is_going_up else -1
+                    lift.current_floor += increment
+                    sleep(lift.speed)
+                else:
+                    lift.is_moving = False
 
                 current_floor = self.floors[lift.current_floor]
-                has_people_going_in = (is_going_up and current_floor.is_up_pressed) or \
-                                      (not is_going_up and current_floor.is_down_pressed)
+                has_people_going_in = ((is_going_up or not lift.is_moving) and current_floor.is_up_pressed) or \
+                                      ((not is_going_up or not lift.is_moving) and current_floor.is_down_pressed)
                 if lift.current_floor in lift.destinations:
                     lift.destinations.remove(lift.current_floor)
                     if lift.people_count >= 1:
@@ -70,6 +76,7 @@ class Building:
                 elif has_people_going_in and lift.has_vacancy():
                     sleep(Building.wait_time_in[current_floor.get_people_count()])
 
+                print(lift.has_vacancy())
                 if has_people_going_in and lift.has_vacancy():  # skip floor if no vacancy
                     # assign a random number of ppl to go in if both up and down pressed
                     people_remaining = 0 if (not floor.is_up_pressed or not floor.is_down_pressed) else \
@@ -79,22 +86,28 @@ class Building:
                         current_floor.people_count -= 1
 
                     if is_going_up:
-                        floor.is_up_pressed = False
+                        current_floor.is_up_pressed = False
                     else:
-                        floor.is_down_pressed = False
+                        current_floor.is_down_pressed = False
+                        print('floor down false', current_floor.floor_num)
 
                     # randomly assign destination for new passenger
                     rand_increment = 0
                     while lift.current_floor + rand_increment >= 0 and lift.current_floor + rand_increment < len(
                             self.floors):
-                        rand_increment += increment
-                    lift.destinations.append(lift.current_floor + random.randint(1, rand_increment))
+                        rand_increment += 1
+                    lift.destinations.append(0) # lift.current_floor + random.randint(1, rand_increment) * increment
                     lift.destinations.sort()
 
             self.write_to_file()
+            sleep(1)
 
     def write_to_file(self):
-        with open('python.json', 'w') as f:
+        print('writing to file')
+        with open('python.json', 'a') as f:
+            for floor in self.floors:
+                if floor.is_down_pressed:
+                    print('down pressed', floor.is_down_pressed, floor.floor_num)
             json_dump = {'floor': {
                 floor.floor_num: {'people_count': floor.people_count, 'is_up_pressed': floor.is_up_pressed,
                                   'is_down_pressed': floor.is_down_pressed,
@@ -105,7 +118,7 @@ class Building:
                 for floor in self.floors},
                 'lift_people_count': self.lifts[0].people_count, 'lift_level': self.lifts[0].current_floor,
                 'lift_destinations': self.lifts[0].destinations}
-            f.write(json.dumps(json_dump))
+            f.write(json.dumps(json_dump) + '\n')
             f.close()
 
     def compute_capacity(self, floor, lift, for_up):
@@ -213,9 +226,12 @@ building.lifts[0].destinations = [2, 4, 40]
 waiting_time = building.compute_waiting_time(10, building.lifts[0], for_up=False)
 print(waiting_time)
 
+with open('python.json', 'w') as f:
+    pass
+
 building = Building(5, 2)
-building.lifts[0].people_count = 10
-building.lifts[0].destinations = [2, 3]
+building.lifts[0].current_floor = 4
 building.write_to_file()
 
 building.run()
+

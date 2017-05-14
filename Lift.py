@@ -8,7 +8,7 @@ class Lift:
         self.current_floor = current_floor
         self.destinations = []
         # How many sec it takes to go up/down 1 floor
-        self.speed = 2
+        self.speed = 1
         self.is_moving = False
         self.people_count = 0
 
@@ -24,7 +24,7 @@ class Lift:
         return self.get_max_capacity() - self.get_people_count()
 
     def get_max_capacity(self):
-        return self._max_weight / Lift.lightest_passenger_weight
+        return int(self._max_weight / Lift.lightest_passenger_weight)
 
     # Get the current weight of the elevator. Done through weight sensor in elevator
     def _get_current_weight(self):
@@ -36,4 +36,4 @@ class Lift:
 
     # Returns whether there's sufficient surface capacity left for one person to stand
     def _has_standing_capacity(self):
-        return 0  # TODO use opencv to get this
+        return True  # TODO use opencv to get this
