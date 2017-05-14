@@ -7,7 +7,6 @@ import requests
 
 import numpy as np
 
-
 class Cam():
 
     def __init__(self, url):
@@ -37,10 +36,8 @@ class Cam():
             except ThreadError:
                 self.thread_cancelled = True
 
-
     def is_running(self):
         return self.thread.isAlive()
-
 
     def shut_down(self):
         self.thread_cancelled = True
