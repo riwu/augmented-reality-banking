@@ -3,6 +3,7 @@ var liftPosition = 4;
 var liftDestination;
 var numberOfPeopleInLift = 0;
 var destinationsHighlighted = [];
+var prevCount = 0;
 
 function moveLift() {
   if (liftDestination > liftPosition) {
@@ -49,6 +50,10 @@ function readData() {
   r.open('GET', '../python.json', false);
   r.send(null);
   var result = r.responseText.split("\n")
+  if (result.length == prevCount) {
+    return;
+  }
+  prevCount = result.length
   var response = JSON.parse(result[result.length - 1]);
 
   floors = [];
@@ -62,6 +67,8 @@ function readData() {
     };
   }
 
+  updateButtons();
+
   liftDestination = response.lift_level;
   numberOfPeopleInLift = response.lift_people_count;
 
@@ -71,9 +78,6 @@ function readData() {
 
 function serialize() {
   obj = {
-    lift_people_count: numberOfPeopleInLift,
-    lift_level: liftDestination,
-    lift_destinations: destinationsHighlighted,
     floors: {},
   };
 
@@ -82,8 +86,6 @@ function serialize() {
       people_count: floors[i].peopleCount,
       is_up_pressed: floors[i].upPressed,
       is_down_pressed: floors[i].downPressed,
-      wait_time_up: floors[i].waitTimeUp,
-      wait_time_down: floors[i].waitTimeDown,
     }
   }
 
@@ -94,6 +96,17 @@ function updateWaitingTime() {
   for (var i = 0; i < floors.length; i++) {
     $('[data-floor = ' + i + '] > .wait-time-up').text(floors[i].waitTimeUp);
     $('[data-floor = ' + i + '] > .wait-time-down').text(floors[i].waitTimeDown);
+  }
+}
+
+function updateButtons() {
+  for (var i = 0; i < floors.length; i++) {
+    if (floors[i].upPressed) {
+      $('[data-floor=]' + i + '] > .button-up').addClass('btn-danger');
+    }
+    if (floors[i].downPressed) {
+      $('[data-floor=]' + i + '] > .button-down').addClass('btn-success');
+    }
   }
 }
 
@@ -117,9 +130,11 @@ $(document).ready(function() {
     var t = $(e.target);
     if (t.hasClass('button-up')) {
       $(e.target).addClass('btn-danger');
+      floors[$(e.target).parent().data('floor')].upPressed = true;
       serialize();
     } else if (t.hasClass('button-down')) {
       $(e.target).addClass('btn-success');
+      floors[$(e.target).parent().data('floor')].downPressed = true;
       serialize();
     }
   });
