@@ -19,8 +19,17 @@ class Cam():
         self.thread.start()
         print("camera stream started")
 
+    def compare_pixels(self, f, s):
+        red_diff = abs(f[0] - s[0]) ** 2
+        green_diff = abs(f[1] - s[1]) ** 2
+        blue_diff = abs(f[2] - s[2]) ** 2
+
+        return 2 * red_diff + 4 * green_diff + 3 * blue_diff
+
     def run(self):
         bytes = b''
+        max_difference = self.compare_pixels([0, 0, 0], [255, 255, 255])
+
         while not self.thread_cancelled:
             try:
                 bytes += self.stream.raw.read(1024)
@@ -30,9 +39,22 @@ class Cam():
                     jpg = bytes[a:b + 2]
                     bytes = bytes[b + 2:]
                     img = cv2.imdecode(np.fromstring(jpg, dtype=np.uint8), cv2.IMREAD_COLOR)
-                    cv2.imshow('cam', img)
                     if cv2.waitKey(1) == 27:
                         exit(0)
+
+                    cv2.imwrite('cam.jpg', img)
+                    (first_img, second_img) = [cv2.imread(f) for f in ('cam.jpg', 'cam.jpg')]  # TODO: need reference.jpg i.e. white floor
+                    if first_img.shape != second_img.shape:
+                       raise Exception("Images have different dimensions")
+
+                    size = first_img.shape[0] * first_img.shape[1]
+                    count = 0
+                    for i in range(0, first_img.shape[0]):
+                        for j in range(0, first_img.shape[1]):
+                            if self.compare_pixels(first_img[i][j], second_img[i][j]) > max_difference / 10:
+                                count += 1
+
+                    print("Surface area decreased from {0} to {1}".format(size, size - count))
             except ThreadError:
                 self.thread_cancelled = True
 
@@ -47,6 +69,6 @@ class Cam():
         return True
 
 if __name__ == "__main__":
-    url = 'http://172.16.2.208:12345/video'
+    url = 'http://10.0.14.207:8080/video'
     cam = Cam(url)
     cam.start()
