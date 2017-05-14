@@ -107,6 +107,8 @@ function updateWaitingTime() {
 
 function updateButtons() {
   for (var i = 0; i < floors.length; i++) {
+      $('[data-floor=' + i + '] > .button-up').removeClass('btn-danger');
+      $('[data-floor=' + i + '] > .button-down').removeClass('btn-success');
     if (floors[i].upPressed) {
       $('[data-floor=' + i + '] > .button-up').addClass('btn-danger');
     }
