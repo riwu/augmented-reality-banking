@@ -32,6 +32,10 @@ class Building:
                     if floor.is_up_pressed or floor.is_down_pressed:
                         lift.destinations.append(floor.floor_num)
             else:
+                increment = 1 if is_going_up else -1
+                lift.current_floor += increment
+                sleep(lift.speed)
+
                 current_floor = self.floors[lift.current_floor]
                 is_going_up = lift.current_floor < lift.destinations[0]
                 has_people_going_in = (is_going_up and current_floor.is_up_pressed) or \
@@ -55,9 +59,10 @@ class Building:
                     while lift.has_vacancy():
                         lift.people_count += 1
                         current_floor.people_count -= 1
-
-                lift.current_floor += 1 if is_going_up else -1
-                sleep(lift.speed)
+                    rand_increment = 0
+                    while lift.current_floor + rand_increment >= 0 and lift.current_floor + rand_increment < len(self.floors):
+                        rand_increment += increment
+                    lift.destinations.append(lift.current_floor + random.randint(1, rand_increment))
 
             self.write_to_file()
 
