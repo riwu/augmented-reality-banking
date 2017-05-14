@@ -18,13 +18,19 @@ class Building:
 
     def run(self):
         while True:
-            with open('python.json') as f:
+            f = open('js.json')
+            try:
                 data = json.load(f)
-            for floor_num, value in data['floor'].items():
-                floor = self.floors[int(floor_num)]
-                floor.people_count = value['people_count']
-                floor.is_up_pressed = value['is_up_pressed']
-                floor.is_down_pressed = value['is_down_pressed']
+                open('js.json').close() # to clear content
+                for floor_num, value in data['floor'].items():
+                    floor = self.floors[int(floor_num)]
+                    floor.people_count = value['people_count']
+                    floor.is_up_pressed = value['is_up_pressed']
+                    floor.is_down_pressed = value['is_down_pressed']
+            except:
+                pass
+            finally:
+                f.close()
 
             lift = self.lifts[0]
             if len(lift.destinations) == 0:
@@ -32,12 +38,12 @@ class Building:
                     if floor.is_up_pressed or floor.is_down_pressed:
                         lift.destinations.append(floor.floor_num)
             else:
+                is_going_up = lift.current_floor < lift.destinations[0]
                 increment = 1 if is_going_up else -1
                 lift.current_floor += increment
                 sleep(lift.speed)
 
                 current_floor = self.floors[lift.current_floor]
-                is_going_up = lift.current_floor < lift.destinations[0]
                 has_people_going_in = (is_going_up and current_floor.is_up_pressed) or \
                                       (not is_going_up and current_floor.is_down_pressed)
                 if current_floor in lift.destinations:
@@ -156,3 +162,5 @@ building.lifts[0].destinations = [2, 3]
 building.write_to_file()
 
 building.run()
+
+
