@@ -8,8 +8,8 @@ import ast
 
 class Building:
     max_people_count = 50
-    wait_time_in = [3 * i for i in range(0, max_people_count + 1)]
-    wait_time_out = [3 * i for i in range(0, max_people_count + 1)]
+    wait_time_in = [1 * i for i in range(0, max_people_count + 1)]
+    wait_time_out = [1 * i for i in range(0, max_people_count + 1)]
     wait_time_in_out = [wait_time_in * max_people_count]
 
     def __init__(self, floor_count, lift_count):
@@ -26,7 +26,7 @@ class Building:
                 result = re.split('PARSE:(.*)", sou', str)
                 if len(result) > 1:
                     data = result[1]
-                    open('javascript.json').close()  # to clear content
+                    open('javascript.json', 'w').close()  # to clear content
                 else:
                     print('no result')
             except Exception as e:
@@ -45,6 +45,7 @@ class Building:
                         print("pressed up")
 
             lift = self.lifts[0]
+            #print(lift.destinations, lift.current_floor)
             if len(lift.destinations) == 0:
                 for floor in self.floors:
                     if floor.is_up_pressed or floor.is_down_pressed:
@@ -58,7 +59,7 @@ class Building:
                 current_floor = self.floors[lift.current_floor]
                 has_people_going_in = (is_going_up and current_floor.is_up_pressed) or \
                                       (not is_going_up and current_floor.is_down_pressed)
-                if current_floor in lift.destinations:
+                if lift.current_floor in lift.destinations:
                     lift.destinations.remove(lift.current_floor)
                     if lift.people_count >= 1:
                         lift.people_count -= random.randint(1, lift.people_count)
@@ -88,6 +89,7 @@ class Building:
                             self.floors):
                         rand_increment += increment
                     lift.destinations.append(lift.current_floor + random.randint(1, rand_increment))
+                    lift.destinations.sort()
 
             self.write_to_file()
 
@@ -119,7 +121,7 @@ class Building:
             final_destination = lift.current_floor
 
         if not has_reached_floor:
-            time, _ = self._compute_capacity(floor, lift, for_up, start=final_destination, end=floor.floor_num)
+            net_gain, _ = self._compute_capacity(floor, lift, for_up, start=final_destination, end=floor.floor_num)
             capacity = lift.get_max_capacity() + net_gain
         return capacity
 

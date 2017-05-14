@@ -32,7 +32,7 @@ class Lift:
 
     # Returns whether there's sufficient weight capacity left for one person
     def _has_weight_capacity(self):
-        return self._get_current_weight + Lift.lightest_passenger_weight <= self._max_weight
+        return self._get_current_weight() + Lift.lightest_passenger_weight <= self._max_weight
 
     # Returns whether there's sufficient surface capacity left for one person to stand
     def _has_standing_capacity(self):

@@ -6,6 +6,7 @@ var destinationsHighlighted = [];
 var prevCount = 0;
 
 function moveLift() {
+  console.log('dest:' + liftDestination.toString() + ' pos:' + liftPosition.toString())
   if (liftDestination > liftPosition) {
     setTimeout(goUp, 500);
   } else if (liftDestination < liftPosition) {
