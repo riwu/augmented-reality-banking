@@ -26,7 +26,6 @@ protocol AnnotationViewDelegate {
   func didTouch(annotationView: AnnotationView)
 }
 
-
 class AnnotationView: ARAnnotationView {
   var titleLabel: UILabel?
   var distanceLabel: UILabel?

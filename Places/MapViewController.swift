@@ -25,7 +25,7 @@ import UIKit
 import CoreLocation
 import MapKit
 
-class ViewController: UIViewController {
+class MapViewController: UIViewController {
   
   fileprivate var places = [Place]()
   fileprivate let locationManager = CLLocationManager()
@@ -73,7 +73,7 @@ class ViewController: UIViewController {
   }
 }
 
-extension ViewController: CLLocationManagerDelegate {
+extension MapViewController: CLLocationManagerDelegate {
   func locationManagerShouldDisplayHeadingCalibration(_ manager: CLLocationManager) -> Bool {
     return true
   }
@@ -119,7 +119,7 @@ extension ViewController: CLLocationManagerDelegate {
   }
 }
 
-extension ViewController: ARDataSource {
+extension MapViewController: ARDataSource {
   func ar(_ arViewController: ARViewController, viewForAnnotation: ARAnnotation) -> ARAnnotationView {
     let annotationView = AnnotationView()
     annotationView.annotation = viewForAnnotation
@@ -130,7 +130,7 @@ extension ViewController: ARDataSource {
   }
 }
 
-extension ViewController: AnnotationViewDelegate {
+extension MapViewController: AnnotationViewDelegate {
   func didTouch(annotationView: AnnotationView) {
     if let annotation = annotationView.annotation as? Place {
       let placesLoader = PlacesLoader()
