@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -28,7 +29,7 @@
             </objects>
             <point key="canvasLocation" x="-702" y="-10"/>
         </scene>
-        <!--Explore-->
+        <!--Cards-->
         <scene sceneID="k8t-Uh-QMn">
             <objects>
                 <viewController id="xMT-B8-d49" sceneMemberID="viewController">
@@ -41,11 +42,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Explore" image="explore" id="zJx-wf-6I3"/>
+                    <tabBarItem key="tabBarItem" title="Cards" image="cards" id="zJx-wf-6I3"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X7t-ci-nC6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-702" y="-646"/>
+        </scene>
+        <!--Transactions-->
+        <scene sceneID="EpK-qp-870">
+            <objects>
+                <viewController id="5tn-HX-JMF" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8At-MM-Ju6"/>
+                        <viewControllerLayoutGuide type="bottom" id="DVc-fk-vc4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lpY-vL-LKz">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Transactions" image="transaction" id="8XC-pp-fj1"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dG0-Hg-HDj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2068" y="-863"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="vdm-bV-Agk">
@@ -59,6 +79,7 @@
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="6iD-yF-PhL"/>
                         <segue destination="xMT-B8-d49" kind="relationship" relationship="viewControllers" id="apO-Dd-xmb"/>
+                        <segue destination="5tn-HX-JMF" kind="relationship" relationship="viewControllers" id="DN6-BK-5iQ"/>
                         <segue destination="LKZ-cE-iam" kind="relationship" relationship="viewControllers" id="YUd-4w-QZj"/>
                         <segue destination="B4l-e8-CDw" kind="relationship" relationship="viewControllers" id="1aG-sd-gDf"/>
                         <segue destination="KCd-Hz-aNO" kind="relationship" relationship="viewControllers" id="8Ci-rj-51s"/>
@@ -86,13 +107,22 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="8tg-hm-ERq"/>
                                 </connections>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cst-wa-925">
+                                <rect key="frame" x="710" y="925" width="50" height="50"/>
+                                <state key="normal" image="camera"/>
+                                <connections>
+                                    <action selector="showARController:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PNx-nE-cOC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="etT-ux-Mgw" secondAttribute="trailing" id="4nn-et-R7i"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="etT-ux-Mgw" secondAttribute="bottom" id="J8y-Zh-aV5"/>
+                            <constraint firstItem="Cst-wa-925" firstAttribute="bottom" secondItem="etT-ux-Mgw" secondAttribute="bottom" id="KVw-UG-UaH"/>
                             <constraint firstItem="etT-ux-Mgw" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="SyW-6R-1ZN"/>
                             <constraint firstItem="etT-ux-Mgw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="U0O-92-rOd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Cst-wa-925" secondAttribute="trailing" constant="-12" id="fo4-YM-51V"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Maps" image="map-icon" id="paw-KD-6G1"/>
@@ -145,10 +175,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="explore" width="50" height="50"/>
+        <image name="camera" width="50" height="50"/>
+        <image name="cards" width="50" height="50"/>
         <image name="inventory" width="50" height="50"/>
         <image name="map-icon" width="50" height="50"/>
         <image name="market" width="50" height="50"/>
+        <image name="transaction" width="50" height="50"/>
         <image name="transfer" width="50" height="50"/>
     </resources>
 </document>
