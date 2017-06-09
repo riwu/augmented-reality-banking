@@ -235,7 +235,7 @@ open class ARTrackingManager: NSObject, CLLocationManagerDelegate
         }
     }
     
-    internal func reportLocationToDelegate()
+    @objc internal func reportLocationToDelegate()
     {
         self.delegate?.arTrackingManager?(self, didUpdateUserLocation: self.userLocation)
         
@@ -290,7 +290,7 @@ open class ARTrackingManager: NSObject, CLLocationManagerDelegate
             angle = atan2(-self.lastAcceleration.x, self.lastAcceleration.z)
         }
         
-        angle += M_PI_2
+        angle += Double.pi / 2
         angle = (self.pitchPrevious + angle) / 2.0
         self.pitchPrevious = angle
         return angle
@@ -351,7 +351,7 @@ open class ARTrackingManager: NSObject, CLLocationManagerDelegate
         self.locationSearchTimer = nil
     }
     
-    func locationSearchTimerTick()
+    @objc func locationSearchTimerTick()
     {
         guard let locationSearchStartTime = self.locationSearchStartTime else { return }
         let elapsedSeconds = Date().timeIntervalSince1970 - locationSearchStartTime

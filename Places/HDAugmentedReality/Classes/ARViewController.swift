@@ -237,7 +237,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     }
     
     
-    internal func closeButtonTap()
+    @objc internal func closeButtonTap()
     {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
@@ -270,14 +270,14 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         
         
     }
-    internal func appDidEnterBackground(_ notification: Notification)
+    @objc internal func appDidEnterBackground(_ notification: Notification)
     {
         if(self.view.window != nil)
         {
             self.trackingManager.stopTracking()
         }
     }
-    internal func appWillEnterForeground(_ notification: Notification)
+    @objc internal func appWillEnterForeground(_ notification: Notification)
     {
         if(self.view.window != nil)
         {
@@ -783,7 +783,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     //==========================================================================================================================================================
     // MARK:                                    Events: ARLocationManagerDelegate/Display timer
     //==========================================================================================================================================================
-    internal func displayTimerTick()
+    @objc internal func displayTimerTick()
     {
         let filterFactor: Double = headingSmoothingFactor
         let newHeading = self.trackingManager.heading
@@ -898,12 +898,11 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         self.cameraSession = session
         
         //===== View preview layer
-        if let cameraLayer = AVCaptureVideoPreviewLayer(session: self.cameraSession)
-        {
-            cameraLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        let cameraLayer = AVCaptureVideoPreviewLayer(session: self.cameraSession)
+        
+            cameraLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
             self.view.layer.insertSublayer(cameraLayer, at: 0)
             self.cameraLayer = cameraLayer
-        }
     }
     
     /// Tries to find back video device and add video input to it. This method can be used to check if device has hardware available for augmented reality.
@@ -912,26 +911,23 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         var error: NSError?
         var captureSession: AVCaptureSession?
         var backVideoDevice: AVCaptureDevice?
-        let videoDevices = AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo)
-        
-        // Get back video device
-        if let videoDevices = videoDevices
+        let videoDevices = AVCaptureDevice.devices(for: AVMediaType.video)
+                
+        for captureDevice in videoDevices
         {
-            for captureDevice in videoDevices
+            if (captureDevice as AnyObject).position == AVCaptureDevice.Position.back
             {
-                if (captureDevice as AnyObject).position == AVCaptureDevicePosition.back
-                {
-                    backVideoDevice = captureDevice as? AVCaptureDevice
-                    break
-                }
+                backVideoDevice = captureDevice
+                break
             }
         }
+    
         
         if backVideoDevice != nil
         {
             var videoInput: AVCaptureDeviceInput!
             do {
-                videoInput = try AVCaptureDeviceInput(device: backVideoDevice)
+                videoInput = try AVCaptureDeviceInput(device: backVideoDevice!)
             } catch let error1 as NSError {
                 error = error1
                 videoInput = nil
@@ -1098,7 +1094,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     //MARK:                                                        Debug
     //==========================================================================================================================================================
     /// Called from DebugMapViewController when user fakes location.
-    internal func locationNotification(_ sender: Notification)
+    @objc internal func locationNotification(_ sender: Notification)
     {
         if let location = sender.userInfo?["location"] as? CLLocation
         {
@@ -1109,7 +1105,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     }
     
     /// Opening DebugMapViewController
-    internal func debugButtonTap()
+    @objc internal func debugButtonTap()
     {
         let bundle = Bundle(for: DebugMapViewController.self)
         let mapViewController = DebugMapViewController(nibName: "DebugMapViewController", bundle: bundle)
