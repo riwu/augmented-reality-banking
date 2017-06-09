@@ -87,9 +87,10 @@
 				8FFCD7CA1DC4A3AC009E3855 /* Frameworks */,
 				E0AA5CA150AD102C0BF22615 /* Pods */,
 			);
-			indentWidth = 2;
+			indentWidth = 4;
 			sourceTree = "<group>";
-			tabWidth = 2;
+			tabWidth = 4;
+			usesTabs = 0;
 		};
 		8FFCD79E1DC4A204009E3855 /* Products */ = {
 			isa = PBXGroup;

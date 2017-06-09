@@ -48,18 +48,34 @@
         <!--Cards-->
         <scene sceneID="f1a-DQ-rJx">
             <objects>
-                <tableViewController id="2st-WM-5n0" customClass="CardTableViewController" customModule="Places" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ytc-c2-20m">
+                <tableViewController id="2st-WM-5n0" customClass="CardTableViewController" customModule="augmented_reality_banking" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ytc-c2-20m">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fnm-H9-eSa">
-                                <rect key="frame" x="0.0" y="28" width="768" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="cardCell" textLabel="Hp5-hq-zTz" detailTextLabel="eI4-ci-1Hz" style="IBUITableViewCellStyleSubtitle" id="fnm-H9-eSa">
+                                <rect key="frame" x="0.0" y="28" width="768" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fnm-H9-eSa" id="BxV-7e-ZoH">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="721" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hp5-hq-zTz">
+                                            <rect key="frame" x="20" y="33" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eI4-ci-1Hz">
+                                            <rect key="frame" x="20" y="53.5" width="33" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -103,11 +119,11 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="2st-WM-5n0" kind="relationship" relationship="viewControllers" id="tYS-Nu-xEd"/>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="6iD-yF-PhL"/>
                         <segue destination="x1t-LL-PV6" kind="relationship" relationship="viewControllers" id="u4G-El-jUc"/>
                         <segue destination="B4l-e8-CDw" kind="relationship" relationship="viewControllers" id="1aG-sd-gDf"/>
                         <segue destination="5tn-HX-JMF" kind="relationship" relationship="viewControllers" id="DN6-BK-5iQ"/>
-                        <segue destination="2st-WM-5n0" kind="relationship" relationship="viewControllers" id="tYS-Nu-xEd"/>
                         <segue destination="KCd-Hz-aNO" kind="relationship" relationship="viewControllers" id="8Ci-rj-51s"/>
                     </connections>
                 </tabBarController>
@@ -118,7 +134,7 @@
         <!--Maps-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="Places" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="augmented_reality_banking" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
