@@ -237,7 +237,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     }
     
     
-    @objc internal func closeButtonTap()
+    internal func closeButtonTap()
     {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
@@ -270,14 +270,14 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         
         
     }
-    @objc internal func appDidEnterBackground(_ notification: Notification)
+    internal func appDidEnterBackground(_ notification: Notification)
     {
         if(self.view.window != nil)
         {
             self.trackingManager.stopTracking()
         }
     }
-    @objc internal func appWillEnterForeground(_ notification: Notification)
+    internal func appWillEnterForeground(_ notification: Notification)
     {
         if(self.view.window != nil)
         {
@@ -783,7 +783,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     //==========================================================================================================================================================
     // MARK:                                    Events: ARLocationManagerDelegate/Display timer
     //==========================================================================================================================================================
-    @objc internal func displayTimerTick()
+    internal func displayTimerTick()
     {
         let filterFactor: Double = headingSmoothingFactor
         let newHeading = self.trackingManager.heading
@@ -1094,7 +1094,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     //MARK:                                                        Debug
     //==========================================================================================================================================================
     /// Called from DebugMapViewController when user fakes location.
-    @objc internal func locationNotification(_ sender: Notification)
+    internal func locationNotification(_ sender: Notification)
     {
         if let location = sender.userInfo?["location"] as? CLLocation
         {
@@ -1105,7 +1105,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     }
     
     /// Opening DebugMapViewController
-    @objc internal func debugButtonTap()
+    internal func debugButtonTap()
     {
         let bundle = Bundle(for: DebugMapViewController.self)
         let mapViewController = DebugMapViewController(nibName: "DebugMapViewController", bundle: bundle)
