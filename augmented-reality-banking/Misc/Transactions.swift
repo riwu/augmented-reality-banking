@@ -3,9 +3,10 @@ import Foundation
 struct Transaction {
     let brand: Brand
     let date: Date 
-    let id: Int
-}
-
-struct Transactions {
     
+    static func random() -> Transaction {
+        let date = Date(timeIntervalSinceNow: 1000)
+        print(date)
+        return Transaction(brand: Brands.getRand(), date: date)
+    }
 }

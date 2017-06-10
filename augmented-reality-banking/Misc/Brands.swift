@@ -28,4 +28,8 @@ struct Brands {
     static func get(_ index: Int) -> Brand {
         return Brands.brands[index]
     }
+    
+    static func getRand() -> Brand {
+        return Brands.get(Int(arc4random_uniform(UInt32(Brands.count))))
+    }
 }
