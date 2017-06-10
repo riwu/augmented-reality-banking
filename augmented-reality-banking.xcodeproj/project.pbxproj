@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0023FE2C1EEBA4C30020880B /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0023FE2B1EEBA4C30020880B /* InventoryViewController.swift */; };
 		004999151EEAFA3600CE31C5 /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004999141EEAFA3600CE31C5 /* CardsViewController.swift */; };
+		00A953131EEBBEF700F40484 /* Brands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0023FE2A1EEBA45E0020880B /* Brands.swift */; };
 		8F7404871DCF8834009A6F0B /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7404861DCF8834009A6F0B /* AnnotationView.swift */; };
 		8FFCD7A11DC4A204009E3855 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFCD7A01DC4A204009E3855 /* AppDelegate.swift */; };
 		8FFCD7A31DC4A204009E3855 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFCD7A21DC4A204009E3855 /* MapViewController.swift */; };
@@ -35,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		0023FE2A1EEBA45E0020880B /* Brands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brands.swift; sourceTree = "<group>"; };
+		0023FE2B1EEBA4C30020880B /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
 		004999141EEAFA3600CE31C5 /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
 		1D1A789EE2389FC55AC92AF0 /* Pods-augmented-reality-banking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-augmented-reality-banking.debug.xcconfig"; path = "Pods/Target Support Files/Pods-augmented-reality-banking/Pods-augmented-reality-banking.debug.xcconfig"; sourceTree = "<group>"; };
 		3B913648B3990F520460314F /* Pods_augmented_reality_banking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_augmented_reality_banking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +88,7 @@
 			children = (
 				0023FE2A1EEBA45E0020880B /* Brands.swift */,
 				004999141EEAFA3600CE31C5 /* CardsViewController.swift */,
+				0023FE2B1EEBA4C30020880B /* InventoryViewController.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -222,7 +226,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
 				LastUpgradeCheck = 0900;
-				ORGANIZATIONNAME = "Razeware LLC";
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					8FFCD79C1DC4A204009E3855 = {
 						CreatedOnToolsVersion = 8.1;
@@ -340,6 +344,8 @@
 				004999151EEAFA3600CE31C5 /* CardsViewController.swift in Sources */,
 				8FFCD7C01DC4A39A009E3855 /* ARAnnotation.swift in Sources */,
 				8FFCD7C51DC4A39A009E3855 /* DebugMapViewController.swift in Sources */,
+				00A953131EEBBEF700F40484 /* Brands.swift in Sources */,
+				0023FE2C1EEBA4C30020880B /* InventoryViewController.swift in Sources */,
 				8FFCD7D41DC4A85B009E3855 /* PlacesLoader.swift in Sources */,
 				8FFCD7C11DC4A39A009E3855 /* ARAnnotationView.swift in Sources */,
 				8FFCD7C31DC4A39A009E3855 /* ARTrackingManager.swift in Sources */,

@@ -2,17 +2,25 @@ import UIKit
 
 struct Brand {
     let name: String
-    let image: UIImageView
+    let image: UIImage 
+    let imageView: UIImageView
     init(_ name: String) {
         self.name = name
-        image = UIImageView(image: UIImage(named: name))
+        guard let image = UIImage(named: name) else {
+            fatalError("Unable to find image file")
+        }
+        self.image = image
+        self.imageView = UIImageView(image: image)
     }
 }
 
 struct Brands {
-    var brands: [Brand] = []
-    static private let names = ["Nike", "H&M", "Uniqlo"]
+    private static var brands: [Brand] = []
+    private static let names = ["Nike", "H&M", "Uniqlo"]
     init() {
-        Brands.names.forEach { brands.append(Brand($0)) }
+        Brands.names.forEach { Brands.brands.append(Brand($0)) }
+    }
+    subscript(index: Int) -> Brand {
+        return Brands.brands[index]
     }
 }
