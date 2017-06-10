@@ -10,12 +10,16 @@ class InventoryViewController: UICollectionViewController {
 extension InventoryViewController {
         
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Brands.count * 3
+        return Brands.count * 4
     }
     
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "inventoryCell", for: indexPath)
+        guard cell.contentView.subviews.isEmpty else {
+            return cell
+        }
+        
         let brand = Brands.get(Int(arc4random_uniform(UInt32(Brands.count))))
         let tableCell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         tableCell.textLabel?.text = brand.name
@@ -38,7 +42,6 @@ extension InventoryViewController {
             label.textColor = hasValue ? .blue : .gray
         }
 
-        cell.contentView.subviews.forEach { $0.removeFromSuperview() }
         cell.contentView.addSubview(label)
         cell.contentView.addSubview(tableCell)
         return cell
