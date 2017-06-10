@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		004999151EEAFA3600CE31C5 /* CardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004999141EEAFA3600CE31C5 /* CardTableViewController.swift */; };
+		004999151EEAFA3600CE31C5 /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004999141EEAFA3600CE31C5 /* CardsViewController.swift */; };
 		8F7404871DCF8834009A6F0B /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7404861DCF8834009A6F0B /* AnnotationView.swift */; };
 		8FFCD7A11DC4A204009E3855 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFCD7A01DC4A204009E3855 /* AppDelegate.swift */; };
 		8FFCD7A31DC4A204009E3855 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFCD7A21DC4A204009E3855 /* MapViewController.swift */; };
@@ -34,7 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		004999141EEAFA3600CE31C5 /* CardTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTableViewController.swift; sourceTree = "<group>"; };
+		0023FE2A1EEBA45E0020880B /* Brands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brands.swift; sourceTree = "<group>"; };
+		004999141EEAFA3600CE31C5 /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
 		1D1A789EE2389FC55AC92AF0 /* Pods-augmented-reality-banking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-augmented-reality-banking.debug.xcconfig"; path = "Pods/Target Support Files/Pods-augmented-reality-banking/Pods-augmented-reality-banking.debug.xcconfig"; sourceTree = "<group>"; };
 		3B913648B3990F520460314F /* Pods_augmented_reality_banking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_augmented_reality_banking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F7404861DCF8834009A6F0B /* AnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
@@ -79,6 +80,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0023FE291EEBA34D0020880B /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				0023FE2A1EEBA45E0020880B /* Brands.swift */,
+				004999141EEAFA3600CE31C5 /* CardsViewController.swift */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
 		8FFCD7941DC4A204009E3855 = {
 			isa = PBXGroup;
 			children = (
@@ -103,13 +113,13 @@
 		8FFCD79F1DC4A204009E3855 /* augmented-reality-banking */ = {
 			isa = PBXGroup;
 			children = (
+				0023FE291EEBA34D0020880B /* Misc */,
 				8FFCD7A01DC4A204009E3855 /* AppDelegate.swift */,
 				8FFCD7A21DC4A204009E3855 /* MapViewController.swift */,
 				8FFCD7D11DC4A539009E3855 /* Place.swift */,
 				8F7404861DCF8834009A6F0B /* AnnotationView.swift */,
 				8FFCD7D51DC608FE009E3855 /* PlaceAnnotation.swift */,
 				8FFCD7D31DC4A85B009E3855 /* PlacesLoader.swift */,
-				004999141EEAFA3600CE31C5 /* CardTableViewController.swift */,
 				8FFCD7A41DC4A204009E3855 /* Main.storyboard */,
 				8FFCD7B21DC4A39A009E3855 /* HDAugmentedReality */,
 				8FFCD7A71DC4A204009E3855 /* Assets.xcassets */,
@@ -327,7 +337,7 @@
 				8F7404871DCF8834009A6F0B /* AnnotationView.swift in Sources */,
 				8FFCD7A31DC4A204009E3855 /* MapViewController.swift in Sources */,
 				8FFCD7D61DC608FE009E3855 /* PlaceAnnotation.swift in Sources */,
-				004999151EEAFA3600CE31C5 /* CardTableViewController.swift in Sources */,
+				004999151EEAFA3600CE31C5 /* CardsViewController.swift in Sources */,
 				8FFCD7C01DC4A39A009E3855 /* ARAnnotation.swift in Sources */,
 				8FFCD7C51DC4A39A009E3855 /* DebugMapViewController.swift in Sources */,
 				8FFCD7D41DC4A85B009E3855 /* PlacesLoader.swift in Sources */,
