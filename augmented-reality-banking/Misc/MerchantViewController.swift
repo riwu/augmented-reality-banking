@@ -36,7 +36,7 @@ class MerchantViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "inventoryCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "merchantCell", for: indexPath)
         guard cell.contentView.subviews.isEmpty else {
             return cell
         }
@@ -71,7 +71,7 @@ class MerchantViewController: UICollectionViewController {
         switch kind {
         case UICollectionElementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                             withReuseIdentifier: "inventoryHeader",
+                                                                             withReuseIdentifier: "searchBar",
                                                                              for: indexPath)
             return headerView
         default:

@@ -18,14 +18,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BsD-ku-yS8">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="BsD-ku-yS8">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="50" height="50"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" contentMode="center" reuseIdentifier="inventoryCell" id="HpQ-bK-3gW">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" contentMode="center" reuseIdentifier="merchantCell" id="HpQ-bK-3gW">
                                 <rect key="frame" x="0.0" y="50" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -34,7 +34,7 @@
                                 </view>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="inventoryHeader" id="zIy-W3-cKi">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="searchBar" id="zIy-W3-cKi">
                             <rect key="frame" x="0.0" y="0.0" width="768" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
@@ -101,25 +101,6 @@
             </objects>
             <point key="canvasLocation" x="-720" y="-663"/>
         </scene>
-        <!--Transactions-->
-        <scene sceneID="EpK-qp-870">
-            <objects>
-                <viewController id="5tn-HX-JMF" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="8At-MM-Ju6"/>
-                        <viewControllerLayoutGuide type="bottom" id="DVc-fk-vc4"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="lpY-vL-LKz">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Transactions" image="transaction" id="8XC-pp-fj1"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dG0-Hg-HDj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2068" y="-863"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="vdm-bV-Agk">
             <objects>
@@ -130,7 +111,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="5tn-HX-JMF" kind="relationship" relationship="viewControllers" id="DN6-BK-5iQ"/>
+                        <segue destination="yu1-g9-gp9" kind="relationship" relationship="viewControllers" id="Djc-fc-pzI"/>
                         <segue destination="x1t-LL-PV6" kind="relationship" relationship="viewControllers" id="u4G-El-jUc"/>
                         <segue destination="2st-WM-5n0" kind="relationship" relationship="viewControllers" id="tYS-Nu-xEd"/>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="6iD-yF-PhL"/>
@@ -206,6 +187,52 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fy6-fW-4sY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-702" y="646"/>
+        </scene>
+        <!--Transactions-->
+        <scene sceneID="LbT-EF-gAG">
+            <objects>
+                <collectionViewController id="yu1-g9-gp9" customClass="TransactionViewController" customModule="augmented_reality_banking" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="PqC-3V-79W">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="uib-nf-7b9">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="50" height="50"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="merchantCell" id="PvH-Gi-IwS">
+                                <rect key="frame" x="0.0" y="50" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="searchBar" id="Hp5-CK-HFm">
+                            <rect key="frame" x="0.0" y="0.0" width="768" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Enter your search term" translatesAutoresizingMaskIntoConstraints="NO" id="J5U-xa-XEN">
+                                    <rect key="frame" x="0.0" y="-487" width="768" height="1024"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
+                            </subviews>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="yu1-g9-gp9" id="dMh-E6-y0U"/>
+                            <outlet property="delegate" destination="yu1-g9-gp9" id="1hg-dt-W8N"/>
+                        </connections>
+                    </collectionView>
+                    <tabBarItem key="tabBarItem" title="Transactions" image="transaction" id="XhN-91-fbo"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="whN-Kw-7w9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2156" y="-854"/>
         </scene>
         <!--Transfer-->
         <scene sceneID="NAj-Me-Ohh">
