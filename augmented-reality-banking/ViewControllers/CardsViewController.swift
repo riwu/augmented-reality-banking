@@ -10,9 +10,9 @@ class CardsViewController: UITableViewController {
 
     private func showCardDetails(at indexPath: IndexPath) {
         let randIndex = Int(arc4random_uniform(UInt32(Brands.count)))
-        let message = (0...(7 + Int(arc4random_uniform(5)))).map { 
-            "\(5 + arc4random_uniform(16))% discount at " + 
-                Brands.get((randIndex + $0) % Brands.count).name 
+        let message = (0...(7 + Int(arc4random_uniform(5)))).map {
+            "\(5 + arc4random_uniform(16))% discount at " +
+                Brands.get((randIndex + $0) % Brands.count).name
         }
         let alertController = UIAlertController(title: cards[indexPath.row], message: message.joined(separator: "\n"),
                                                 preferredStyle: .actionSheet)

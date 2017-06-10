@@ -3,7 +3,14 @@ import UIKit
 class InventoryViewController: MerchantViewController {
 
     fileprivate var textView: UITextView?
-
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        originalMerchants = Coupons.sharedInstance.coupons
+        filteredMerchants = originalMerchants
+    }
+    
     // MARK: UICollectionViewDelegate
     @objc
     override func tapAction(sender: UITapGestureRecognizer) {
@@ -24,8 +31,8 @@ class InventoryViewController: MerchantViewController {
             return
         }
 
-        guard let textViewSubView = subViews.first(where: { $0 as? UITextView != nil }),
-              let textView = textViewSubView as? UITextView else {
+        guard let textSubView = tableViewCell.subviews.first(where: { $0 as? UITextView != nil }),
+              let textView = textSubView as? UITextView else {
             assertionFailure("No text view")
             return
         }

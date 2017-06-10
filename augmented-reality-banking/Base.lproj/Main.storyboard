@@ -38,7 +38,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="768" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Enter your search term" translatesAutoresizingMaskIntoConstraints="NO" id="Zus-uN-HaQ">
+                                <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Enter your search term" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zus-uN-HaQ">
                                     <rect key="frame" x="0.0" y="-487" width="768" height="1024"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -57,7 +57,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mSe-bN-Gkg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-695" y="-18"/>
+            <point key="canvasLocation" x="-695.3125" y="-18.1640625"/>
         </scene>
         <!--Cards-->
         <scene sceneID="f1a-DQ-rJx">
@@ -219,7 +219,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="768" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Enter your search term" translatesAutoresizingMaskIntoConstraints="NO" id="J5U-xa-XEN">
+                                <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Enter your search term" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J5U-xa-XEN">
                                     <rect key="frame" x="0.0" y="-487" width="768" height="1024"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
