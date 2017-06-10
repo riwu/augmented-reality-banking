@@ -22,7 +22,8 @@ extension InventoryViewController {
         tableCell.imageView?.image = brand.image
         tableCell.detailTextLabel?.text = "\(5 + arc4random_uniform(16))% discount"
         
-        let label = UITextView (frame: CGRect(x: 0, y: 0, width: 152, height: 44))
+        let width: CGFloat = 80
+        let label = UITextView (frame: CGRect(x: cell.frame.width - width, y: 0, width: width, height: 44))
         label.textAlignment = .center
         label.isEditable = false
         
@@ -37,9 +38,8 @@ extension InventoryViewController {
             label.textColor = hasValue ? .blue : .gray
         }
 
-
-        tableCell.accessoryView = label
         cell.contentView.subviews.forEach { $0.removeFromSuperview() }
+        cell.contentView.addSubview(label)
         cell.contentView.addSubview(tableCell)
         return cell
     }
