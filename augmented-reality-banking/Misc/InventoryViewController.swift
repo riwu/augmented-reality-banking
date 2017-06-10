@@ -46,6 +46,20 @@ extension InventoryViewController {
         cell.contentView.addSubview(tableCell)
         return cell
     }
+    
+    override func collectionView(_ collectionView: UICollectionView,
+                                  viewForSupplementaryElementOfKind kind: String,
+                                  at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionElementKindSectionHeader:
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                             withReuseIdentifier: "inventoryHeader",
+                                                                             for: indexPath)
+            return headerView
+        default:
+            fatalError("Unexpected element kind")
+        }
+    }
 }
 
 // MARK: UICollectionViewDelegateFlowLayout
@@ -67,3 +81,4 @@ extension InventoryViewController: UICollectionViewDelegateFlowLayout {
         return 0
     }   
 }
+
