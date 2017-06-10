@@ -1,14 +1,58 @@
 import UIKit
 
 class InventoryViewController: UICollectionViewController {
-
-
-
-}
-
-// MARK: UICollectionViewDataSource
-extension InventoryViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openCouponOptions(sender:)))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    // MARK: UICollectionViewDelegate
+    @objc 
+    private func openCouponOptions(sender: UITapGestureRecognizer) {
+        guard let collectionView = collectionView else {
+            return
+        }
+        guard let indexPath = collectionView.indexPathForItem(at: sender.location(in: view)) else {
+            return
+        }
+        let cell = collectionView.cellForItem(at: indexPath)
+        guard let subViews = cell?.contentView.subviews else {
+            assertionFailure("No subview")
+            return
+        }
+        guard let subView = subViews.first(where: { $0 as? UITableViewCell != nil }),
+            let tableViewCell = subView as? UITableViewCell else {
+                assertionFailure("Unable to find table view cell")
+                return
+        }
+        guard let title = tableViewCell.textLabel?.text else {
+            assertionFailure("Unable to get text")
+            return
+        }
+        guard let discount = tableViewCell.detailTextLabel?.text else {
+            assertionFailure("Unable to get text")
+            return
+        }
+        let alertController = UIAlertController(title: title, message: discount, preferredStyle: .actionSheet)
+        alertController.popoverPresentationController?.sourceView = cell
+        let applyAction = UIAlertAction(title: "Apply", style: .default) { _ in
+            let applyController = UIAlertController(title: "Select transaction to apply", message: nil, 
+                                                    preferredStyle: .actionSheet)
+            applyController.addAction(UIAlertAction(title: "Uniqlo 5/2/2017", style: .default))
+            applyController.popoverPresentationController?.sourceView = cell
+            self.present(applyController, animated: true)        
+        }
+        alertController.addAction(applyAction)
+        alertController.addAction(UIAlertAction(title: "Sell", style: .default))
+        alertController.addAction(UIAlertAction(title: "Gift", style: .default))
+        alertController.addAction(UIAlertAction(title: "Discard", style: .destructive))
+        present(alertController, animated: true)        
+    }
+    
+    // MARK: UICollectionViewDataSource
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return Brands.count * 4
     }
@@ -42,8 +86,8 @@ extension InventoryViewController {
             label.textColor = hasValue ? .blue : .gray
         }
 
-        cell.contentView.addSubview(label)
         cell.contentView.addSubview(tableCell)
+        cell.contentView.addSubview(label)
         return cell
     }
     
@@ -81,4 +125,3 @@ extension InventoryViewController: UICollectionViewDelegateFlowLayout {
         return 0
     }   
 }
-
