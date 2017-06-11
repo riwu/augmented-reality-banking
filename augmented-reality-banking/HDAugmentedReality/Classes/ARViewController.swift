@@ -138,7 +138,8 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate {
 
     }
 
-    internal func initializeInternal() {
+    @objc
+    private func initializeInternal() {
         if self.initialized {
             return
         }
@@ -157,7 +158,8 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate {
     }
 
     /// Intended for use in subclasses, no need to call super
-    internal func initialize() {
+    @objc
+    private func initialize() {
 
     }
 
@@ -170,6 +172,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate {
     // MARK: View's lifecycle
     //==========================================================================================================================================================
     private var bagImageView: UIImageView!
+
     override open func viewDidLoad() {
         super.viewDidLoad()
         guard let image = UIImage(named: "bag") else {
@@ -179,27 +182,28 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate {
         bagImageView = UIImageView(image: image)
         let size: CGFloat = 160
         bagImageView.frame = CGRect(x: (view.frame.width - size) / 2, y: view.frame.height - size - 10,
-                                 width: size, height: size)
+                                    width: size, height: size)
         view.addSubview(bagImageView)
-
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panAction(sender:)))
-        view.addGestureRecognizer(panGesture)
     }
 
-    private var lastPanLocation: CGPoint!
-
-    @objc
-    private func panAction(sender: UIPanGestureRecognizer) {
-        let translation = sender.translation(in: view)
-        bagImageView.center = CGPoint(x: lastPanLocation.x + translation.x, y: lastPanLocation.y + translation.y)
-        if bagImageView.frame.contains(translation) {
-            print("bagged")
+    func dragEnded(_ gestureRecognizer: UIGestureRecognizer, coupon: Coupon) -> Bool {
+        let location = gestureRecognizer.location(in: view)
+        guard bagImageView.frame.contains(location) else {
+            return false
         }
-        print("Panned")
-    }
-
-    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        lastPanLocation = bagImageView.center
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d MMM yy"
+        let message = coupon.brand.name + "\nDiscount: \(coupon.discount)%\n" +
+                      "Expiry: \(dateFormatter.string(from: coupon.expiryDate))"
+        let alertController = UIAlertController(title: "Congraduations!", message: message,
+                                                preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Keep", style: .default))
+        alertController.addAction(UIAlertAction(title: "Sell", style: .default))
+        alertController.addAction(UIAlertAction(title: "Gift", style: .default))
+        alertController.addAction(UIAlertAction(title: "Share on Facebook", style: .default))
+        alertController.addAction(UIAlertAction(title: "Discard", style: .destructive))
+        present(alertController, animated: true)
+        return true
     }
 
     open override func viewWillAppear(_ animated: Bool) {
@@ -243,7 +247,8 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate {
         stopCamera()
     }
 
-    internal func closeButtonTap() {
+    @objc
+    private func closeButtonTap() {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 
@@ -271,12 +276,15 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate {
         self.degreesPerScreen = (self.view.bounds.size.width / OVERLAY_VIEW_WIDTH) * 360.0
 
     }
-    internal func appDidEnterBackground(_ notification: Notification) {
+
+    @objc
+    private func appDidEnterBackground(_ notification: Notification) {
         if(self.view.window != nil) {
             self.trackingManager.stopTracking()
         }
     }
-    internal func appWillEnterForeground(_ notification: Notification) {
+    @objc
+    private func appWillEnterForeground(_ notification: Notification) {
         if(self.view.window != nil) {
             // Removing all from screen and restarting location manager.
             for annotation in self.annotations {
@@ -693,7 +701,8 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate {
     //==========================================================================================================================================================
     // MARK: Events: ARLocationManagerDelegate/Display timer
     //==========================================================================================================================================================
-    internal func displayTimerTick() {
+    @objc
+    private func displayTimerTick() {
         let filterFactor: Double = headingSmoothingFactor
         let newHeading = self.trackingManager.heading
 
@@ -712,6 +721,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate {
         logText("Heading: \(self.trackingManager.heading)")
     }
 
+    @objc
     internal func arTrackingManager(_ trackingManager: ARTrackingManager, didUpdateUserLocation: CLLocation?) {
         if let location = trackingManager.userLocation {
             self.lastLocation = location
@@ -739,6 +749,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate {
         }
     }
 
+    @objc
     internal func arTrackingManager(_ trackingManager: ARTrackingManager, didUpdateReloadLocation: CLLocation?) {
         // Manual reload?
         if didUpdateReloadLocation != nil && self.dataSource != nil && self.dataSource!.responds(to: #selector(ARDataSource.ar(_:shouldReloadWithLocation:))) {
@@ -762,10 +773,12 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate {
             }
         }
     }
+    @objc
     internal func arTrackingManager(_ trackingManager: ARTrackingManager, didFailToFindLocationAfter elapsedSeconds: TimeInterval) {
         self.onDidFailToFindLocation?(elapsedSeconds, self.lastLocation != nil)
     }
 
+    @objc
     internal func logText(_ text: String) {
         self.debugLabel?.text = text
     }
@@ -904,7 +917,8 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate {
         }
     }
 
-    internal func layoutAndReloadOnOrientationChange() {
+    @objc
+    private func layoutAndReloadOnOrientationChange() {
         CATransaction.begin()
         CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
         self.layoutUi()
@@ -952,7 +966,8 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate {
   // MARK: Debug
     //==========================================================================================================================================================
     /// Called from DebugMapViewController when user fakes location.
-    internal func locationNotification(_ sender: Notification) {
+    @objc
+    private func locationNotification(_ sender: Notification) {
         if let location = sender.userInfo?["location"] as? CLLocation {
             self.trackingManager.startDebugMode(location)
             self.reloadAnnotations()
@@ -961,7 +976,8 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate {
     }
 
     /// Opening DebugMapViewController
-    internal func debugButtonTap() {
+    @objc
+    private func debugButtonTap() {
         let bundle = Bundle(for: DebugMapViewController.self)
         let mapViewController = DebugMapViewController(nibName: "DebugMapViewController", bundle: bundle)
         self.present(mapViewController, animated: true, completion: nil)

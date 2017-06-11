@@ -135,7 +135,11 @@ extension MapViewController: ARDataSource {
 }
 
 extension MapViewController: AnnotationViewDelegate {
-    func didTouch(annotationView: AnnotationView) {
+    func didDragToBag(_ gestureRecognizer: UIGestureRecognizer, coupon: Coupon) -> Bool {
+        return arViewController.dragEnded(gestureRecognizer, coupon: coupon)
+    }
+
+    func didTap(annotationView: AnnotationView) {
         guard let annotation = annotationView.annotation as? Place else {
             return
         }

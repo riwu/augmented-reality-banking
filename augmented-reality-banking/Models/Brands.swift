@@ -3,15 +3,12 @@ import UIKit
 struct Brand {
     let name: String
     let image: UIImage
-    let imageView: UIImageView
     init(_ name: String) {
         self.name = name
         guard let image = UIImage(named: name) else {
             fatalError("Unable to find image file: " + name)
         }
         self.image = image
-        self.imageView = UIImageView(image: image)
-        imageView.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
     }
 }
 
