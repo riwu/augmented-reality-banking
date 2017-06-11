@@ -41,30 +41,39 @@ class AnnotationView: ARAnnotationView {
         let brand = Brands.getRand()
         let imageView = brand.imageView
 
-        let titleLabel = UILabel(frame: CGRect(x: 50, y: 0, width: self.frame.size.width, height: 15))
-        titleLabel.font = UIFont.systemFont(ofSize: 14)
+        let width = 100
+        let labelX = Int(imageView.frame.width + 5)
+        let titleLabel = UILabel(frame: CGRect(x: labelX, y: 0, width: width, height: 20))
+        titleLabel.font = UIFont.systemFont(ofSize: 16)
         titleLabel.numberOfLines = 0
         titleLabel.backgroundColor = UIColor(white: 0.3, alpha: 0.7)
         titleLabel.textColor = UIColor.white
 
-        let discountLabel = UILabel(frame: CGRect(x: 50, y: 15, width: self.frame.size.width, height: 10))
+        let discountLabel = UILabel(frame: CGRect(x: labelX, y: 20, width: width, height: 15))
         discountLabel.backgroundColor = UIColor(white: 0.3, alpha: 0.7)
         discountLabel.textColor = UIColor.red
-        discountLabel.font = UIFont.systemFont(ofSize: 10)
+        discountLabel.font = UIFont.systemFont(ofSize: 14)
 
-        let distanceLabel = UILabel(frame: CGRect(x: 50, y: 25, width: self.frame.size.width, height: 10))
+        let levelLabel = UILabel(frame: CGRect(x: labelX, y: 35, width: width, height: 12))
+        levelLabel.backgroundColor = UIColor(white: 0.3, alpha: 0.7)
+        levelLabel.textColor = UIColor.yellow
+        levelLabel.font = UIFont.systemFont(ofSize: 12)
+
+        let distanceLabel = UILabel(frame: CGRect(x: labelX, y: 47, width: width, height: 12))
         distanceLabel.backgroundColor = UIColor(white: 0.3, alpha: 0.7)
         distanceLabel.textColor = UIColor.green
-        distanceLabel.font = UIFont.systemFont(ofSize: 10)
+        distanceLabel.font = UIFont.systemFont(ofSize: 12)
 
         if let annotation = annotation as? Place {
             titleLabel.text = brand.name
             let discount = 5 + arc4random_uniform(16)
             discountLabel.text = "\(discount)% discount"
-            distanceLabel.text = String(format: "%.2f km", annotation.distanceFromUser / 1_000)
+            levelLabel.text = "#0\(1 + arc4random_uniform(6))-" + String(format: "%02d", 1 + arc4random_uniform(99))
+            distanceLabel.text = "\(Int(1 + arc4random_uniform(6)))m"
         }
         self.addSubview(imageView)
         self.addSubview(titleLabel)
+        self.addSubview(levelLabel)
         self.addSubview(discountLabel)
         self.addSubview(distanceLabel)
         }

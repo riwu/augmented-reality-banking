@@ -11,7 +11,7 @@ struct Brand {
         }
         self.image = image
         self.imageView = UIImageView(image: image)
-        imageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        imageView.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
     }
 }
 
