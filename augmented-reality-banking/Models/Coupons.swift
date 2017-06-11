@@ -24,5 +24,11 @@ struct Coupons {
         let date = Date(timeIntervalSinceNow: TimeInterval(2 * 24 * 3_600 + Int(arc4random_uniform(60 * 24 * 3_600))))
         return Coupon(brand: Brands.getRand(), discount: discount,
                       marketPrice: marketPrice, sellingPrice: sellingPrice, expiryDate: date)
-    }
+        }.sorted {
+            if $0.brand.name != $1.brand.name {
+                return $0.discount > $1.discount
+            } else {
+                return $0.brand.name > $1.brand.name
+            }
+        }
 }

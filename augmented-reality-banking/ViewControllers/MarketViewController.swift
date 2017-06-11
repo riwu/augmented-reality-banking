@@ -1,24 +1,26 @@
 import UIKit
 
-class TransactionViewController: MerchantViewController {
+class MarketViewController: MerchantViewController {
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
-        originalMerchants = Transactions.transactions
+        originalMerchants = Coupons.coupons.sorted { $0.expiryDate > $1.expiryDate }
         filteredMerchants = originalMerchants
     }
 
-    private func getTransaction(at indexPath: IndexPath) -> Transaction {
-        guard let transaction = filteredMerchants[indexPath.row] as? Transaction else {
-            fatalError("Unable to get transaction")
+    private func getCoupon(at indexPath: IndexPath) -> Coupon {
+        guard let coupon = filteredMerchants[indexPath.row] as? Coupon else {
+            fatalError("Unable to get coupon cell")
         }
-        return transaction
+        return coupon
     }
+
     // MARK: UICollectionViewDataSource
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "merchantCell", for: indexPath)
-        let transaction = getTransaction(at: indexPath)
+        let coupon = getCoupon(at: indexPath)
         let tableViewCell: UITableViewCell
         if cell.contentView.subviews.isEmpty {
             tableViewCell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
@@ -28,14 +30,9 @@ class TransactionViewController: MerchantViewController {
             }
             tableViewCell = subview
         }
-        tableViewCell.textLabel?.text = transaction.brand.name
-        tableViewCell.imageView?.image = transaction.brand.image
-        if let discount = transaction.coupon?.discount {
-            tableViewCell.detailTextLabel?.text = "Applied \(discount)% discount"
-            tableViewCell.detailTextLabel?.textColor = .red
-        } else {
-            tableViewCell.detailTextLabel?.text = ""
-        }
+        tableViewCell.textLabel?.text = coupon.brand.name
+        tableViewCell.imageView?.image = coupon.brand.image
+        tableViewCell.detailTextLabel?.text = "\(coupon.discount)% discount"
 
         var priceTextView, expiryTextView: UITextView!
         if cell.contentView.subviews.isEmpty {
@@ -62,11 +59,12 @@ class TransactionViewController: MerchantViewController {
             }
         }
 
-        priceTextView.text = "Amount\n$" + String(format: "%.2f", transaction.amount)
+        let price = arc4random_uniform(999) + 1
+        priceTextView.text = "Price\n\(price) pts"
 
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "d MMM yy"
-        expiryTextView.text = "Date\n\(dateFormatter.string(from: transaction.date))"
+        dateFormatter.dateFormat = "d MMM"
+        expiryTextView.text = "Expiry\n\(dateFormatter.string(from: coupon.expiryDate))"
         expiryTextView.textColor = .brown
 
         if cell.contentView.subviews.isEmpty {
@@ -84,23 +82,28 @@ class TransactionViewController: MerchantViewController {
             let indexPath = collectionView.indexPathForItem(at: sender.location(in: view)) else {
                 return
         }
-        let transaction = getTransaction(at: indexPath)
+        let coupon = getCoupon(at: indexPath)
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.isSelected = true
-        let alertController = UIAlertController(title: transaction.brand.name, message: "Select coupons to apply",
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d MMM"
+        let message = "\(coupon.discount)% discount\nExpiry: \(dateFormatter.string(from: coupon.expiryDate))"
+        let alertController = UIAlertController(title: coupon.brand.name, message: message,
                                                 preferredStyle: .actionSheet)
         alertController.popoverPresentationController?.sourceView = cell
-        for coupon in Coupons.coupons.filter({ $0.brand.name == transaction.brand.name })
-                                     .sorted(by: { $0.discount > $1.discount }) {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "d MMM"
-            let title = "Discount: \(coupon.discount)% | Expiry: \(dateFormatter.string(from: coupon.expiryDate))"
-            let couponAction = UIAlertAction(title: title, style: .default) { _ in
-                cell?.isSelected = false
-            }
-            alertController.addAction(couponAction)
-        }
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in cell?.isSelected = false })
+        alertController.addAction(UIAlertAction(title: "Buy", style: .default) { _ in
+            cell?.isSelected = false
+        })
+        alertController.addAction(UIAlertAction(title: "Add to wishlist", style: .default) { _ in
+            cell?.isSelected = false
+        })
+        alertController.addAction(UIAlertAction(title: "Contact seller: John Smith", style: .default) { _ in
+            cell?.isSelected = false
+        })
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            cell?.isSelected = false
+        })
         present(alertController, animated: true)
     }
 }

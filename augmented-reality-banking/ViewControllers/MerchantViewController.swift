@@ -58,21 +58,6 @@ class MerchantViewController: UICollectionViewController {
         return section == 0 ? 0 : filteredMerchants.count
     }
 
-    func setToSale(textView: UITextView, price: UInt32) {
-        textView.text = "Selling\n\(price) pts"
-        textView.textColor = .red
-    }
-
-    func unlist(textView: UITextView, price: UInt32?) {
-        if let price = price {
-            textView.text = "Value\n\(price) pts"
-            textView.textColor = .blue
-        } else {
-            textView.text = "Value\nNo data"
-            textView.textColor = .gray
-        }
-    }
-
     override func collectionView(_ collectionView: UICollectionView,
                                  viewForSupplementaryElementOfKind kind: String,
                                  at indexPath: IndexPath) -> UICollectionReusableView {

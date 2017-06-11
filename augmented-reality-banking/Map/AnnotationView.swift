@@ -23,52 +23,54 @@
 import UIKit
 
 protocol AnnotationViewDelegate {
-  func didTouch(annotationView: AnnotationView)
+    func didTouch(annotationView: AnnotationView)
 }
 
 class AnnotationView: ARAnnotationView {
-  var titleLabel: UILabel?
-  var distanceLabel: UILabel?
-  var delegate: AnnotationViewDelegate?
+    var delegate: AnnotationViewDelegate?
 
-  override func didMoveToSuperview() {
-    super.didMoveToSuperview()
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
 
-    loadUI()
-  }
-
-  func loadUI() {
-    titleLabel?.removeFromSuperview()
-    distanceLabel?.removeFromSuperview()
-
-    let label = UILabel(frame: CGRect(x: 10, y: 0, width: self.frame.size.width, height: 30))
-    label.font = UIFont.systemFont(ofSize: 16)
-    label.numberOfLines = 0
-    label.backgroundColor = UIColor(white: 0.3, alpha: 0.7)
-    label.textColor = UIColor.white
-    self.addSubview(label)
-    self.titleLabel = label
-
-    distanceLabel = UILabel(frame: CGRect(x: 10, y: 30, width: self.frame.size.width, height: 20))
-    distanceLabel?.backgroundColor = UIColor(white: 0.3, alpha: 0.7)
-    distanceLabel?.textColor = UIColor.green
-    distanceLabel?.font = UIFont.systemFont(ofSize: 12)
-    self.addSubview(distanceLabel!)
-
-    if let annotation = annotation as? Place {
-      titleLabel?.text = annotation.placeName
-      distanceLabel?.text = String(format: "%.2f km", annotation.distanceFromUser / 1_000)
-
+        loadUI()
     }
-  }
 
-  override func layoutSubviews() {
-    super.layoutSubviews()
-    titleLabel?.frame = CGRect(x: 10, y: 0, width: self.frame.size.width, height: 30)
-    distanceLabel?.frame = CGRect(x: 10, y: 30, width: self.frame.size.width, height: 20)
-  }
+    func loadUI() {
+        if subviews.isEmpty {
 
-  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-    delegate?.didTouch(annotationView: self)
-  }
+        let brand = Brands.getRand()
+        let imageView = brand.imageView
+
+        let titleLabel = UILabel(frame: CGRect(x: 50, y: 0, width: self.frame.size.width, height: 15))
+        titleLabel.font = UIFont.systemFont(ofSize: 14)
+        titleLabel.numberOfLines = 0
+        titleLabel.backgroundColor = UIColor(white: 0.3, alpha: 0.7)
+        titleLabel.textColor = UIColor.white
+
+        let discountLabel = UILabel(frame: CGRect(x: 50, y: 15, width: self.frame.size.width, height: 10))
+        discountLabel.backgroundColor = UIColor(white: 0.3, alpha: 0.7)
+        discountLabel.textColor = UIColor.red
+        discountLabel.font = UIFont.systemFont(ofSize: 10)
+
+        let distanceLabel = UILabel(frame: CGRect(x: 50, y: 25, width: self.frame.size.width, height: 10))
+        distanceLabel.backgroundColor = UIColor(white: 0.3, alpha: 0.7)
+        distanceLabel.textColor = UIColor.green
+        distanceLabel.font = UIFont.systemFont(ofSize: 10)
+
+        if let annotation = annotation as? Place {
+            titleLabel.text = brand.name
+            let discount = 5 + arc4random_uniform(16)
+            discountLabel.text = "\(discount)% discount"
+            distanceLabel.text = String(format: "%.2f km", annotation.distanceFromUser / 1_000)
+        }
+        self.addSubview(imageView)
+        self.addSubview(titleLabel)
+        self.addSubview(discountLabel)
+        self.addSubview(distanceLabel)
+        }
+    }
+
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        delegate?.didTouch(annotationView: self)
+    }
 }

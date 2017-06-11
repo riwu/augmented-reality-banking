@@ -62,9 +62,16 @@ class InventoryViewController: MerchantViewController {
         }
 
         if let sellingPrice = coupon.sellingPrice {
-            setToSale(textView: priceTextView, price: sellingPrice)
+            priceTextView.text = "Selling\n\(sellingPrice) pts"
+            priceTextView.textColor = .red
         } else {
-            unlist(textView: priceTextView, price: coupon.marketPrice)
+            if let marketPrice = coupon.marketPrice {
+                priceTextView.text = "Value\n\(marketPrice) pts"
+                priceTextView.textColor = .blue
+            } else {
+                priceTextView.text = "Value\nNo data"
+                priceTextView.textColor = .gray
+            }
         }
 
         let dateFormatter = DateFormatter()
