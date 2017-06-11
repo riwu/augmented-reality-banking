@@ -36,27 +36,45 @@ class InventoryViewController: MerchantViewController {
         tableViewCell.imageView?.image = coupon.brand.image
         tableViewCell.detailTextLabel?.text = "\(coupon.discount)% discount"
 
-        let textView: UITextView
+        var priceTextView, expiryTextView: UITextView!
         if cell.contentView.subviews.isEmpty {
-            let width: CGFloat = 60
-            textView = UITextView(frame: CGRect(x: 190, y: 0, width: width, height: 44))
-            textView.textAlignment = .center
-            textView.isEditable = false
+            let width: CGFloat = 80
+            priceTextView = UITextView(frame: CGRect(x: 190, y: 0, width: width, height: 44))
+            priceTextView.textAlignment = .center
+            priceTextView.isEditable = false
+            priceTextView.tag = 0
+
+            expiryTextView = UITextView(frame: CGRect(x: 290, y: 0, width: width, height: 44))
+            expiryTextView.textAlignment = .center
+            expiryTextView.isEditable = false
+            expiryTextView.tag = 1
         } else {
-            guard let subview = tableViewCell.subviews.first(where: { $0 as? UITextView != nil }) as? UITextView else {
-                fatalError("Unable to get UITextView")
+            for subview in tableViewCell.subviews {
+                guard let textView = subview as? UITextView else {
+                    continue
+                }
+                if textView.tag == 0 {
+                    priceTextView = textView
+                } else if textView.tag == 1 {
+                    expiryTextView = textView
+                }
             }
-            textView = subview
         }
 
         if let sellingPrice = coupon.sellingPrice {
-            setToSale(textView: textView, price: sellingPrice)
+            setToSale(textView: priceTextView, price: sellingPrice)
         } else {
-            unlist(textView: textView, price: coupon.marketPrice)
+            unlist(textView: priceTextView, price: coupon.marketPrice)
         }
 
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d MMM"
+        expiryTextView.text = "Expiry\n\(dateFormatter.string(from: coupon.expiryDate))"
+        expiryTextView.textColor = .brown
+
         if cell.contentView.subviews.isEmpty {
-            tableViewCell.addSubview(textView)
+            tableViewCell.addSubview(priceTextView)
+            tableViewCell.addSubview(expiryTextView)
             cell.contentView.addSubview(tableViewCell)
         }
         return cell
@@ -78,12 +96,6 @@ class InventoryViewController: MerchantViewController {
               let title = tableViewCell.textLabel?.text,
               let discount = tableViewCell.detailTextLabel?.text else {
             assertionFailure("No subview")
-            return
-        }
-
-        guard let textSubView = tableViewCell.subviews.first(where: { $0 as? UITextView != nil }),
-              let textView = textSubView as? UITextView else {
-            assertionFailure("No text view")
             return
         }
 
