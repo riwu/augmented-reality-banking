@@ -186,11 +186,24 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate {
         view.addSubview(bagImageView)
     }
 
+    private func animateBag(rotateBy angle: CGFloat, completion: ((Bool) -> Void)? = nil) {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.bagImageView.transform = self.bagImageView.transform.rotated(by: angle)
+        }, completion: completion)
+    }
+    
     func dragEnded(_ gestureRecognizer: UIGestureRecognizer, coupon: Coupon) -> Bool {
         let location = gestureRecognizer.location(in: view)
         guard bagImageView.frame.contains(location) else {
             return false
         }
+        let ratio: CGFloat = 4
+        animateBag(rotateBy: -.pi / ratio) { _ in
+            self.animateBag(rotateBy: .pi * 2 / ratio) { _ in
+                self.animateBag(rotateBy: -.pi / ratio)
+            }
+        }
+
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "d MMM yy"
         let message = coupon.brand.name + "\nDiscount: \(coupon.discount)%\n" +
