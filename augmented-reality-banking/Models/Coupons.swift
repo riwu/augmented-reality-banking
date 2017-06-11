@@ -26,7 +26,7 @@ class Coupon: MerchantData {
 }
 
 struct Coupons {
-    static var coupons: [Coupon] = (0...100).map { _ in Coupon.getRand()}.sorted {
+    static var coupons: [Coupon] = (0...300).map { _ in Coupon.getRand()}.sorted {
         if $0.brand.name != $1.brand.name {
             return $0.discount > $1.discount
         } else {

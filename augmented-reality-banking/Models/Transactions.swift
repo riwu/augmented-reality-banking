@@ -8,7 +8,7 @@ struct Transaction: MerchantData {
 }
 
 struct Transactions {
-    static var transactions: [Transaction] = (0...100).map { _ in
+    static var transactions: [Transaction] = (0...300).map { _ in
         guard let refDate = Calendar.current.date(byAdding: .month, value: -3, to: Date()) else {
             fatalError("Cant get date")
         }

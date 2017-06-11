@@ -102,12 +102,18 @@ class InventoryViewController: MerchantViewController {
                                                 preferredStyle: .actionSheet)
         alertController.popoverPresentationController?.sourceView = cell
         let applyAction = UIAlertAction(title: "Apply", style: .default) { _ in
-            let applyController = UIAlertController(title: "Select transaction to apply", message: nil,
+            let applyController = UIAlertController(title: coupon.brand.name, message: "Select transaction to apply to",
                                                     preferredStyle: .actionSheet)
             applyController.popoverPresentationController?.sourceView = cell
-            applyController.addAction(UIAlertAction(title: "Uniqlo 5/2/2017", style: .default) { _ in
-                cell?.isSelected = false
-            })
+            for transaction in Transactions.transactions.filter({ $0.brand.name == coupon.brand.name }) {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "d MMM yy"
+                let title = dateFormatter.string(from: transaction.date) +
+                    "  Amount: $" + String(format: "%.2f", transaction.amount)
+                applyController.addAction(UIAlertAction(title: title, style: .default) { _ in
+                    cell?.isSelected = false
+                })
+            }
             applyController.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in cell?.isSelected = false })
             self.present(applyController, animated: true)
         }
