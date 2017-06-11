@@ -208,7 +208,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate {
         dateFormatter.dateFormat = "d MMM yy"
         let message = coupon.brand.name + "\nDiscount: \(coupon.discount)%\n" +
                       "Expiry: \(dateFormatter.string(from: coupon.expiryDate))"
-        let alertController = UIAlertController(title: "Congraduations!", message: message,
+        let alertController = UIAlertController(title: "Congratulations!", message: message,
                                                 preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Keep", style: .default))
         alertController.addAction(UIAlertAction(title: "Sell", style: .default))

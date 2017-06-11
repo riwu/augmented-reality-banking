@@ -28,6 +28,7 @@ protocol AnnotationViewDelegate {
 }
 
 class AnnotationView: ARAnnotationView {
+    static var hasSetDraggable = false
     var delegate: AnnotationViewDelegate?
     private var originalCenter: CGPoint!
     private var coupon: Coupon!
@@ -79,7 +80,17 @@ class AnnotationView: ARAnnotationView {
         self.addSubview(levelLabel)
         self.addSubview(distanceLabel)
 
-        originalCenter = center
+        if !AnnotationView.hasSetDraggable {
+            distanceLabel.text = "0.5m"
+            titleLabel.backgroundColor = .red
+            levelLabel.backgroundColor = .red
+            distanceLabel.backgroundColor = .red
+            Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { _ in
+                self.isHidden = !self.isHidden
+            }
+            AnnotationView.hasSetDraggable = true
+        }
+
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panAction(sender:)))
         addGestureRecognizer(panGesture)
 
@@ -91,7 +102,7 @@ class AnnotationView: ARAnnotationView {
     private func panAction(sender: UIPanGestureRecognizer) {
         switch sender.state {
         case .began:
-            return
+            originalCenter = sender.location(in: self.superview)
         case .changed:
             let translation = sender.translation(in: self.superview)
             center = CGPoint(x: originalCenter.x + translation.x, y: originalCenter.y + translation.y)
