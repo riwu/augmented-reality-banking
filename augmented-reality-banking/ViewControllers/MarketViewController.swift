@@ -1,6 +1,86 @@
 import UIKit
+import GameKit
+
+extension MarketViewController: GKGameCenterControllerDelegate {
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismiss(animated: true)
+    }
+}
 
 class MarketViewController: MerchantViewController {
+
+    private static let signInInstructionTitle = "Sign in instruction"
+    private static let signInInstructionMessage = "To sign in, go to Settings > Game Center"
+
+    // MARK: Game center
+    @IBAction private func onLeaderBoardPress(_ sender: UIButton) {
+        segueTo(.leaderboards)
+    }
+
+    @IBAction func onAchievementPress(_ sender: UIButton) {
+        segueTo(.achievements)
+    }
+
+    private func segueTo(_ viewState: GKGameCenterViewControllerState) {
+        if GKLocalPlayer.localPlayer().isAuthenticated {
+            presentGameCenter(viewState)
+            return
+        }
+        guard !showGKSignInInstruction() else {
+            return
+        }
+
+        setGKAuthHandler {
+            self.presentGameCenter(viewState)
+        }
+    }
+
+    private func setGKAuthHandler(onAuthenticated: (() -> Void)? = nil) {
+        let localPlayer = GKLocalPlayer.localPlayer()
+        guard onAuthenticated == nil || localPlayer.authenticateHandler == nil else {
+            assertionFailure("Unable to perform onAuthenticated action as auth has already been performed earlier")
+            return
+        }
+        localPlayer.authenticateHandler = { viewController, error in
+            if let viewController = viewController {
+                self.present(viewController, animated: true)
+            } else {
+                guard let onAuthenticated = onAuthenticated else {
+                    return
+                }
+                if localPlayer.isAuthenticated {
+                    onAuthenticated()
+                }
+                self.setGKAuthHandler()
+            }
+        }
+    }
+
+    private func presentGameCenter(_ viewState: GKGameCenterViewControllerState) {
+        let gameCenterViewController = GKGameCenterViewController()
+        gameCenterViewController.gameCenterDelegate = self
+        gameCenterViewController.viewState = viewState
+        self.present(gameCenterViewController, animated: true)
+    }
+
+    private func showGKSignInInstruction() -> Bool {
+        guard GKLocalPlayer.localPlayer().authenticateHandler != nil else {
+            return false
+        }
+        showAlert(title: MarketViewController.signInInstructionTitle,
+                  message: MarketViewController.signInInstructionMessage)
+        return true
+    }
+
+    private func getAlertControllerWithCancel(title: String, message: String? = nil) -> UIAlertController {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        return alertController
+    }
+
+    private func showAlert(title: String, message: String) {
+        present(getAlertControllerWithCancel(title: title, message: message), animated: true)
+    }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

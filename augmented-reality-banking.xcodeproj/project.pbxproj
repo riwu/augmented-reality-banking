@@ -16,8 +16,7 @@
 		00A9531F1EEC284700F40484 /* Coupons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A9531E1EEC284700F40484 /* Coupons.swift */; };
 		00A953261EEC61C300F40484 /* MerchantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A953251EEC61C300F40484 /* MerchantData.swift */; };
 		00AFB7AD1EED35E700B2CE79 /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AFB7AC1EED35E700B2CE79 /* MarketViewController.swift */; };
-		00AFB7AF1EED650F00B2CE79 /* LeaderBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AFB7AE1EED650F00B2CE79 /* LeaderBoardViewController.swift */; };
-		00AFB7B11EED689100B2CE79 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AFB7B01EED689100B2CE79 /* GameKit.framework */; };
+		00AFB7B31EED9BB600B2CE79 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AFB7B21EED9BB600B2CE79 /* GameKit.framework */; };
 		8F7404871DCF8834009A6F0B /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7404861DCF8834009A6F0B /* AnnotationView.swift */; };
 		8FFCD7A11DC4A204009E3855 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFCD7A01DC4A204009E3855 /* AppDelegate.swift */; };
 		8FFCD7A31DC4A204009E3855 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFCD7A21DC4A204009E3855 /* MapViewController.swift */; };
@@ -53,8 +52,7 @@
 		00A9531E1EEC284700F40484 /* Coupons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coupons.swift; sourceTree = "<group>"; };
 		00A953251EEC61C300F40484 /* MerchantData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantData.swift; sourceTree = "<group>"; };
 		00AFB7AC1EED35E700B2CE79 /* MarketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViewController.swift; sourceTree = "<group>"; };
-		00AFB7AE1EED650F00B2CE79 /* LeaderBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardViewController.swift; sourceTree = "<group>"; };
-		00AFB7B01EED689100B2CE79 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		00AFB7B21EED9BB600B2CE79 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		1D1A789EE2389FC55AC92AF0 /* Pods-augmented-reality-banking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-augmented-reality-banking.debug.xcconfig"; path = "Pods/Target Support Files/Pods-augmented-reality-banking/Pods-augmented-reality-banking.debug.xcconfig"; sourceTree = "<group>"; };
 		3B913648B3990F520460314F /* Pods_augmented_reality_banking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_augmented_reality_banking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F7404861DCF8834009A6F0B /* AnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
@@ -93,7 +91,7 @@
 				8FFCD7CE1DC4A3B4009E3855 /* CoreMotion.framework in Frameworks */,
 				8FFCD7CC1DC4A3AD009E3855 /* CoreLocation.framework in Frameworks */,
 				D60F69657A0B44AEDF29253A /* Pods_augmented_reality_banking.framework in Frameworks */,
-				00AFB7B11EED689100B2CE79 /* GameKit.framework in Frameworks */,
+				00AFB7B31EED9BB600B2CE79 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,7 +106,6 @@
 				00A953191EEC060300F40484 /* InventoryViewController.swift */,
 				00A9531B1EEC061300F40484 /* TransactionViewController.swift */,
 				00AFB7AC1EED35E700B2CE79 /* MarketViewController.swift */,
-				00AFB7AE1EED650F00B2CE79 /* LeaderBoardViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -217,7 +214,7 @@
 		8FFCD7CA1DC4A3AC009E3855 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				00AFB7B01EED689100B2CE79 /* GameKit.framework */,
+				00AFB7B21EED9BB600B2CE79 /* GameKit.framework */,
 				8FFCD7CF1DC4A3BB009E3855 /* MapKit.framework */,
 				8FFCD7CD1DC4A3B4009E3855 /* CoreMotion.framework */,
 				8FFCD7CB1DC4A3AD009E3855 /* CoreLocation.framework */,
@@ -383,7 +380,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00AFB7AF1EED650F00B2CE79 /* LeaderBoardViewController.swift in Sources */,
 				8FFCD7C41DC4A39A009E3855 /* ARViewController.swift in Sources */,
 				8F7404871DCF8834009A6F0B /* AnnotationView.swift in Sources */,
 				00AFB7AD1EED35E700B2CE79 /* MarketViewController.swift in Sources */,

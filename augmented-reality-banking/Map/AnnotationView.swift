@@ -47,15 +47,15 @@ class AnnotationView: ARAnnotationView {
         let imageView = UIImageView(image: coupon.brand.image)
         imageView.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
 
-        let width = 100
+        let width = 110
         let labelX = Int(imageView.frame.width)
-        let titleLabel = UILabel(frame: CGRect(x: labelX, y: 0, width: width, height: 30))
+        let titleLabel = UILabel(frame: CGRect(x: labelX, y: 0, width: width, height: 27))
         titleLabel.font = UIFont.systemFont(ofSize: 18)
         titleLabel.numberOfLines = 0
         titleLabel.backgroundColor = UIColor(white: 0.3, alpha: 0.7)
         titleLabel.textColor = UIColor.white
 
-        let levelLabel = UILabel(frame: CGRect(x: labelX, y: 30, width: width, height: 15))
+        let levelLabel = UILabel(frame: CGRect(x: labelX, y: 27, width: width, height: 18))
         levelLabel.backgroundColor = UIColor(white: 0.3, alpha: 0.7)
         levelLabel.textColor = UIColor.yellow
         levelLabel.font = UIFont.systemFont(ofSize: 14)
@@ -68,7 +68,7 @@ class AnnotationView: ARAnnotationView {
         if let annotation = annotation as? Place {
             titleLabel.text = coupon.brand.name
             levelLabel.text = "#0\(1 + arc4random_uniform(6))-" + String(format: "%02d", 1 + arc4random_uniform(99))
-            distanceLabel.text = "\(Int(annotation.distanceFromUser))m"
+            distanceLabel.text = "\(Int(annotation.distanceFromUser / 10))m"
         }
         titleLabel.textAlignment = .center
         levelLabel.textAlignment = .center
