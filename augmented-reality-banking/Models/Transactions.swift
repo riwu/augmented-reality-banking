@@ -1,10 +1,16 @@
 import Foundation
 
-struct Transaction: MerchantData {
+class Transaction: MerchantData {
     let brand: Brand
     let date: Date
-    let coupon: Coupon?
+    var coupon: Coupon?
     let amount: Double
+    init(brand: Brand, date: Date, coupon: Coupon?, amount: Double) {
+        self.brand = brand
+        self.date = date
+        self.coupon = coupon
+        self.amount = amount
+    }
 }
 
 struct Transactions {
