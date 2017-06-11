@@ -59,7 +59,7 @@
             </objects>
             <point key="canvasLocation" x="-695.3125" y="-18.1640625"/>
         </scene>
-        <!--Cards-->
+        <!--Canopy-->
         <scene sceneID="f1a-DQ-rJx">
             <objects>
                 <tableViewController id="2st-WM-5n0" customClass="CardsViewController" customModule="augmented_reality_banking" customModuleProvider="target" sceneMemberID="viewController">
@@ -98,7 +98,7 @@
                             <outlet property="delegate" destination="2st-WM-5n0" id="Ihk-VZ-fbt"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Cards" image="cards" id="OCE-Uw-qQa"/>
+                    <tabBarItem key="tabBarItem" title="Canopy" image="cards" id="OCE-Uw-qQa"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jwS-5X-3c0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -114,10 +114,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="6iD-yF-PhL"/>
                         <segue destination="yu1-g9-gp9" kind="relationship" relationship="viewControllers" id="Djc-fc-pzI"/>
                         <segue destination="x1t-LL-PV6" kind="relationship" relationship="viewControllers" id="u4G-El-jUc"/>
                         <segue destination="2st-WM-5n0" kind="relationship" relationship="viewControllers" id="tYS-Nu-xEd"/>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="6iD-yF-PhL"/>
                         <segue destination="KCd-Hz-aNO" kind="relationship" relationship="viewControllers" id="8Ci-rj-51s"/>
                         <segue destination="LZ5-6a-Zb2" kind="relationship" relationship="viewControllers" id="6Xl-jr-hi8"/>
                     </connections>

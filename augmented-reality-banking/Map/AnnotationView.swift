@@ -36,7 +36,9 @@ class AnnotationView: ARAnnotationView {
     }
 
     func loadUI() {
-        if subviews.isEmpty {
+        guard subviews.isEmpty else {
+            return
+        }
 
         let brand = Brands.getRand()
         let imageView = brand.imageView
@@ -76,7 +78,6 @@ class AnnotationView: ARAnnotationView {
         self.addSubview(levelLabel)
         self.addSubview(discountLabel)
         self.addSubview(distanceLabel)
-        }
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
