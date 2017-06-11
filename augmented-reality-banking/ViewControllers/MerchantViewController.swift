@@ -67,6 +67,11 @@ class MerchantViewController: UICollectionViewController {
                                                                              withReuseIdentifier: "searchBar",
                                                                              for: indexPath)
             return headerView
+        case UICollectionElementKindSectionFooter:
+            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                             withReuseIdentifier: "pointsBar",
+                                                                             for: indexPath)
+            return footerView
         default:
             fatalError("Unexpected element kind")
         }
