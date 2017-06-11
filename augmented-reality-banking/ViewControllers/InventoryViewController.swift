@@ -136,8 +136,14 @@ class InventoryViewController: MerchantViewController {
             cell?.isSelected = false
             let giftController = UIAlertController(title: "Select friend to gift to", message: nil,
                                                    preferredStyle: .alert)
-            giftController.addAction(UIAlertAction(title: "John Smith", style: .default))
-            giftController.addAction(UIAlertAction(title: "James", style: .default))
+            giftController.addTextField { textField in
+                textField.placeholder = "Search friends..."
+            }
+            giftController.addAction(UIAlertAction(title: "#2411 Bao Hui", style: .default))
+            giftController.addAction(UIAlertAction(title: "#612 Aisyah", style: .default))
+            giftController.addAction(UIAlertAction(title: "#153 Aaron", style: .default))
+            giftController.addAction(UIAlertAction(title: "#84 Derrick", style: .default))
+            giftController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             self.present(giftController, animated: true)
         })
         alertController.addAction(UIAlertAction(title: "Discard", style: .destructive) { _ in
