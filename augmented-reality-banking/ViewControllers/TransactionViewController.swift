@@ -23,6 +23,9 @@ class TransactionViewController: MerchantViewController {
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "merchantCell", for: indexPath)
+        guard !hasReloadedForFilter || cell.contentView.subviews.isEmpty else {
+            return cell
+        }
         let transaction = getTransaction(at: indexPath)
         let tableViewCell: UITableViewCell
         if cell.contentView.subviews.isEmpty {
@@ -152,7 +155,7 @@ class TransactionViewController: MerchantViewController {
 
     private func calculateDiscount() -> UInt32? {
         var discounts: [UInt32] = []
-        tableView?.visibleCells.forEach {_l in
+        tableView?.visibleCells.forEach { cell in
             guard let indexPath = tableView?.indexPath(for: cell) else {
                 assertionFailure()
                 return

@@ -21,7 +21,10 @@ extension MerchantViewController: UISearchBarDelegate {
 
     private func filterAndReload(searchText: String) {
         filter(searchText: searchText)
-        self.collectionView?.reloadSections(IndexSet(integer: 1))
+        hasReloadedForFilter = false
+        collectionView?.performBatchUpdates({self.collectionView?.reloadSections(IndexSet(integer: 1))}) { _ in
+            self.hasReloadedForFilter = true
+        }
     }
 }
 
@@ -29,6 +32,7 @@ class MerchantViewController: UICollectionViewController {
 
     var originalMerchants: [MerchantData] = []
     var filteredMerchants: [MerchantData] = []
+    var hasReloadedForFilter = true
 
     override func viewDidLoad() {
         super.viewDidLoad()

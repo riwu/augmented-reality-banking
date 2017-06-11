@@ -100,6 +100,9 @@ class MarketViewController: MerchantViewController {
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "merchantCell", for: indexPath)
+        guard !hasReloadedForFilter || cell.contentView.subviews.isEmpty else {
+            return cell
+        }
         let coupon = getCoupon(at: indexPath)
         let tableViewCell: UITableViewCell
         if cell.contentView.subviews.isEmpty {
