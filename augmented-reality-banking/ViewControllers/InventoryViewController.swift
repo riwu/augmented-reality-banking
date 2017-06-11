@@ -3,24 +3,31 @@ import UIKit
 class InventoryViewController: MerchantViewController {
 
     fileprivate var textView: UITextView?
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
+
         originalMerchants = Coupons.coupons
         filteredMerchants = originalMerchants
     }
-    
+
+    private func getCoupon(at indexPath: IndexPath) -> Coupon {
+        guard let coupon = filteredMerchants[indexPath.row] as? Coupon else {
+            fatalError("Unable to get coupon cell")
+        }
+        return coupon
+    }
+
     // MARK: UICollectionViewDataSource
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "merchantCell", for: indexPath)
-        let coupon = filteredMerchants[indexPath.row] as! Coupon
+        let coupon = getCoupon(at: indexPath)
         let tableViewCell: UITableViewCell
         if cell.contentView.subviews.isEmpty {
             tableViewCell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         } else {
-            guard let subview = cell.contentView.subviews.first as? UITableViewCell else{
+            guard let subview = cell.contentView.subviews.first as? UITableViewCell else {
                 fatalError("Unable to get UITableViewCell")
             }
             tableViewCell = subview
@@ -28,7 +35,7 @@ class InventoryViewController: MerchantViewController {
         tableViewCell.textLabel?.text = coupon.brand.name
         tableViewCell.imageView?.image = coupon.brand.image
         tableViewCell.detailTextLabel?.text = "\(coupon.discount)% discount"
-        
+
         let textView: UITextView
         if cell.contentView.subviews.isEmpty {
             let width: CGFloat = 60
@@ -39,32 +46,27 @@ class InventoryViewController: MerchantViewController {
             guard let subview = tableViewCell.subviews.first(where: { $0 as? UITextView != nil }) as? UITextView else {
                 fatalError("Unable to get UITextView")
             }
-            textView = subview  
+            textView = subview
         }
-        
-        if coupon.isSelling {
-            guard let value = coupon.value else {
-                fatalError("Coupon has no value when selling")
-            }
-            setToSale(textView: textView, price: value)
+
+        if let sellingPrice = coupon.sellingPrice {
+            setToSale(textView: textView, price: sellingPrice)
         } else {
-            unlist(textView: textView, price: coupon.value)
+            unlist(textView: textView, price: coupon.marketPrice)
         }
-        
+
         if cell.contentView.subviews.isEmpty {
             tableViewCell.addSubview(textView)
             cell.contentView.addSubview(tableViewCell)
         }
         return cell
     }
-    
+
     // MARK: UICollectionViewDelegate
     @objc
     override func tapAction(sender: UITapGestureRecognizer) {
-        guard let collectionView = collectionView else {
-            return
-        }
-        guard let indexPath = collectionView.indexPathForItem(at: sender.location(in: view)) else {
+        guard let collectionView = collectionView,
+              let indexPath = collectionView.indexPathForItem(at: sender.location(in: view)) else {
             return
         }
         let cell = collectionView.cellForItem(at: indexPath)
@@ -118,7 +120,8 @@ class InventoryViewController: MerchantViewController {
             self.setToSale(textView: textView, price: price)
             cell?.isSelected = false
         })
-        if textView.text.contains("Sell") {
+        let coupon = getCoupon(at: indexPath)
+        if coupon.sellingPrice != nil {
             alertController.addAction(UIAlertAction(title: "Unlist", style: .default) { _ in
                 self.unlist(textView: textView)
                 cell?.isSelected = false
@@ -158,4 +161,13 @@ extension InventoryViewController: UITextFieldDelegate {
         return allowedCharacters.isSuperset(of: characterSet)
     }
 
+}
+
+// MARK: UICollectionViewDelegateFlowLayout
+extension InventoryViewController {
+    override func collectionView(_ collectionView: UICollectionView,
+                                 layout collectionViewLayout: UICollectionViewLayout,
+                                 sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 384, height: 50)
+    }
 }
