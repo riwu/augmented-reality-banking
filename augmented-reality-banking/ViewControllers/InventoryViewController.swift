@@ -90,16 +90,9 @@ class InventoryViewController: MerchantViewController {
         let coupon = getCoupon(at: indexPath)
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.isSelected = true
-        guard let subViews = cell?.contentView.subviews,
-              let tableSubView = subViews.first(where: { $0 as? UITableViewCell != nil }),
-              let tableViewCell = tableSubView as? UITableViewCell,
-              let title = tableViewCell.textLabel?.text,
-              let discount = tableViewCell.detailTextLabel?.text else {
-            assertionFailure("No subview")
-            return
-        }
 
-        let alertController = UIAlertController(title: title, message: discount, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: coupon.brand.name, message: "\(coupon.discount)% discount",
+                                                preferredStyle: .actionSheet)
         alertController.popoverPresentationController?.sourceView = cell
         let applyAction = UIAlertAction(title: "Apply", style: .default) { _ in
             let applyController = UIAlertController(title: "Select transaction to apply", message: nil,
@@ -182,13 +175,4 @@ extension InventoryViewController: UITextFieldDelegate {
         return allowedCharacters.isSuperset(of: characterSet)
     }
 
-}
-
-// MARK: UICollectionViewDelegateFlowLayout
-extension InventoryViewController {
-    override func collectionView(_ collectionView: UICollectionView,
-                                 layout collectionViewLayout: UICollectionViewLayout,
-                                 sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 384, height: 50)
-    }
 }

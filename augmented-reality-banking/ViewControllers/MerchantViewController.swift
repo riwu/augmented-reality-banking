@@ -92,7 +92,7 @@ class MerchantViewController: UICollectionViewController {
 extension MerchantViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 256, height: 50)
+        return CGSize(width: 384, height: 50)
     }
 
     func collectionView(_ collectionView: UICollectionView,
