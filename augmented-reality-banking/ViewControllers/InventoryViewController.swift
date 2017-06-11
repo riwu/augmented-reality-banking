@@ -2,7 +2,7 @@ import UIKit
 
 class InventoryViewController: MerchantViewController {
 
-    fileprivate var textView: UITextView?
+    fileprivate var indexPathToReload: IndexPath!
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -69,6 +69,7 @@ class InventoryViewController: MerchantViewController {
               let indexPath = collectionView.indexPathForItem(at: sender.location(in: view)) else {
             return
         }
+        let coupon = getCoupon(at: indexPath)
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.isSelected = true
         guard let subViews = cell?.contentView.subviews,
@@ -85,7 +86,6 @@ class InventoryViewController: MerchantViewController {
             assertionFailure("No text view")
             return
         }
-        self.textView = textView
 
         let alertController = UIAlertController(title: title, message: discount, preferredStyle: .actionSheet)
         alertController.popoverPresentationController?.sourceView = cell
@@ -101,33 +101,33 @@ class InventoryViewController: MerchantViewController {
         }
         alertController.addAction(applyAction)
         alertController.addAction(UIAlertAction(title: "Sell", style: .default) { _ in
-            let sellController = UIAlertController(title: "Enter price to sell at", message: nil,
-                                                   preferredStyle: .alert)
-            sellController.addTextField { textField in
-                if let price = self.getPrice(textView.text) {
-                    textField.placeholder = String(price)
-                }
-                textField.delegate = self
-            }
-            sellController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-            self.present(sellController, animated: true)
+            self.presentSellController(indexPath: indexPath, marketPrice: coupon.marketPrice)
             cell?.isSelected = false
         })
         alertController.addAction(UIAlertAction(title: "Sell at market value", style: .default) { _ in
-            guard let price = self.getPrice(textView.text) else {
-                return
-            }
-            self.setToSale(textView: textView, price: price)
             cell?.isSelected = false
+            if let marketPrice = coupon.marketPrice {
+                coupon.sellingPrice = marketPrice
+                collectionView.reloadItems(at: [indexPath])
+            } else {
+                self.presentSellController(indexPath: indexPath, marketPrice: coupon.marketPrice)
+            }
         })
-        let coupon = getCoupon(at: indexPath)
         if coupon.sellingPrice != nil {
             alertController.addAction(UIAlertAction(title: "Unlist", style: .default) { _ in
-                self.unlist(textView: textView)
+                coupon.sellingPrice = nil
+                collectionView.reloadItems(at: [indexPath])
                 cell?.isSelected = false
             })
         }
-        alertController.addAction(UIAlertAction(title: "Gift", style: .default) { _ in cell?.isSelected = false })
+        alertController.addAction(UIAlertAction(title: "Gift", style: .default) { _ in
+            cell?.isSelected = false
+            let giftController = UIAlertController(title: "Select friend to gift to", message: nil,
+                                                   preferredStyle: .alert)
+            giftController.addAction(UIAlertAction(title: "John Smith", style: .default))
+            giftController.addAction(UIAlertAction(title: "James", style: .default))
+            self.present(giftController, animated: true)
+        })
         alertController.addAction(UIAlertAction(title: "Discard", style: .destructive) { _ in
             cell?.isSelected = false
         })
@@ -135,8 +135,18 @@ class InventoryViewController: MerchantViewController {
         present(alertController, animated: true)
     }
 
-    private func getPrice(_ text: String) -> UInt32? {
-        return UInt32(text.components(separatedBy: CharacterSet.decimalDigits.inverted).joined())
+    private func presentSellController(indexPath: IndexPath, marketPrice: UInt32?) {
+        indexPathToReload = indexPath
+        let sellController = UIAlertController(title: "Enter price to sell at", message: nil,
+                                               preferredStyle: .alert)
+        sellController.addTextField { textField in
+            if let marketPrice = marketPrice {
+                textField.placeholder = String(marketPrice)
+            }
+            textField.delegate = self
+        }
+        sellController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        present(sellController, animated: true)
     }
 }
 
@@ -148,9 +158,8 @@ extension InventoryViewController: UITextFieldDelegate {
             return false
         }
         self.dismiss(animated: true)
-        if let textView = textView {
-            self.setToSale(textView: textView, price: price)
-        }
+        getCoupon(at: indexPathToReload).sellingPrice = price
+        collectionView?.reloadItems(at: [indexPathToReload])
         return true
     }
 

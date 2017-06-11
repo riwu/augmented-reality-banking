@@ -63,7 +63,7 @@ class MerchantViewController: UICollectionViewController {
         textView.textColor = .red
     }
 
-    func unlist(textView: UITextView, price: UInt32? = nil) {
+    func unlist(textView: UITextView, price: UInt32?) {
         if let price = price {
             textView.text = "Value\n\(price) pts"
             textView.textColor = .blue
@@ -98,8 +98,7 @@ extension MerchantViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return section == 0 ? CGSize(width: collectionView.frame.width, height: collectionView.contentSize.height)
-                            : CGSize()
+        return section == 0 ? CGSize(width: collectionView.frame.width, height: 50) : CGSize()
     }
 
     func collectionView(_ collectionView: UICollectionView,

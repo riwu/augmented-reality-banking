@@ -1,11 +1,18 @@
 import Foundation
 
-struct Coupon: MerchantData {
+class Coupon: MerchantData {
     let brand: Brand
     let discount: UInt32
-    let marketPrice: UInt32?
-    let sellingPrice: UInt32?
+    var marketPrice: UInt32?
+    var sellingPrice: UInt32?
     let expiryDate: Date
+    init(brand: Brand, discount: UInt32, marketPrice: UInt32?, sellingPrice: UInt32?, expiryDate: Date) {
+        self.brand = brand
+        self.discount = discount
+        self.marketPrice = marketPrice
+        self.sellingPrice = sellingPrice
+        self.expiryDate = expiryDate
+    }
 }
 
 struct Coupons {
