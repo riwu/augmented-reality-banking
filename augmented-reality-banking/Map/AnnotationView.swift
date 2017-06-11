@@ -44,7 +44,12 @@ class AnnotationView: ARAnnotationView {
             return
         }
 
-        coupon = Coupon.getRand()
+        if AnnotationView.hasSetDraggable {
+            coupon = Coupon.getRand()
+        } else {
+            coupon = Coupon(brand: Brand("Citi"), discount: 10, marketPrice: nil, sellingPrice: nil, expiryDate: Date())
+        }
+
         let imageView = UIImageView(image: coupon.brand.image)
         imageView.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
 
@@ -81,6 +86,7 @@ class AnnotationView: ARAnnotationView {
         self.addSubview(distanceLabel)
 
         if !AnnotationView.hasSetDraggable {
+            levelLabel.text = "#19-22"
             distanceLabel.text = "0.5m"
             titleLabel.backgroundColor = .red
             levelLabel.backgroundColor = .red
