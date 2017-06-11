@@ -186,13 +186,20 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate {
         view.addGestureRecognizer(panGesture)
     }
 
+    private var lastPanLocation: CGPoint!
+
     @objc
     private func panAction(sender: UIPanGestureRecognizer) {
-        let location = sender.location(in: view)
-        if bagImageView.frame.contains(location) {
+        let translation = sender.translation(in: view)
+        bagImageView.center = CGPoint(x: lastPanLocation.x + translation.x, y: lastPanLocation.y + translation.y)
+        if bagImageView.frame.contains(translation) {
             print("bagged")
         }
         print("Panned")
+    }
+
+    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        lastPanLocation = bagImageView.center
     }
 
     open override func viewWillAppear(_ animated: Bool) {
