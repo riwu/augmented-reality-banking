@@ -67,8 +67,6 @@ class MarketViewController: MerchantViewController {
         guard GKLocalPlayer.localPlayer().authenticateHandler != nil else {
             return false
         }
-        showAlert(title: MarketViewController.signInInstructionTitle,
-                  message: MarketViewController.signInInstructionMessage)
         return true
     }
 
