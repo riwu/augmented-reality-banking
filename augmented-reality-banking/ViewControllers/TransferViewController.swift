@@ -2,9 +2,10 @@ import UIKit
 import SpriteKit
 import ARKit
 
-class ViewController: UIViewController, ARSKViewDelegate {
+// Transfer.Storyboard not linked to this class yet. Function only works when in landscape left
+class TransferViewController: UIViewController, ARSKViewDelegate {
     
-    @IBOutlet var sceneView: ARSKView!
+    @IBOutlet private var sceneView: ARSKView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,4 +63,3 @@ class ViewController: UIViewController, ARSKViewDelegate {
         
     }
 }
-
