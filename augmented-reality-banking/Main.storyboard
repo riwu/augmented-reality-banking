@@ -59,6 +59,16 @@
             </objects>
             <point key="canvasLocation" x="-695.3125" y="-18.1640625"/>
         </scene>
+        <!--AR-->
+        <scene sceneID="VQA-Wc-88r">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AR" id="a0O-QQ-K8a" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="TMB-vf-ZoM"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Wk-jF-1Lq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-293" y="162"/>
+        </scene>
         <!--Canopy-->
         <scene sceneID="f1a-DQ-rJx">
             <objects>
@@ -114,12 +124,12 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="a0O-QQ-K8a" kind="relationship" relationship="viewControllers" id="9Gd-r0-74h"/>
                         <segue destination="yu1-g9-gp9" kind="relationship" relationship="viewControllers" id="Djc-fc-pzI"/>
                         <segue destination="LZ5-6a-Zb2" kind="relationship" relationship="viewControllers" id="6Xl-jr-hi8"/>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="6iD-yF-PhL"/>
                         <segue destination="x1t-LL-PV6" kind="relationship" relationship="viewControllers" id="u4G-El-jUc"/>
                         <segue destination="2st-WM-5n0" kind="relationship" relationship="viewControllers" id="tYS-Nu-xEd"/>
-                        <segue destination="KCd-Hz-aNO" kind="relationship" relationship="viewControllers" id="8Ci-rj-51s"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QVm-sx-3xX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -220,25 +230,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="whN-Kw-7w9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2156" y="-854"/>
-        </scene>
-        <!--Transfer-->
-        <scene sceneID="NAj-Me-Ohh">
-            <objects>
-                <viewController id="KCd-Hz-aNO" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="4sg-lo-YYR"/>
-                        <viewControllerLayoutGuide type="bottom" id="8F0-a9-Zq1"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Lk5-6r-FBv">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Transfer" image="transfer" id="Jiz-mQ-wOm"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="v9f-n4-TLE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2137" y="-106"/>
         </scene>
         <!--Market-->
         <scene sceneID="yAm-dq-81z">
@@ -365,6 +356,5 @@
         <image name="map-icon" width="50" height="50"/>
         <image name="market" width="50" height="50"/>
         <image name="transaction" width="50" height="50"/>
-        <image name="transfer" width="50" height="50"/>
     </resources>
 </document>

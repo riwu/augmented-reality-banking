@@ -17,10 +17,11 @@
 		00A953261EEC61C300F40484 /* MerchantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A953251EEC61C300F40484 /* MerchantData.swift */; };
 		00AFB7AD1EED35E700B2CE79 /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AFB7AC1EED35E700B2CE79 /* MarketViewController.swift */; };
 		00AFB7B31EED9BB600B2CE79 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AFB7B21EED9BB600B2CE79 /* GameKit.framework */; };
+		00DF3A341EEE0E31000637FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00DF3A331EEE0E31000637FB /* Main.storyboard */; };
+		00EC726B1EEE0F87008CDBCB /* AR.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00EC726A1EEE0F87008CDBCB /* AR.storyboard */; };
 		8F7404871DCF8834009A6F0B /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7404861DCF8834009A6F0B /* AnnotationView.swift */; };
 		8FFCD7A11DC4A204009E3855 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFCD7A01DC4A204009E3855 /* AppDelegate.swift */; };
 		8FFCD7A31DC4A204009E3855 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFCD7A21DC4A204009E3855 /* MapViewController.swift */; };
-		8FFCD7A61DC4A204009E3855 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FFCD7A41DC4A204009E3855 /* Main.storyboard */; };
 		8FFCD7A81DC4A204009E3855 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FFCD7A71DC4A204009E3855 /* Assets.xcassets */; };
 		8FFCD7AB1DC4A204009E3855 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FFCD7A91DC4A204009E3855 /* LaunchScreen.storyboard */; };
 		8FFCD7C01DC4A39A009E3855 /* ARAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFCD7B41DC4A39A009E3855 /* ARAnnotation.swift */; };
@@ -53,13 +54,14 @@
 		00A953251EEC61C300F40484 /* MerchantData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantData.swift; sourceTree = "<group>"; };
 		00AFB7AC1EED35E700B2CE79 /* MarketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViewController.swift; sourceTree = "<group>"; };
 		00AFB7B21EED9BB600B2CE79 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		00DF3A331EEE0E31000637FB /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		00EC726A1EEE0F87008CDBCB /* AR.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AR.storyboard; sourceTree = "<group>"; };
 		1D1A789EE2389FC55AC92AF0 /* Pods-augmented-reality-banking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-augmented-reality-banking.debug.xcconfig"; path = "Pods/Target Support Files/Pods-augmented-reality-banking/Pods-augmented-reality-banking.debug.xcconfig"; sourceTree = "<group>"; };
 		3B913648B3990F520460314F /* Pods_augmented_reality_banking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_augmented_reality_banking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F7404861DCF8834009A6F0B /* AnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
 		8FFCD79D1DC4A204009E3855 /* augmented-reality-banking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "augmented-reality-banking.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FFCD7A01DC4A204009E3855 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8FFCD7A21DC4A204009E3855 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		8FFCD7A51DC4A204009E3855 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8FFCD7A71DC4A204009E3855 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8FFCD7AA1DC4A204009E3855 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8FFCD7AC1DC4A204009E3855 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -157,11 +159,12 @@
 		8FFCD79F1DC4A204009E3855 /* augmented-reality-banking */ = {
 			isa = PBXGroup;
 			children = (
+				00EC726A1EEE0F87008CDBCB /* AR.storyboard */,
+				00DF3A331EEE0E31000637FB /* Main.storyboard */,
 				00A953211EEC309800F40484 /* Map */,
 				00A953201EEC306700F40484 /* Models */,
 				0023FE291EEBA34D0020880B /* ViewControllers */,
 				8FFCD7A01DC4A204009E3855 /* AppDelegate.swift */,
-				8FFCD7A41DC4A204009E3855 /* Main.storyboard */,
 				8FFCD7B21DC4A39A009E3855 /* HDAugmentedReality */,
 				8FFCD7A71DC4A204009E3855 /* Assets.xcassets */,
 				8FFCD7A91DC4A204009E3855 /* LaunchScreen.storyboard */,
@@ -305,9 +308,10 @@
 				8FFCD7C71DC4A39A009E3855 /* hdar_close.png in Resources */,
 				8FFCD7C91DC4A39A009E3855 /* hdar_close@3x.png in Resources */,
 				8FFCD7A81DC4A204009E3855 /* Assets.xcassets in Resources */,
-				8FFCD7A61DC4A204009E3855 /* Main.storyboard in Resources */,
+				00DF3A341EEE0E31000637FB /* Main.storyboard in Resources */,
 				8FFCD7C81DC4A39A009E3855 /* hdar_close@2x.png in Resources */,
 				8FFCD7C61DC4A39A009E3855 /* DebugMapViewController.xib in Resources */,
+				00EC726B1EEE0F87008CDBCB /* AR.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,14 +411,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		8FFCD7A41DC4A204009E3855 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8FFCD7A51DC4A204009E3855 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		8FFCD7A91DC4A204009E3855 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
