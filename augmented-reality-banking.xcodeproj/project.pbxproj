@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		000A54311EEE18DA007CD130 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 000A54301EEE18DA007CD130 /* Main.storyboard */; };
 		004999151EEAFA3600CE31C5 /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004999141EEAFA3600CE31C5 /* CardsViewController.swift */; };
 		005B2DA61EEE172D001C87CA /* Transfer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 005B2DA51EEE172D001C87CA /* Transfer.storyboard */; };
 		00A953131EEBBEF700F40484 /* Brands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0023FE2A1EEBA45E0020880B /* Brands.swift */; };
@@ -19,6 +18,12 @@
 		00A953261EEC61C300F40484 /* MerchantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A953251EEC61C300F40484 /* MerchantData.swift */; };
 		00AFB7AD1EED35E700B2CE79 /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AFB7AC1EED35E700B2CE79 /* MarketViewController.swift */; };
 		00AFB7B31EED9BB600B2CE79 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AFB7B21EED9BB600B2CE79 /* GameKit.framework */; };
+		00D695AD1EEE42500087F42A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00D695AC1EEE42500087F42A /* Main.storyboard */; };
+		00D695AF1EEE42970087F42A /* Canopy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00D695AE1EEE42970087F42A /* Canopy.storyboard */; };
+		00D695B11EEE43070087F42A /* Transactions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00D695B01EEE43070087F42A /* Transactions.storyboard */; };
+		00D695B31EEE431E0087F42A /* Inventory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00D695B21EEE431E0087F42A /* Inventory.storyboard */; };
+		00D695B51EEE432E0087F42A /* Market.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00D695B41EEE432E0087F42A /* Market.storyboard */; };
+		00D695B71EEE43420087F42A /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00D695B61EEE43420087F42A /* Map.storyboard */; };
 		8F7404871DCF8834009A6F0B /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7404861DCF8834009A6F0B /* AnnotationView.swift */; };
 		8FFCD7A11DC4A204009E3855 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFCD7A01DC4A204009E3855 /* AppDelegate.swift */; };
 		8FFCD7A31DC4A204009E3855 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFCD7A21DC4A204009E3855 /* MapViewController.swift */; };
@@ -44,7 +49,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		000A54301EEE18DA007CD130 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		0023FE2A1EEBA45E0020880B /* Brands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brands.swift; sourceTree = "<group>"; };
 		004999141EEAFA3600CE31C5 /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
 		005B2DA51EEE172D001C87CA /* Transfer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Transfer.storyboard; sourceTree = "<group>"; };
@@ -56,6 +60,12 @@
 		00A953251EEC61C300F40484 /* MerchantData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantData.swift; sourceTree = "<group>"; };
 		00AFB7AC1EED35E700B2CE79 /* MarketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViewController.swift; sourceTree = "<group>"; };
 		00AFB7B21EED9BB600B2CE79 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		00D695AC1EEE42500087F42A /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		00D695AE1EEE42970087F42A /* Canopy.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Canopy.storyboard; sourceTree = "<group>"; };
+		00D695B01EEE43070087F42A /* Transactions.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Transactions.storyboard; sourceTree = "<group>"; };
+		00D695B21EEE431E0087F42A /* Inventory.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Inventory.storyboard; sourceTree = "<group>"; };
+		00D695B41EEE432E0087F42A /* Market.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Market.storyboard; sourceTree = "<group>"; };
+		00D695B61EEE43420087F42A /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		1D1A789EE2389FC55AC92AF0 /* Pods-augmented-reality-banking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-augmented-reality-banking.debug.xcconfig"; path = "Pods/Target Support Files/Pods-augmented-reality-banking/Pods-augmented-reality-banking.debug.xcconfig"; sourceTree = "<group>"; };
 		3B913648B3990F520460314F /* Pods_augmented_reality_banking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_augmented_reality_banking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F7404861DCF8834009A6F0B /* AnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
@@ -168,7 +178,12 @@
 				8FFCD7A71DC4A204009E3855 /* Assets.xcassets */,
 				8FFCD7A91DC4A204009E3855 /* LaunchScreen.storyboard */,
 				8FFCD7AC1DC4A204009E3855 /* Info.plist */,
-				000A54301EEE18DA007CD130 /* Main.storyboard */,
+				00D695AC1EEE42500087F42A /* Main.storyboard */,
+				00D695B61EEE43420087F42A /* Map.storyboard */,
+				00D695B41EEE432E0087F42A /* Market.storyboard */,
+				00D695B21EEE431E0087F42A /* Inventory.storyboard */,
+				00D695B01EEE43070087F42A /* Transactions.storyboard */,
+				00D695AE1EEE42970087F42A /* Canopy.storyboard */,
 			);
 			path = "augmented-reality-banking";
 			sourceTree = "<group>";
@@ -306,12 +321,17 @@
 			files = (
 				8FFCD7AB1DC4A204009E3855 /* LaunchScreen.storyboard in Resources */,
 				8FFCD7C71DC4A39A009E3855 /* hdar_close.png in Resources */,
-				000A54311EEE18DA007CD130 /* Main.storyboard in Resources */,
+				00D695AD1EEE42500087F42A /* Main.storyboard in Resources */,
 				8FFCD7C91DC4A39A009E3855 /* hdar_close@3x.png in Resources */,
+				00D695B51EEE432E0087F42A /* Market.storyboard in Resources */,
 				8FFCD7A81DC4A204009E3855 /* Assets.xcassets in Resources */,
+				00D695AF1EEE42970087F42A /* Canopy.storyboard in Resources */,
 				8FFCD7C81DC4A39A009E3855 /* hdar_close@2x.png in Resources */,
 				8FFCD7C61DC4A39A009E3855 /* DebugMapViewController.xib in Resources */,
 				005B2DA61EEE172D001C87CA /* Transfer.storyboard in Resources */,
+				00D695B31EEE431E0087F42A /* Inventory.storyboard in Resources */,
+				00D695B11EEE43070087F42A /* Transactions.storyboard in Resources */,
+				00D695B71EEE43420087F42A /* Map.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
