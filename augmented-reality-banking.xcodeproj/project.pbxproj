@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		002118141EEE461000CDF30A /* TransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002118131EEE461000CDF30A /* TransferViewController.swift */; };
+		002118171EEE466E00CDF30A /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002118161EEE466E00CDF30A /* Scene.swift */; };
 		004999151EEAFA3600CE31C5 /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004999141EEAFA3600CE31C5 /* CardsViewController.swift */; };
 		005B2DA61EEE172D001C87CA /* Transfer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 005B2DA51EEE172D001C87CA /* Transfer.storyboard */; };
 		00A953131EEBBEF700F40484 /* Brands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0023FE2A1EEBA45E0020880B /* Brands.swift */; };
@@ -49,6 +51,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		002118131EEE461000CDF30A /* TransferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewController.swift; sourceTree = "<group>"; };
+		002118161EEE466E00CDF30A /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		0023FE2A1EEBA45E0020880B /* Brands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brands.swift; sourceTree = "<group>"; };
 		004999141EEAFA3600CE31C5 /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
 		005B2DA51EEE172D001C87CA /* Transfer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Transfer.storyboard; sourceTree = "<group>"; };
@@ -110,6 +114,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		002118151EEE465F00CDF30A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				002118161EEE466E00CDF30A /* Scene.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		0023FE291EEBA34D0020880B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +130,7 @@
 				00A953191EEC060300F40484 /* InventoryViewController.swift */,
 				00A9531B1EEC061300F40484 /* TransactionViewController.swift */,
 				00AFB7AC1EED35E700B2CE79 /* MarketViewController.swift */,
+				002118131EEE461000CDF30A /* TransferViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -169,7 +182,7 @@
 		8FFCD79F1DC4A204009E3855 /* augmented-reality-banking */ = {
 			isa = PBXGroup;
 			children = (
-				005B2DA51EEE172D001C87CA /* Transfer.storyboard */,
+				002118151EEE465F00CDF30A /* Views */,
 				00A953211EEC309800F40484 /* Map */,
 				00A953201EEC306700F40484 /* Models */,
 				0023FE291EEBA34D0020880B /* ViewControllers */,
@@ -179,6 +192,7 @@
 				8FFCD7A91DC4A204009E3855 /* LaunchScreen.storyboard */,
 				8FFCD7AC1DC4A204009E3855 /* Info.plist */,
 				00D695AC1EEE42500087F42A /* Main.storyboard */,
+				005B2DA51EEE172D001C87CA /* Transfer.storyboard */,
 				00D695B61EEE43420087F42A /* Map.storyboard */,
 				00D695B41EEE432E0087F42A /* Market.storyboard */,
 				00D695B21EEE431E0087F42A /* Inventory.storyboard */,
@@ -407,6 +421,7 @@
 				8FFCD7C41DC4A39A009E3855 /* ARViewController.swift in Sources */,
 				8F7404871DCF8834009A6F0B /* AnnotationView.swift in Sources */,
 				00AFB7AD1EED35E700B2CE79 /* MarketViewController.swift in Sources */,
+				002118141EEE461000CDF30A /* TransferViewController.swift in Sources */,
 				8FFCD7A31DC4A204009E3855 /* MapViewController.swift in Sources */,
 				8FFCD7D61DC608FE009E3855 /* PlaceAnnotation.swift in Sources */,
 				004999151EEAFA3600CE31C5 /* CardsViewController.swift in Sources */,
@@ -423,6 +438,7 @@
 				8FFCD7D21DC4A539009E3855 /* Place.swift in Sources */,
 				00A9531F1EEC284700F40484 /* Coupons.swift in Sources */,
 				00A9531C1EEC061300F40484 /* TransactionViewController.swift in Sources */,
+				002118171EEE466E00CDF30A /* Scene.swift in Sources */,
 				8FFCD7C21DC4A39A009E3855 /* ARConfiguration.swift in Sources */,
 				8FFCD7A11DC4A204009E3855 /* AppDelegate.swift in Sources */,
 			);
