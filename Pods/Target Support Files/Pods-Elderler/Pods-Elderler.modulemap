@@ -1,0 +1,6 @@
+framework module Pods_Elderler {
+  umbrella header "Pods-Elderler-umbrella.h"
+
+  export *
+  module * { export * }
+}
