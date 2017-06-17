@@ -1,6 +1,6 @@
 import UIKit
 
-class SecondViewController: UIViewController {
+class ServicesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
