@@ -105,7 +105,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hawking" translatesAutoresizingMaskIntoConstraints="NO" id="T2n-fI-Mog">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="photo" translatesAutoresizingMaskIntoConstraints="NO" id="T2n-fI-Mog">
                                 <rect key="frame" x="262" y="28" width="203" height="156"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -123,6 +123,6 @@
     <resources>
         <image name="Profile" width="35" height="35"/>
         <image name="Profile-filled" width="35" height="35"/>
-        <image name="hawking" width="500" height="500"/>
+        <image name="photo" width="160" height="160"/>
     </resources>
 </document>
