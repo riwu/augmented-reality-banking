@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		006B6E041EF50FA800ED0FB7 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 006B6E031EF50FA800ED0FB7 /* Profile.storyboard */; };
 		006B6E071EF5128000ED0FB7 /* Activities.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 006B6E061EF5128000ED0FB7 /* Activities.storyboard */; };
 		006B6E091EF5128B00ED0FB7 /* Services.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 006B6E081EF5128B00ED0FB7 /* Services.storyboard */; };
 		006B6E0B1EF5129700ED0FB7 /* Schedule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 006B6E0A1EF5129700ED0FB7 /* Schedule.storyboard */; };
@@ -19,11 +18,13 @@
 		00F7D1291EF4F89D001C8B9B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00F7D1271EF4F89D001C8B9B /* Main.storyboard */; };
 		00F7D12B1EF4F89D001C8B9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00F7D12A1EF4F89D001C8B9B /* Assets.xcassets */; };
 		00F7D12E1EF4F89D001C8B9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00F7D12C1EF4F89D001C8B9B /* LaunchScreen.storyboard */; };
+		00F9A3CC1EF57A9D004407CD /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F9A3CB1EF57A9D004407CD /* Category.swift */; };
+		00F9A3CE1EF57EF7004407CD /* ServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F9A3CD1EF57EF7004407CD /* ServiceCell.swift */; };
+		00F9A3D01EF5807C004407CD /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00F9A3CF1EF5807C004407CD /* Profile.storyboard */; };
 		CAC3EBBFE903A5D780FC839C /* Pods_Elderler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B926280E6928E683879FB6EC /* Pods_Elderler.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		006B6E031EF50FA800ED0FB7 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Profile.storyboard; path = ../Profile.storyboard; sourceTree = "<group>"; };
 		006B6E061EF5128000ED0FB7 /* Activities.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Activities.storyboard; sourceTree = "<group>"; };
 		006B6E081EF5128B00ED0FB7 /* Services.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Services.storyboard; sourceTree = "<group>"; };
 		006B6E0A1EF5129700ED0FB7 /* Schedule.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Schedule.storyboard; sourceTree = "<group>"; };
@@ -37,6 +38,9 @@
 		00F7D12A1EF4F89D001C8B9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00F7D12D1EF4F89D001C8B9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		00F7D12F1EF4F89D001C8B9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00F9A3CB1EF57A9D004407CD /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		00F9A3CD1EF57EF7004407CD /* ServiceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
+		00F9A3CF1EF5807C004407CD /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		B926280E6928E683879FB6EC /* Pods_Elderler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Elderler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB16133C77F721539416D624 /* Pods-Elderler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elderler.release.xcconfig"; path = "Pods/Target Support Files/Pods-Elderler/Pods-Elderler.release.xcconfig"; sourceTree = "<group>"; };
 		E0C30CA4542B6D059340BCAB /* Pods-Elderler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elderler.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Elderler/Pods-Elderler.debug.xcconfig"; sourceTree = "<group>"; };
@@ -57,7 +61,6 @@
 		006B6E051EF50FB200ED0FB7 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				006B6E081EF5128B00ED0FB7 /* Services.storyboard */,
 				006B6E0A1EF5129700ED0FB7 /* Schedule.storyboard */,
 				00F7D1271EF4F89D001C8B9B /* Main.storyboard */,
 				00F7D12C1EF4F89D001C8B9B /* LaunchScreen.storyboard */,
@@ -65,18 +68,21 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
-		006B6E0C1EF5188100ED0FB7 /* ViewControllers */ = {
+		006B6E0C1EF5188100ED0FB7 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				006B6E081EF5128B00ED0FB7 /* Services.storyboard */,
+				00F9A3CB1EF57A9D004407CD /* Category.swift */,
 				00F7D1251EF4F89C001C8B9B /* ServicesViewController.swift */,
+				00F9A3CD1EF57EF7004407CD /* ServiceCell.swift */,
 			);
-			name = ViewControllers;
+			name = Services;
 			sourceTree = "<group>";
 		};
 		006B6E0D1EF5196E00ED0FB7 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				006B6E031EF50FA800ED0FB7 /* Profile.storyboard */,
+				00F9A3CF1EF5807C004407CD /* Profile.storyboard */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -115,7 +121,7 @@
 			children = (
 				006B6E0E1EF5232400ED0FB7 /* Activities */,
 				006B6E0D1EF5196E00ED0FB7 /* Profile */,
-				006B6E0C1EF5188100ED0FB7 /* ViewControllers */,
+				006B6E0C1EF5188100ED0FB7 /* Services */,
 				006B6E051EF50FB200ED0FB7 /* Storyboards */,
 				00F7D1211EF4F89C001C8B9B /* AppDelegate.swift */,
 				00F7D12A1EF4F89D001C8B9B /* Assets.xcassets */,
@@ -207,8 +213,8 @@
 				006B6E071EF5128000ED0FB7 /* Activities.storyboard in Resources */,
 				00F7D12E1EF4F89D001C8B9B /* LaunchScreen.storyboard in Resources */,
 				00F7D12B1EF4F89D001C8B9B /* Assets.xcassets in Resources */,
-				006B6E041EF50FA800ED0FB7 /* Profile.storyboard in Resources */,
 				006B6E091EF5128B00ED0FB7 /* Services.storyboard in Resources */,
+				00F9A3D01EF5807C004407CD /* Profile.storyboard in Resources */,
 				00F7D1291EF4F89D001C8B9B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -271,8 +277,10 @@
 				00F7D1261EF4F89C001C8B9B /* ServicesViewController.swift in Sources */,
 				00F7D1221EF4F89C001C8B9B /* AppDelegate.swift in Sources */,
 				006B6E101EF5475C00ED0FB7 /* Activity.swift in Sources */,
+				00F9A3CE1EF57EF7004407CD /* ServiceCell.swift in Sources */,
 				006B6E121EF5478800ED0FB7 /* ActivityViewController.swift in Sources */,
 				00F7D1241EF4F89C001C8B9B /* ActivitiesViewController.swift in Sources */,
+				00F9A3CC1EF57A9D004407CD /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
