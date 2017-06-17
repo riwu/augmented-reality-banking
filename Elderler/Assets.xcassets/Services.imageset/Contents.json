@@ -2,7 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "second.pdf"
+      "filename" : "Services.png",
+      "scale" : "1x"
     }
   ],
   "info" : {
