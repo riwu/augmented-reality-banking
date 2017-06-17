@@ -11,6 +11,7 @@
 		002118171EEE466E00CDF30A /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002118161EEE466E00CDF30A /* Scene.swift */; };
 		004999151EEAFA3600CE31C5 /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004999141EEAFA3600CE31C5 /* CardsViewController.swift */; };
 		005B2DA61EEE172D001C87CA /* Transfer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 005B2DA51EEE172D001C87CA /* Transfer.storyboard */; };
+		00A6B5B81EF4EA6D003F4662 /* Scene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 00A6B5B71EF4EA6D003F4662 /* Scene.sks */; };
 		00A953131EEBBEF700F40484 /* Brands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0023FE2A1EEBA45E0020880B /* Brands.swift */; };
 		00A953171EEC006A00F40484 /* Transactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A953161EEC006A00F40484 /* Transactions.swift */; };
 		00A9531A1EEC060300F40484 /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A953191EEC060300F40484 /* InventoryViewController.swift */; };
@@ -56,6 +57,7 @@
 		0023FE2A1EEBA45E0020880B /* Brands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brands.swift; sourceTree = "<group>"; };
 		004999141EEAFA3600CE31C5 /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
 		005B2DA51EEE172D001C87CA /* Transfer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Transfer.storyboard; sourceTree = "<group>"; };
+		00A6B5B71EF4EA6D003F4662 /* Scene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Scene.sks; sourceTree = "<group>"; };
 		00A953161EEC006A00F40484 /* Transactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transactions.swift; sourceTree = "<group>"; };
 		00A953181EEC05D300F40484 /* MerchantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantViewController.swift; sourceTree = "<group>"; };
 		00A953191EEC060300F40484 /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				002118161EEE466E00CDF30A /* Scene.swift */,
+				00A6B5B71EF4EA6D003F4662 /* Scene.sks */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				8FFCD7A81DC4A204009E3855 /* Assets.xcassets in Resources */,
 				00D695AF1EEE42970087F42A /* Canopy.storyboard in Resources */,
 				8FFCD7C81DC4A39A009E3855 /* hdar_close@2x.png in Resources */,
+				00A6B5B81EF4EA6D003F4662 /* Scene.sks in Resources */,
 				8FFCD7C61DC4A39A009E3855 /* DebugMapViewController.xib in Resources */,
 				005B2DA61EEE172D001C87CA /* Transfer.storyboard in Resources */,
 				00D695B31EEE431E0087F42A /* Inventory.storyboard in Resources */,
