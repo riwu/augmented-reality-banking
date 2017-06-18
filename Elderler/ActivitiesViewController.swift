@@ -13,6 +13,8 @@ class ActivitiesViewController: UITableViewController {
 
         filteredActivities = activities
 
+        self.definesPresentationContext = true
+
         // Setup the Search Controller
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
