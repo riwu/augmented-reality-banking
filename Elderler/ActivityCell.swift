@@ -27,7 +27,6 @@ class ActivityCell: UITableViewCell {
         
         setdate(activity.date)
         setCost(activity.cost)
-        print("here")
     }
   
 }

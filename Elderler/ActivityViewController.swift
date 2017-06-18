@@ -9,20 +9,31 @@ class ActivityViewController: UIViewController {
     @IBOutlet var hostLabel: UILabel!
     @IBOutlet var signUpsLabel: UILabel!
     var activity: Activity!
+    var hideSignup = false
     
+    @IBOutlet var signUpButton: UIButton!
     
     private func updateSignUpLabel() {
-        signUpsLabel.text = "\(activity.signUps) / \(activity.vacancy)"
+        if let signUps = activity.signUps,
+            let vacancies = activity.vacancy {
+            signUpsLabel.text = "\(signUps) / \(vacancies)"
+        } else {
+            signUpsLabel.text = "N/A"
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         activityCell.setActivity(activity)
         imageView.image = UIImage(named: activity.title)
         hostLabel.text = activity.host
         locationLabel.text = activity.location
         updateSignUpLabel()
+        
+        if hideSignup {
+            signUpButton.isHidden = true
+        }
     }
     
     @IBAction func onSignupPress(_ sender: UIButton) {
@@ -35,7 +46,7 @@ class ActivityViewController: UIViewController {
             self.dismiss(animated: true) 
         }
         present(alertController, animated: true)
-
+        
     }
     
     @IBAction func onBackPressed(_ sender: UIButton) {

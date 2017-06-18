@@ -18,7 +18,6 @@ class ScheduleViewController: UITableViewController {
         return cell
     }
     
-    
     // Mark: - Delegate
     override func tableView(_ tableView: UITableView, 
                             didSelectRowAt indexPath: IndexPath) {
@@ -29,6 +28,7 @@ class ScheduleViewController: UITableViewController {
                 return
         }
         activityVC.activity = activities[indexPath.row]
+        activityVC.hideSignup = true
         present(activityVC, animated: true)
     }
 }

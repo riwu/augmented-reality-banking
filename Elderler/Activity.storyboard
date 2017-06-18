@@ -172,6 +172,7 @@
                         <outlet property="hostLabel" destination="hS1-Bh-AN0" id="3yh-0x-prE"/>
                         <outlet property="imageView" destination="JRf-Le-E6c" id="YbO-5r-Bsv"/>
                         <outlet property="locationLabel" destination="dJ4-F6-j2b" id="pBY-qf-2Ac"/>
+                        <outlet property="signUpButton" destination="ZAa-tr-nsG" id="gEm-4T-0Sr"/>
                         <outlet property="signUpsLabel" destination="ONO-c0-7pw" id="sCV-oS-8j9"/>
                     </connections>
                 </viewController>
