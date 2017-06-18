@@ -7,12 +7,12 @@ class ServicesViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        categories = [Category(title: "Medical services", image: #imageLiteral(resourceName: "Medical")), 
-                      Category(title: "Transport", image: #imageLiteral(resourceName: "Transport")), 
-                      Category(title: "Grocery", image: #imageLiteral(resourceName: "Grocery")), 
-                      Category(title: "Laundry", image: #imageLiteral(resourceName: "Laundry")), 
-                      Category(title: "Repair", image: #imageLiteral(resourceName: "Repair")), 
-                      Category(title: "Food Delivery", image: #imageLiteral(resourceName: "Delivery")),]
+        categories = [Category.medicalServices, 
+                      Category.transport, 
+                      Category.grocery, 
+                      Category.laundry, 
+                      Category.repair, 
+                      Category.FoodDelivery]
     }
 
  
@@ -27,12 +27,12 @@ class ServicesViewController: UICollectionViewController {
 
         let category = categories[indexPath.row]
         
-        cell.imageView.image = category.image
+        cell.imageView.image = UIImage(named: category.rawValue)
         cell.imageView.frame = CGRect(x: 0, y: cell.frame.height * 0.1, 
                                       width: cell.frame.width / 2, height: cell.frame.height / 2)
         cell.imageView.center.x = cell.frame.size.width / CGFloat(2)
         
-        cell.label.text = category.title
+        cell.label.text = category.rawValue
         cell.label.frame = CGRect(x: 0, y: cell.imageView.frame.maxY, 
                                   width: cell.frame.width, height: cell.frame.height * 0.2)
         cell.label.center.x = cell.imageView.center.x

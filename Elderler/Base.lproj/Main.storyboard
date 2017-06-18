@@ -34,7 +34,7 @@
         <scene sceneID="zmr-0q-QiV">
             <objects>
                 <viewControllerPlaceholder storyboardName="Profile" id="skG-PA-dMR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="Profile" id="xor-CG-du4"/>
+                    <tabBarItem key="tabBarItem" title="Profile" id="xor-CG-du4"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IFe-oQ-AOK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -44,7 +44,7 @@
         <scene sceneID="8cL-Vw-ZX6">
             <objects>
                 <viewControllerPlaceholder storyboardName="Schedule" id="Gwk-rw-kHM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="0eZ-pX-Kh8"/>
+                    <tabBarItem key="tabBarItem" title="Schedule" id="0eZ-pX-Kh8"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZzB-mk-HYP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -54,7 +54,7 @@
         <scene sceneID="YeA-fI-7dt">
             <objects>
                 <viewControllerPlaceholder storyboardName="Services" id="bFq-mE-1ra" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="d3x-sm-x0v"/>
+                    <tabBarItem key="tabBarItem" title="Services" id="d3x-sm-x0v"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NeA-cY-39T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -64,14 +64,11 @@
         <scene sceneID="wts-zT-zJF">
             <objects>
                 <viewControllerPlaceholder storyboardName="Activities" id="sKx-LC-SWU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="3eB-10-J0t"/>
+                    <tabBarItem key="tabBarItem" title="Activities" id="3eB-10-J0t"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6pq-rX-Q1i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="569" y="-40"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Profile" width="50" height="50"/>
-    </resources>
 </document>

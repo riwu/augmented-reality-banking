@@ -4,7 +4,7 @@ class ActivitiesViewController: UITableViewController {
     
     // MARK: - Properties
     var detailViewController: ActivityViewController? = nil
-    var activities = [Activity]()
+    var activities = Activities.activities
     var filteredActivities = [Activity]()
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -23,10 +23,7 @@ class ActivitiesViewController: UITableViewController {
         searchController.searchBar.scopeButtonTitles = ["All", "Sports", "Movie", "Dinner", "Other"]
         tableView.tableHeaderView = searchController.searchBar
         
-        activities = [
-            Activity(title: "NS 50 Fun Run", category:"Sports", description: "5KM run", 
-                     image: #imageLiteral(resourceName: "sports")),
-            Activity(title: "Dinner gathering", category:"Food", description: "Buffet to celebrate birthday", image: #imageLiteral(resourceName: "food"))]
+ 
         
         if let splitViewController = splitViewController {
             let controllers = splitViewController.viewControllers
@@ -52,32 +49,37 @@ class ActivitiesViewController: UITableViewController {
             : activities[indexPath.row]
     }
     
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "activityCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "activityCell", 
+                                                       for: indexPath) as? ActivityCell else {
+            fatalError()
+        }
         let activity = getActivity(at: indexPath)
-        cell.textLabel!.text = activity.title
-        cell.detailTextLabel!.text = activity.description
-        cell.imageView?.image = activity.image
+        cell.setActivity(activity)
         return cell
     }
     
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
         filteredActivities = activities.filter { activity  in
-            let categoryMatch = (scope == "All") || (activity.category == scope)
-            return categoryMatch && activity.title.lowercased().contains(searchText.lowercased())
+            let categoryMatch = (scope == "All") || (activity.category.rawValue == scope)
+            return categoryMatch && (activity.title.lowercased().contains(searchText.lowercased()) || 
+                activity.description.lowercased().contains(searchText.lowercased()))
         }
         tableView.reloadData()
     }
     
     // Mark: - Delegate
-    override func tableView(_ tableView: UITableView, 
-                   heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
+//    override func tableView(_ tableView: UITableView, 
+//                   heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 100
+//    }
     
     override func tableView(_ tableView: UITableView, 
                    didSelectRowAt indexPath: IndexPath) {
-        guard let activitiesVC = storyboard?.instantiateViewController(
+        let storyboard = UIStoryboard(name: "Activity", bundle: nil)
+        guard let activitiesVC = storyboard.instantiateViewController(
             withIdentifier: "ActivityViewController") as? ActivityViewController else {
                 assertionFailure("Can't segue to ActivityViewController")
                 return

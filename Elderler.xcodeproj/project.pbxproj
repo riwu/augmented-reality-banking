@@ -21,6 +21,9 @@
 		00F9A3CC1EF57A9D004407CD /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F9A3CB1EF57A9D004407CD /* Category.swift */; };
 		00F9A3CE1EF57EF7004407CD /* ServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F9A3CD1EF57EF7004407CD /* ServiceCell.swift */; };
 		00F9A3D01EF5807C004407CD /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00F9A3CF1EF5807C004407CD /* Profile.storyboard */; };
+		00F9A3D21EF60CFA004407CD /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F9A3D11EF60CFA004407CD /* ScheduleViewController.swift */; };
+		00F9A3D51EF62825004407CD /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00F9A3D41EF62825004407CD /* Activity.storyboard */; };
+		00F9A3D71EF64BC3004407CD /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F9A3D61EF64BC3004407CD /* ActivityCell.swift */; };
 		CAC3EBBFE903A5D780FC839C /* Pods_Elderler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B926280E6928E683879FB6EC /* Pods_Elderler.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +44,9 @@
 		00F9A3CB1EF57A9D004407CD /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		00F9A3CD1EF57EF7004407CD /* ServiceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
 		00F9A3CF1EF5807C004407CD /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		00F9A3D11EF60CFA004407CD /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		00F9A3D41EF62825004407CD /* Activity.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Activity.storyboard; sourceTree = "<group>"; };
+		00F9A3D61EF64BC3004407CD /* ActivityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
 		B926280E6928E683879FB6EC /* Pods_Elderler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Elderler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB16133C77F721539416D624 /* Pods-Elderler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elderler.release.xcconfig"; path = "Pods/Target Support Files/Pods-Elderler/Pods-Elderler.release.xcconfig"; sourceTree = "<group>"; };
 		E0C30CA4542B6D059340BCAB /* Pods-Elderler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elderler.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Elderler/Pods-Elderler.debug.xcconfig"; sourceTree = "<group>"; };
@@ -58,23 +64,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		006B6E051EF50FB200ED0FB7 /* Storyboards */ = {
+		006B6E051EF50FB200ED0FB7 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
 				006B6E0A1EF5129700ED0FB7 /* Schedule.storyboard */,
-				00F7D1271EF4F89D001C8B9B /* Main.storyboard */,
-				00F7D12C1EF4F89D001C8B9B /* LaunchScreen.storyboard */,
+				00F9A3D11EF60CFA004407CD /* ScheduleViewController.swift */,
 			);
-			name = Storyboards;
+			name = Schedule;
 			sourceTree = "<group>";
 		};
 		006B6E0C1EF5188100ED0FB7 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				006B6E081EF5128B00ED0FB7 /* Services.storyboard */,
-				00F9A3CB1EF57A9D004407CD /* Category.swift */,
-				00F7D1251EF4F89C001C8B9B /* ServicesViewController.swift */,
 				00F9A3CD1EF57EF7004407CD /* ServiceCell.swift */,
+				00F7D1251EF4F89C001C8B9B /* ServicesViewController.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -91,9 +95,8 @@
 			isa = PBXGroup;
 			children = (
 				006B6E061EF5128000ED0FB7 /* Activities.storyboard */,
-				00F7D1231EF4F89C001C8B9B /* ActivitiesViewController.swift */,
-				006B6E0F1EF5475C00ED0FB7 /* Activity.swift */,
 				006B6E111EF5478800ED0FB7 /* ActivityViewController.swift */,
+				00F7D1231EF4F89C001C8B9B /* ActivitiesViewController.swift */,
 			);
 			name = Activities;
 			sourceTree = "<group>";
@@ -119,15 +122,29 @@
 		00F7D1201EF4F89C001C8B9B /* Elderler */ = {
 			isa = PBXGroup;
 			children = (
+				00F9A3D31EF62747004407CD /* Common */,
 				006B6E0E1EF5232400ED0FB7 /* Activities */,
 				006B6E0D1EF5196E00ED0FB7 /* Profile */,
 				006B6E0C1EF5188100ED0FB7 /* Services */,
-				006B6E051EF50FB200ED0FB7 /* Storyboards */,
-				00F7D1211EF4F89C001C8B9B /* AppDelegate.swift */,
+				006B6E051EF50FB200ED0FB7 /* Schedule */,
 				00F7D12A1EF4F89D001C8B9B /* Assets.xcassets */,
+				00F7D1271EF4F89D001C8B9B /* Main.storyboard */,
+				00F7D12C1EF4F89D001C8B9B /* LaunchScreen.storyboard */,
+				00F7D1211EF4F89C001C8B9B /* AppDelegate.swift */,
 				00F7D12F1EF4F89D001C8B9B /* Info.plist */,
 			);
 			path = Elderler;
+			sourceTree = "<group>";
+		};
+		00F9A3D31EF62747004407CD /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				00F9A3CB1EF57A9D004407CD /* Category.swift */,
+				006B6E0F1EF5475C00ED0FB7 /* Activity.swift */,
+				00F9A3D41EF62825004407CD /* Activity.storyboard */,
+				00F9A3D61EF64BC3004407CD /* ActivityCell.swift */,
+			);
+			name = Common;
 			sourceTree = "<group>";
 		};
 		0EA94CC26A854099F657BD2E /* Frameworks */ = {
@@ -216,6 +233,7 @@
 				006B6E091EF5128B00ED0FB7 /* Services.storyboard in Resources */,
 				00F9A3D01EF5807C004407CD /* Profile.storyboard in Resources */,
 				00F7D1291EF4F89D001C8B9B /* Main.storyboard in Resources */,
+				00F9A3D51EF62825004407CD /* Activity.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +295,8 @@
 				00F7D1261EF4F89C001C8B9B /* ServicesViewController.swift in Sources */,
 				00F7D1221EF4F89C001C8B9B /* AppDelegate.swift in Sources */,
 				006B6E101EF5475C00ED0FB7 /* Activity.swift in Sources */,
+				00F9A3D21EF60CFA004407CD /* ScheduleViewController.swift in Sources */,
+				00F9A3D71EF64BC3004407CD /* ActivityCell.swift in Sources */,
 				00F9A3CE1EF57EF7004407CD /* ServiceCell.swift in Sources */,
 				006B6E121EF5478800ED0FB7 /* ActivityViewController.swift in Sources */,
 				00F7D1241EF4F89C001C8B9B /* ActivitiesViewController.swift in Sources */,
