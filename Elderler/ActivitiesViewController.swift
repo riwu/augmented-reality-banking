@@ -13,15 +13,26 @@ class ActivitiesViewController: UITableViewController {
 
         filteredActivities = activities
 
-        self.definesPresentationContext = true
+        self.definesPresentationContext = false
 
         // Setup the Search Controller
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         searchController.dimsBackgroundDuringPresentation = false
+        searchController.definesPresentationContext = false
         searchController.searchBar.scopeButtonTitles = ["All", Category.sports.rawValue, Category.dining.rawValue,
                 Category.boardGame.rawValue, Category.celebration.rawValue, "Others"]
         tableView.tableHeaderView = searchController.searchBar
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        searchController.searchBar.isHidden = true
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        searchController.searchBar.isHidden = false
     }
 
     fileprivate func filterContentForSearchText(_ searchText: String, scope: String = "All") {

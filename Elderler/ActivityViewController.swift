@@ -9,7 +9,7 @@ class ActivityViewController: UIViewController {
     @IBOutlet private var hostLabel: UILabel!
     @IBOutlet private var signUpsLabel: UILabel!
     var activity: Activity!
-    var hideSignup = false
+    var isSchedule = false
 
     @IBOutlet private var signUpButton: UIButton!
 
@@ -31,12 +31,15 @@ class ActivityViewController: UIViewController {
         locationLabel.text = activity.location
         updateSignUpLabel()
 
-        if hideSignup {
-            signUpButton.isHidden = true
+        if isSchedule {
+            signUpButton.setTitle("Contact host", for: .normal)
         }
     }
 
     @IBAction private func onSignupPress(_ sender: UIButton) {
+        guard !isSchedule else {
+            return
+        }
         activity.incrementSignUps()
         updateSignUpLabel()
 
