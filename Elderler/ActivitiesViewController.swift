@@ -12,6 +12,8 @@ class ActivitiesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        filteredActivities = activities
+        
         // Setup the Search Controller
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
@@ -20,10 +22,9 @@ class ActivitiesViewController: UITableViewController {
         
         // Setup the Scope Bar
         
-        searchController.searchBar.scopeButtonTitles = ["All", "Sports", "Movie", "Dinner", "Other"]
+        searchController.searchBar.scopeButtonTitles = ["All", Category.sports.rawValue, Category.dining.rawValue,
+                Category.boardGame.rawValue, Category.celebration.rawValue, "Others"]
         tableView.tableHeaderView = searchController.searchBar
-        
- 
         
         if let splitViewController = splitViewController {
             let controllers = splitViewController.viewControllers
@@ -32,21 +33,12 @@ class ActivitiesViewController: UITableViewController {
     }
     
     // MARK: - DataSource
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchController.isActive && searchController.searchBar.text != "" {
-            return filteredActivities.count
-        }
-        return activities.count
+        return filteredActivities.count
     }
     
     private func getActivity(at indexPath: IndexPath) -> Activity {
-        return (searchController.isActive && searchController.searchBar.text != "") 
-            ? filteredActivities[indexPath.row]
-            : activities[indexPath.row]
+        return filteredActivities[indexPath.row]
     }
     
     
@@ -63,19 +55,21 @@ class ActivitiesViewController: UITableViewController {
     
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
         filteredActivities = activities.filter { activity  in
-            let categoryMatch = (scope == "All") || (activity.category.rawValue == scope)
-            return categoryMatch && (activity.title.lowercased().contains(searchText.lowercased()) || 
-                activity.description.lowercased().contains(searchText.lowercased()))
+            guard let scopeTitles = searchController.searchBar.scopeButtonTitles else {
+                assertionFailure()
+                return true
+            }
+            let categoryMatch = (scope == "All") || (activity.category.rawValue == scope) || 
+                (scope == "Others" && !scopeTitles.contains(activity.category.rawValue))
+            let match = categoryMatch && (searchText.isEmpty || 
+                (activity.title.lowercased().contains(searchText.lowercased()) || 
+                    activity.description.lowercased().contains(searchText.lowercased())))
+            return match
         }
         tableView.reloadData()
     }
     
     // Mark: - Delegate
-//    override func tableView(_ tableView: UITableView, 
-//                   heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 100
-//    }
-    
     override func tableView(_ tableView: UITableView, 
                    didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Activity", bundle: nil)
