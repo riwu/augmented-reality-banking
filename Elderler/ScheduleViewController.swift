@@ -1,23 +1,14 @@
 import UIKit
 
-class ScheduleViewController: UITableViewController {
+class ScheduleViewController: ActivitiesViewController {
     
-    var activities = Activities.schedules + Activities.activities
-    
-    // MARK: - DataSource
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return activities.count
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        activities = Activities.schedules + Activities.activities
+        filteredActivities = activities
     }
-  
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "scheduleCell", 
-                                                       for: indexPath) as? ActivityCell else {
-                                                        fatalError()
-        }        
-        cell.setActivity(activities[indexPath.row])
-        return cell
-    }
-    
+
     // Mark: - Delegate
     override func tableView(_ tableView: UITableView, 
                             didSelectRowAt indexPath: IndexPath) {

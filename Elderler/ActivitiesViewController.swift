@@ -3,7 +3,6 @@ import UIKit
 class ActivitiesViewController: UITableViewController {
     
     // MARK: - Properties
-    var detailViewController: ActivityViewController? = nil
     var activities = Activities.activities
     var filteredActivities = [Activity]()
     let searchController = UISearchController(searchResultsController: nil)
