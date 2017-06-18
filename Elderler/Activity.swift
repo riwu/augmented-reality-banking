@@ -51,7 +51,7 @@ struct Activities {
                                       description: "Public exhibition of our army latest technology",
                                       signUps: arc4random_uniform(12), vacancy: 15 + arc4random_uniform(50)),
                              
-                             Activity(title: "JB one day tour", category: Category.travel, cost: 50, 
+                             Activity(title: "Johor Bahru Trip", category: Category.travel, cost: 50, 
                                       date: Activities.randTime, 
                                       location: "Keat Hong Community Club", host: "Traveller Pte Ltd", 
                                       description: "Full day tour in Johor Bahru. Lunch and Dinner included.",
