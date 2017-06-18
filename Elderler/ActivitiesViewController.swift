@@ -19,38 +19,9 @@ class ActivitiesViewController: UITableViewController {
         searchController.searchBar.delegate = self
         definesPresentationContext = true
         searchController.dimsBackgroundDuringPresentation = false
-        
-        // Setup the Scope Bar
-        
         searchController.searchBar.scopeButtonTitles = ["All", Category.sports.rawValue, Category.dining.rawValue,
                 Category.boardGame.rawValue, Category.celebration.rawValue, "Others"]
         tableView.tableHeaderView = searchController.searchBar
-        
-        if let splitViewController = splitViewController {
-            let controllers = splitViewController.viewControllers
-            detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? ActivityViewController
-        }
-    }
-    
-    // MARK: - DataSource
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredActivities.count
-    }
-    
-    private func getActivity(at indexPath: IndexPath) -> Activity {
-        return filteredActivities[indexPath.row]
-    }
-    
-    
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "activityCell", 
-                                                       for: indexPath) as? ActivityCell else {
-            fatalError()
-        }
-        let activity = getActivity(at: indexPath)
-        cell.setActivity(activity)
-        return cell
     }
     
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
@@ -68,6 +39,26 @@ class ActivitiesViewController: UITableViewController {
         }
         tableView.reloadData()
     }
+    
+    // MARK: - DataSource
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return filteredActivities.count
+    }
+    
+    private func getActivity(at indexPath: IndexPath) -> Activity {
+        return filteredActivities[indexPath.row]
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "activityCell", 
+                                                       for: indexPath) as? ActivityCell else {
+            fatalError()
+        }
+        let activity = getActivity(at: indexPath)
+        cell.setActivity(activity)
+        return cell
+    }
+
     
     // Mark: - Delegate
     override func tableView(_ tableView: UITableView, 

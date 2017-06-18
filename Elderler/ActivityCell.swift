@@ -2,7 +2,7 @@ import UIKit
 
 class ActivityCell: UITableViewCell {
     
-    private func setDate(_ date: Date) {
+    private func setdate(_ date: Date) {
         guard let dateLabel = contentView.viewWithTag(1) as? UILabel else {
             assertionFailure()
             return
@@ -25,8 +25,9 @@ class ActivityCell: UITableViewCell {
         detailTextLabel?.text = activity.description
         imageView?.image = UIImage(named: activity.category.rawValue)
         
-        setDate(activity.Date)
+        setdate(activity.date)
         setCost(activity.cost)
+        print("here")
     }
   
 }

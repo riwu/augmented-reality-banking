@@ -4,7 +4,7 @@ enum Category: String {
     case grocery = "Grocery" 
     case laundry = "Laundry"
     case repair = "Repair" 
-    case FoodDelivery = "Food Delivery"
+    case foodDelivery = "Food Delivery"
     
     case sports = "Sports"
     case dining = "Dining"

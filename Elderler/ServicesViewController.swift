@@ -12,7 +12,7 @@ class ServicesViewController: UICollectionViewController {
                       Category.grocery, 
                       Category.laundry, 
                       Category.repair, 
-                      Category.FoodDelivery]
+                      Category.foodDelivery]
     }
 
  
