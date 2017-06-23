@@ -1,0 +1,51 @@
+2017-05-14 14:58:08.663 Google Chrome[89302:1807795] KSPaths accessing user domain Keystone directory as root. [com.google.Keystone.SharedErrorDomain:1001 - 'KSPaths.m:262']
+2017-05-14 14:58:08.664 Google Chrome[89302:1807795] KSBundle could not obtain user bundle path. [com.google.Keystone.SharedErrorDomain:1201 - 'KSBundle.m:44'] (KSPaths accessing user domain Keystone directory as root. [com.google.Keystone.SharedErrorDomain:1001])
+2017-05-14 14:58:08.664 Google Chrome[89302:1807795] KSPaths accessing user domain Keystone directory as root. [com.google.Keystone.SharedErrorDomain:1001 - 'KSPaths.m:262']
+2017-05-14 14:58:08.664 Google Chrome[89302:1807795] KSBundle could not obtain user bundle path. [com.google.Keystone.SharedErrorDomain:1201 - 'KSBundle.m:44'] (KSPaths accessing user domain Keystone directory as root. [com.google.Keystone.SharedErrorDomain:1001])
+2017-05-14 14:58:08.716 Google Chrome[89302:1807795] KSPaths accessing user domain product actives store as root. [com.google.Keystone.SharedErrorDomain:1001 - 'KSPaths.m:333']
+2017-05-14 14:58:08.717 Google Chrome[89302:1807795] Error while attempting to write actives: (<KSError:0x7ff678935310
+	domain="com.google.Keystone.SharedErrorDomain"
+	code=1001
+	userInfo={
+		date = 2017-05-14 06:58:08 +0000;
+		line = 333;
+		filename = "KSPaths.m";
+		function = "+[KSPaths userKeystoneSubDirectoryWithName:error:]";
+		NSLocalizedDescription = "KSPaths accessing user domain product actives store as root.";
+	}
+>)
+2017-05-14 14:58:08.718 Google Chrome[89302:1807795] KSPaths accessing user domain product actives store as root. [com.google.Keystone.SharedErrorDomain:1001 - 'KSPaths.m:333']
+2017-05-14 14:58:08.718 Google Chrome[89302:1807795] Error while attempting to write actives: (<KSError:0x7ff678936e80
+	domain="com.google.Keystone.SharedErrorDomain"
+	code=1001
+	userInfo={
+		date = 2017-05-14 06:58:08 +0000;
+		line = 333;
+		filename = "KSPaths.m";
+		function = "+[KSPaths userKeystoneSubDirectoryWithName:error:]";
+		NSLocalizedDescription = "KSPaths accessing user domain product actives store as root.";
+	}
+>)
+2017-05-14 14:58:08.757 Google Chrome[89302:1807795] NSWindow warning: adding an unknown subview: <FullSizeContentView: 0x7ff678cde4c0>. Break on NSLog to debug.
+2017-05-14 14:58:08.757 Google Chrome[89302:1807795] Call stack:
+(
+    "+callStackSymbols disabled for performance reasons"
+)
+[89305:775:0514/145809.016966:ERROR:child_thread_impl.cc(762)] Request for unknown Channel-associated interface: ui::mojom::GpuMain
+2017-05-14 14:58:09.136 Google Chrome[89302:1807795] KSPaths accessing user domain Keystone directory as root. [com.google.Keystone.SharedErrorDomain:1001 - 'KSPaths.m:262']
+2017-05-14 14:58:09.136 Google Chrome[89302:1807795] KSBundle could not obtain user bundle path. [com.google.Keystone.SharedErrorDomain:1201 - 'KSBundle.m:44'] (KSPaths accessing user domain Keystone directory as root. [com.google.Keystone.SharedErrorDomain:1001])
+2017-05-14 14:58:09.136 Google Chrome[89302:1807795] KSPaths accessing user domain ticket store as root. [com.google.Keystone.SharedErrorDomain:1001 - 'KSPaths.m:288']
+2017-05-14 14:58:09.136 Google Chrome[89302:1807795] Keystone Registration framework cannot obtain the ticket store path. Falling back to passing: '--user-store', which may not work on older ksadmin versions. Error: <KSError:0x7ff6789cd5e0
+	domain="com.google.Keystone.SharedErrorDomain"
+	code=1001
+	userInfo={
+		date = 2017-05-14 06:58:09 +0000;
+		line = 288;
+		filename = "KSPaths.m";
+		function = "+[KSPaths userTicketStorePathWithError:]";
+		NSLocalizedDescription = "KSPaths accessing user domain ticket store as root.";
+	}
+>
+[89302:775:0514/145809.440353:INFO:CONSOLE(55)] "Synchronous XMLHttpRequest on the main thread is deprecated because of its detrimental effects to the end user's experience. For more help, check https://xhr.spec.whatwg.org/.", source: file:///Users/a/Desktop/iot-hackathon/frontend/script.js (55)
+[89302:775:0514/145809.445122:INFO:CONSOLE(2)] "jQuery.Deferred exception: response is not defined", source: https://code.jquery.com/jquery-3.1.1.min.js (2)
+[89302:775:0514/145809.450840:INFO:CONSOLE(2)] "Uncaught ReferenceError: response is not defined", source: https://code.jquery.com/jquery-3.1.1.min.js (2)
